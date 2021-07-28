@@ -256,11 +256,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\RecentlyAddedShows\\RecentlyAddedShows\\RecentlyAddedShows.csproj",
+      "projectUniqueName": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows\\RecentlyAddedShows.csproj",
       "projectName": "RecentlyAddedShows",
-      "projectPath": "C:\\projects\\RecentlyAddedShows\\RecentlyAddedShows\\RecentlyAddedShows.csproj",
+      "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows\\RecentlyAddedShows.csproj",
       "packagesPath": "C:\\Users\\ash.rhodes\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\RecentlyAddedShows\\RecentlyAddedShows\\obj\\",
+      "outputPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ash.rhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",

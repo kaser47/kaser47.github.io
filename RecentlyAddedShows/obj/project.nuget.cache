@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rQjkqG8CWUOtutAgkGg6EaU8kreRDecC4v/IGhiXRIyLYX/nG405p673rz1XqSsoaiZweryzXPqe3QwO8fa6dA==",
+  "dgSpecHash": "UvV3UKFxVz8MAhzmN30eNw1k2WGLLZ79qUmCgKtOxj+VPpkRyKn4hSw7M3rMj2KomO9EPNVePcZRi6+AAhC/RA==",
   "success": true,
-  "projectFilePath": "C:\\projects\\RecentlyAddedShows\\RecentlyAddedShows\\RecentlyAddedShows.csproj",
+  "projectFilePath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows\\RecentlyAddedShows.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\htmlagilitypack\\1.11.34\\htmlagilitypack.1.11.34.nupkg.sha512",
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
