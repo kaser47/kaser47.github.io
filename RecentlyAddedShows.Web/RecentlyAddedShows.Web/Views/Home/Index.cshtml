@@ -7,7 +7,33 @@
     <h1 class="display-4">Recently Added Shows</h1>
 </div>
 
-@foreach (var item in Model)
-{
-<p>@item.Type - @item.Name</p>
-}
+
+<h2 class="center">Cartoons</h2>
+
+<table class="table table-striped table-bordered center">
+    <tr>
+        <th class="thead-dark">Name</th>
+    </tr>
+    @foreach (var item in Model.Where(x => x.Type == RecentlyAddedShows.ShowType.Cartoon.ToString()).OrderBy(x => x.Name))
+    {
+    <tr>
+        <td>@item.Name</td>
+    </tr>
+    }
+</table>
+
+<br />
+
+<h2 class="center">Anime</h2>
+
+<table class="table table-striped table-bordered center">
+    <tr>
+        <th class="thead-dark">Name</th>
+    </tr>
+    @foreach (var item in Model.Where(x => x.Type == RecentlyAddedShows.ShowType.Anime.ToString()).OrderBy(x => x.Name))
+    {
+    <tr>
+        <td>@item.Name</td>
+    </tr>
+    }
+</table>
