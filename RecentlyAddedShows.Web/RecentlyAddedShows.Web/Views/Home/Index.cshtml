@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Show>
+﻿@model RecentlyAddedModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,6 +7,10 @@
     <h1 class="display-4">Recently Added Shows</h1>
 </div>
 
+<div class="text-center">
+    <p>Last Updated - <span style="color: red">@Model.LastUpdated.ToShortDateString()</span> -
+                      @Model.TranslatedLastUpdated</p>
+</div>
 
 <h2 class="center">Cartoons</h2>
 
@@ -14,11 +18,11 @@
     <tr>
         <th class="thead-dark">Name</th>
     </tr>
-    @foreach (var item in Model.Where(x => x.Type == RecentlyAddedShows.ShowType.Cartoon.ToString()).OrderBy(x => x.Name))
+    @foreach (var item in Model.Cartoons)
     {
-    <tr>
-        <td>@item.Name</td>
-    </tr>
+        <tr>
+            <td><a href="@item.Url">@item.Name</a></td>
+        </tr>
     }
 </table>
 
@@ -30,10 +34,10 @@
     <tr>
         <th class="thead-dark">Name</th>
     </tr>
-    @foreach (var item in Model.Where(x => x.Type == RecentlyAddedShows.ShowType.Anime.ToString()).OrderBy(x => x.Name))
+    @foreach (var item in Model.Anime)
     {
-    <tr>
-        <td>@item.Name</td>
-    </tr>
+        <tr>
+            <td><a href="@item.Url">@item.Name</a></td>
+        </tr>
     }
 </table>

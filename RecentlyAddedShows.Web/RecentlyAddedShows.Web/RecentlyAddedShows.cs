@@ -37,28 +37,24 @@ namespace RecentlyAddedShows.Web
                 var htmlDocument = new HtmlDocument();
                 htmlDocument.LoadHtml(data);
 
-                var specificNode = htmlDocument.GetElementbyId("sidebar_right");
+                List<Show> shows = new List<Show>();
                 var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//*[@id='sidebar_right']/ul/li");
 
-                return nodesMatchingXPath.Select(a => a.ChildNodes[3].ChildNodes[0].InnerText).Select(text => new Show(text, type)).ToList();
+                foreach (var node in nodesMatchingXPath)
+                {
+                    var name = node.ChildNodes[3].ChildNodes[0].InnerText;
+                    var urlValue = node.ChildNodes[3].ChildNodes[0].Attributes["href"].Value;
+                    var imageValue = node.ChildNodes[1].ChildNodes[1].ChildNodes[1].Attributes["src"].Value;
+                    shows.Add(new Show(name, urlValue, imageValue, type));
+                }
+
+                return shows;
             }
 
             public enum ShowType
             {
                 Cartoon,
                 Anime
-            }
-        }
-
-        public class Show
-        {
-            public string Name { get; set; }
-            public string Type { get; set; }
-
-            public Show(string name, RecentlyAddedShows.ShowType type)
-            {
-                Name = name;
-                Type = type.ToString();
             }
         }
 }
