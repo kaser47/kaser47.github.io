@@ -54,3 +54,7 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Recently
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.Migrations.InitialCreate.resources
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.Migrations.AddedCreatedDate.resources
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.csproj.GenerateResource.cache
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.Migrations.AddedIsUpdated.resources
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.Migrations.AddedIsUpdated1.resources
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\Razor\Views\Home\Rss.cshtml.g.cs
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Release\net5.0\System.ServiceModel.Syndication.dll

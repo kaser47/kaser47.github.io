@@ -271,6 +271,15 @@
           }
         }
       },
+      "System.ServiceModel.Syndication/5.0.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/System.ServiceModel.Syndication.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Syndication.dll": {}
+        }
+      },
       "System.Windows.Extensions/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -1054,6 +1063,34 @@
         "version.txt"
       ]
     },
+    "System.ServiceModel.Syndication/5.0.0": {
+      "sha512": "xjwRFydlevI/DMLlBcDRbOmofJTZNoJ0FCkEPdMw9i+85lDbl8Pw001LJKQbRSeHSVJCEuPfAvEuC1TAumxcmw==",
+      "type": "package",
+      "path": "system.servicemodel.syndication/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.ServiceModel.Syndication.dll",
+        "lib/net461/System.ServiceModel.Syndication.xml",
+        "lib/netstandard2.0/System.ServiceModel.Syndication.dll",
+        "lib/netstandard2.0/System.ServiceModel.Syndication.xml",
+        "ref/net461/System.ServiceModel.Syndication.dll",
+        "ref/net461/System.ServiceModel.Syndication.xml",
+        "ref/netcoreapp2.1/System.ServiceModel.Syndication.dll",
+        "ref/netcoreapp2.1/System.ServiceModel.Syndication.xml",
+        "ref/netstandard2.0/System.ServiceModel.Syndication.dll",
+        "ref/netstandard2.0/System.ServiceModel.Syndication.xml",
+        "runtimes/win/lib/net461/System.ServiceModel.Syndication.dll",
+        "runtimes/win/lib/net461/System.ServiceModel.Syndication.xml",
+        "system.servicemodel.syndication.5.0.0.nupkg.sha512",
+        "system.servicemodel.syndication.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Windows.Extensions/4.7.0": {
       "sha512": "CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "type": "package",
@@ -1079,7 +1116,8 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "EntityFramework >= 6.4.4",
-      "HtmlAgilityPack >= 1.11.34"
+      "HtmlAgilityPack >= 1.11.34",
+      "System.ServiceModel.Syndication >= 5.0.0"
     ]
   },
   "packageFolders": {
@@ -1128,6 +1166,10 @@
           "HtmlAgilityPack": {
             "target": "Package",
             "version": "[1.11.34, )"
+          },
+          "System.ServiceModel.Syndication": {
+            "target": "Package",
+            "version": "[5.0.0, )"
           }
         },
         "imports": [

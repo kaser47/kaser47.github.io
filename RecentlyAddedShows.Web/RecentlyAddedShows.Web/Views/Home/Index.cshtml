@@ -4,15 +4,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Recently Added Shows</h1>
+    <h1 id="headline" class="display-4">Recently Added Shows</h1>
 </div>
 
 <div class="text-center">
-    <p>Last Updated - <span style="color: red">@Model.LastUpdated.ToShortDateString()</span> -
-                      @Model.TranslatedLastUpdated</p>
+    <p id="date">Last Updated - <span style="color: red">@Model.LastUpdated.ToString("dd/MM/yyyy")</span> - @Model.TranslatedLastUpdated</p>
 </div>
 
-<h2 class="center">Cartoons</h2>
+<h2 id="summary" class="center">Cartoons</h2>
 
 <table class="table table-striped table-bordered center">
     <tr>
@@ -20,15 +19,26 @@
     </tr>
     @foreach (var item in Model.Cartoons)
     {
-        <tr>
-            <td><a href="@item.Url">@item.Name</a></td>
+        <tr id="item">
+            <td>
+                @if (item.IsUpdated)
+                {
+                    <strong>
+                        <a id="link" href="@item.Url">@item.Name</a>
+                    </strong>
+                }
+                else
+                {
+                    <a id="link" href="@item.Url">@item.Name</a>
+                }
+            </td>
         </tr>
     }
 </table>
 
 <br />
 
-<h2 class="center">Anime</h2>
+<h2 id="summary" class="center">Anime</h2>
 
 <table class="table table-striped table-bordered center">
     <tr>
@@ -36,8 +46,20 @@
     </tr>
     @foreach (var item in Model.Anime)
     {
-        <tr>
-            <td><a href="@item.Url">@item.Name</a></td>
+        <tr id="item">
+            <td>
+
+                @if (item.IsUpdated)
+                {
+                    <strong>
+                        <a id="link" href="@item.Url">@item.Name</a>
+                    </strong>
+                }
+                else
+                {
+                    <a id="link" href="@item.Url">@item.Name</a>
+                }
+            </td>
         </tr>
     }
 </table>

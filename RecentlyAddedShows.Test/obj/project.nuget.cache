@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Xw4Fv2ABMVmn3NZ55gbz4oEUOm13tGarTcaA7VaVNw1J8uhtbLK5mh6ojSvmeZSfDPguM8maLu8x5DmFcNmyCA==",
+  "dgSpecHash": "ERU2K9DBIfvjSbYESkz5sTAA5ads+0bTYUu+Bvxvf4Z021JvBpQ7gMrHPpO8r2NqgyU9Dahc70LMg7YYHlPqkQ==",
   "success": true,
   "projectFilePath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Test\\RecentlyAddedShows.Test.csproj",
   "expectedPackageFiles": [
@@ -72,6 +72,7 @@
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\ash.rhodes\\.nuget\\packages\\system.servicemodel.syndication\\5.0.0\\system.servicemodel.syndication.5.0.0.nupkg.sha512",
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\ash.rhodes\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",

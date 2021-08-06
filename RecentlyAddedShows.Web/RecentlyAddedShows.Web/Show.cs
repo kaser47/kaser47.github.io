@@ -15,6 +15,7 @@ namespace RecentlyAddedShows.Web
         public string Url { get; set; }
         public string Image { get; set; }
         public DateTime Created { get; set; }
+        public bool IsUpdated { get; set; }
 
         public Show(string name, string url, string image, RecentlyAddedShows.ShowType type)
         {
@@ -22,7 +23,7 @@ namespace RecentlyAddedShows.Web
             Url = url;
             Image = image;
             Type = type.ToString();
-            Created = DateTime.Now;
+            Created = DateTime.UtcNow;
         }
 
         public Show()
@@ -65,16 +66,17 @@ namespace RecentlyAddedShows.Web
 
         public DateTime LastUpdated => Shows.FirstOrDefault().Created;
 
-        public string TranslatedLastUpdated => SortDates(LastUpdated);
+        public string TranslatedLastUpdated => SortDates();
 
         public RecentlyAddedModel(IEnumerable<Show> shows)
         {
             Shows = shows;
         }
 
-        private string SortDates(DateTime lastUpdated)
+        private string SortDates()
         {
-            var now = DateTime.Now;
+            var now = DateTime.UtcNow;
+            var lastUpdated = LastUpdated;
 
             TimeSpan TimeLeft()
             {
@@ -101,7 +103,7 @@ namespace RecentlyAddedShows.Web
 
             if (TimeLeft().Seconds > 0)
             {
-                int result = (lastUpdated - now).Seconds;
+                int result = TimeLeft().Seconds;
                 return (result > 1) ? $"{result} seconds ago" : $"{result} second ago";
             }
 
