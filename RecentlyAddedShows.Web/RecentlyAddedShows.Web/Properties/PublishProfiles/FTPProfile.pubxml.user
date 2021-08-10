@@ -8,26 +8,44 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA828h0t8JjUWydlcIVaa9ZwAAAAACAAAAAAADZgAAwAAAABAAAAAFhl47tT5hVxmR+OQfpBoQAAAAAASAAACgAAAAEAAAAA41e2fiwUEe93BXdFiGB84YAAAApvN2sqJmYjZCkdQPmz3UZiWQmD1nXKKcFAAAAKRAQTzXxiOGg8pxWhOVmaL+V0ym</EncryptedPassword>
     <_PublishTargetUrl>ftp://RecentlyAddedShows.somee.com/www.RecentlyAddedShows.somee.com</_PublishTargetUrl>
-    <History>False|2021-08-10T11:36:13.2404087Z;</History>
+    <History>True|2021-08-10T14:34:02.0830258Z;True|2021-08-10T15:27:27.3752040+01:00;False|2021-08-10T15:22:34.1786978+01:00;True|2021-08-10T15:01:25.1543783+01:00;True|2021-08-10T13:06:49.9627593+01:00;True|2021-08-10T12:47:00.4871845+01:00;False|2021-08-10T12:39:25.4926068+01:00;False|2021-08-10T12:36:13.2404087+01:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
       <publishTime>07/28/2021 13:35:32</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>07/29/2021 13:23:19</publishTime>
+      <publishTime>08/10/2021 14:41:16</publishTime>
+    </File>
+    <File Include="EntityFramework.dll">
+      <publishTime>04/16/2020 21:38:44</publishTime>
+    </File>
+    <File Include="EntityFramework.SqlServer.dll">
+      <publishTime>04/16/2020 21:39:00</publishTime>
+    </File>
+    <File Include="HtmlAgilityPack.dll">
+      <publishTime>06/07/2021 15:14:48</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.deps.json">
-      <publishTime>08/10/2021 12:33:39</publishTime>
+      <publishTime>08/10/2021 15:31:07</publishTime>
+    </File>
+    <File Include="RecentlyAddedShows.Web.dll">
+      <publishTime>08/10/2021 15:31:07</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.exe">
-      <publishTime>08/10/2021 12:33:38</publishTime>
+      <publishTime>08/10/2021 15:31:07</publishTime>
+    </File>
+    <File Include="RecentlyAddedShows.Web.pdb">
+      <publishTime>08/10/2021 15:31:07</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.runtimeconfig.json">
       <publishTime>08/06/2021 12:00:39</publishTime>
     </File>
+    <File Include="RecentlyAddedShows.Web.Views.dll">
+      <publishTime>08/10/2021 15:31:07</publishTime>
+    </File>
     <File Include="RecentlyAddedShows.Web.Views.pdb">
-      <publishTime>08/10/2021 12:33:39</publishTime>
+      <publishTime>08/10/2021 15:31:07</publishTime>
     </File>
     <File Include="runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll">
       <publishTime>01/17/2020 18:41:36</publishTime>
@@ -47,14 +65,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll">
       <publishTime>11/15/2019 08:53:46</publishTime>
     </File>
+    <File Include="System.CodeDom.dll">
+      <publishTime>11/15/2019 08:36:56</publishTime>
+    </File>
+    <File Include="System.Configuration.ConfigurationManager.dll">
+      <publishTime>11/15/2019 08:37:04</publishTime>
+    </File>
     <File Include="System.Data.SqlClient.dll">
       <publishTime>01/17/2020 18:28:34</publishTime>
     </File>
     <File Include="System.Security.Cryptography.ProtectedData.dll">
       <publishTime>11/15/2019 08:37:42</publishTime>
     </File>
+    <File Include="System.ServiceModel.Syndication.dll">
+      <publishTime>10/19/2020 19:51:30</publishTime>
+    </File>
     <File Include="web.config">
-      <publishTime>08/10/2021 12:33:43</publishTime>
+      <publishTime>08/10/2021 15:31:08</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>07/28/2021 16:00:31</publishTime>

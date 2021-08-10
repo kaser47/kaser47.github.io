@@ -51,13 +51,13 @@ namespace RecentlyAddedShows.Web.Data.Entities
             }
         }
 
-        public Show(string name, string url, string image, Classes.RecentlyAddedShows.ShowType type)
+        public Show(string name, string url, string image, Classes.RecentlyAddedShows.ShowType type, DateTime created)
         {
             Name = name;
             Url = url;
             Image = image;
             Type = type.ToString();
-            Created = DateTime.UtcNow;
+            Created = created;
         }
 
         public Show()

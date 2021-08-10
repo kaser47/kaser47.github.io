@@ -6,13 +6,21 @@ using System.ServiceModel.Syndication;
 using System.Text;
 using System.Xml;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Web.Data;
 using RecentlyAddedShows.Web.Models;
 
 namespace RecentlyAddedShows.Web.Classes
 {
-    public static class RssFeedCreator
+    public class RssFeedCreator
     {
+        private readonly IOptions<Configuration> _config;
+
+        public RssFeedCreator(IOptions<Configuration> config)
+        {
+            _config = config;
+        }
+
         private static IEnumerable<SyndicationItem> CreateSyndicationItems(RecentlyAddedShowsViewModel showsViewModel)
         {
             var items = new List<SyndicationItem>();
@@ -28,19 +36,21 @@ namespace RecentlyAddedShows.Web.Classes
                     Title = new TextSyndicationContent($"{show.Name}"),
                     BaseUri = new Uri(show.Url),
                     Summary = new TextSyndicationContent(content),
-                    PublishDate = new DateTimeOffset(show.Created.AddHours(1)),
+                    PublishDate = new DateTimeOffset(show.Created.AddHours(-7)),
                     Links = { new SyndicationLink(new Uri(show.Url), "alternate", "Title", "text/html", 1000) },
                 };
 
+                
                 items.Add(item);
             }
 
             return items;
         }
 
-        public static IActionResult CreateRssFeed()
+        public IActionResult CreateRssFeed()
         {
-            var syndicationItems = CreateSyndicationItems(RecentlyAddedShows.GetModel());
+            var recentlyAddedShows = new RecentlyAddedShows(_config);
+            var syndicationItems = CreateSyndicationItems(recentlyAddedShows.GetModel());
 
             var feed = new SyndicationFeed(ConstantValues.SiteTitle,
                     ConstantValues.Description, new Uri(ConstantValues.SiteUrl))
