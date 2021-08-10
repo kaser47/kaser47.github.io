@@ -17,6 +17,46 @@ namespace RecentlyAddedShows.Web
         public DateTime Created { get; set; }
         public bool IsUpdated { get; set; }
 
+        public string TranslatedCreated
+        {
+            get
+            {
+                var now = DateTime.UtcNow;
+                var lastUpdated = Created;
+
+                TimeSpan TimeLeft()
+                {
+                    return (now - lastUpdated);
+                }
+
+                if (TimeLeft().Days > 0)
+                {
+                    var result = TimeLeft().Days;
+                    return (result > 1) ? $"{result} days ago" : $"{result} day ago";
+                }
+
+                if (TimeLeft().Hours > 0)
+                {
+                    int result = TimeLeft().Hours;
+                    return (result > 1) ? $"{result} hours ago" : $"{result} hour ago";
+                }
+
+                if (TimeLeft().Minutes > 0)
+                {
+                    int result = TimeLeft().Minutes;
+                    return (result > 1) ? $"{result} minutes ago" : $"{result} minute ago";
+                }
+
+                if (TimeLeft().Seconds > 0)
+                {
+                    int result = TimeLeft().Seconds;
+                    return (result > 1) ? $"{result} seconds ago" : $"{result} second ago";
+                }
+
+                return String.Empty;
+            }
+        }
+
         public Show(string name, string url, string image, RecentlyAddedShows.ShowType type)
         {
             Name = name;
@@ -29,6 +69,12 @@ namespace RecentlyAddedShows.Web
         public Show()
         {
             
+        }
+
+        public override string ToString()
+        {
+            var message = $"{Type}-{Name}-{Created}";
+            return message;
         }
     }
 
@@ -64,50 +110,14 @@ namespace RecentlyAddedShows.Web
             }
         }
 
-        public DateTime LastUpdated => Shows.FirstOrDefault().Created;
+        public DateTime LastUpdated => Shows.OrderByDescending(x => x.Created).FirstOrDefault().Created;
 
-        public string TranslatedLastUpdated => SortDates();
+        public string TranslatedLastUpdated =>
+            Shows.OrderByDescending(x => x.Created).FirstOrDefault().TranslatedCreated;
 
         public RecentlyAddedModel(IEnumerable<Show> shows)
         {
             Shows = shows;
-        }
-
-        private string SortDates()
-        {
-            var now = DateTime.UtcNow;
-            var lastUpdated = LastUpdated;
-
-            TimeSpan TimeLeft()
-            {
-                return (now - lastUpdated);
-            }
-
-            if (TimeLeft().Days > 0)
-            {
-                var result = TimeLeft().Days;
-                return (result > 1) ? $"{result} days ago" : $"{result} day ago";
-            }
-
-            if (TimeLeft().Hours > 0)
-            {
-                int result = TimeLeft().Hours;
-                return (result > 1) ? $"{result} hours ago" : $"{result} hour ago";
-            }
-
-            if (TimeLeft().Minutes > 0)
-            {
-                int result = TimeLeft().Minutes;
-                return (result > 1) ? $"{result} minutes ago" : $"{result} minute ago";
-            }
-
-            if (TimeLeft().Seconds > 0)
-            {
-                int result = TimeLeft().Seconds;
-                return (result > 1) ? $"{result} seconds ago" : $"{result} second ago";
-            }
-
-            return String.Empty;
         }
     }
 }
