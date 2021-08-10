@@ -1,4 +1,7 @@
-﻿namespace RecentlyAddedShows.Web.Migrations
+﻿using RecentlyAddedShows.Web.Data;
+using RecentlyAddedShows.Web.Models;
+
+namespace RecentlyAddedShows.Web.Migrations
 {
     using System;
     using System.Data.Entity;

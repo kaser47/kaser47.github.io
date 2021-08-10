@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
-namespace RecentlyAddedShows.Web
+namespace RecentlyAddedShows.Web.Data.Entities
 {
     public class Show
     {
@@ -57,7 +52,7 @@ namespace RecentlyAddedShows.Web
             }
         }
 
-        public Show(string name, string url, string image, RecentlyAddedShows.ShowType type)
+        public Show(string name, string url, string image, Classes.RecentlyAddedShows.ShowType type)
         {
             Name = name;
             Url = url;
@@ -75,49 +70,6 @@ namespace RecentlyAddedShows.Web
         {
             var message = $"{Type}-{Name}-{Created}";
             return message;
-        }
-    }
-
-    public class Context : DbContext
-    {
-        private const string connectionString =
-            "Server=sql.bsite.net\\MSSQL2016;Database=kaser47_RecentlyAddedShows;User Id=kaser47_RecentlyAddedShows;Password=123qwe";
-        public Context() : base(connectionString)
-        {
-
-        }
-        
-        public DbSet<Show> Shows { get; set; }
-    }
-
-    public class RecentlyAddedModel
-    {
-        public IEnumerable<Show> Shows { get; set; }
-
-        public IEnumerable<Show> Cartoons
-        {
-            get
-            {
-                return Shows.Where(x => x.Type == RecentlyAddedShows.ShowType.Cartoon.ToString()).OrderBy(x => x.Name);
-            }
-        }
-
-        public IEnumerable<Show> Anime
-        {
-            get
-            {
-                return Shows.Where(x => x.Type == RecentlyAddedShows.ShowType.Anime.ToString()).OrderBy(x => x.Name);
-            }
-        }
-
-        public DateTime LastUpdated => Shows.OrderByDescending(x => x.Created).FirstOrDefault().Created;
-
-        public string TranslatedLastUpdated =>
-            Shows.OrderByDescending(x => x.Created).FirstOrDefault().TranslatedCreated;
-
-        public RecentlyAddedModel(IEnumerable<Show> shows)
-        {
-            Shows = shows;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace RecentlyAddedShows.Test
         [Test]
         public void GetShows()
         {
-            Web.RecentlyAddedShows.Get();
+            Web.Classes.RecentlyAddedShows.Get();
             Assert.IsTrue(true);
         }
 
