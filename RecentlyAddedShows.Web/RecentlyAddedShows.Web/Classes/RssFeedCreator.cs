@@ -15,22 +15,23 @@ namespace RecentlyAddedShows.Web.Classes
     {
         private static IEnumerable<SyndicationItem> CreateSyndicationItems(RecentlyAddedShowsViewModel showsViewModel)
         {
-            List<SyndicationItem> items = new List<SyndicationItem>();
+            var items = new List<SyndicationItem>();
 
             foreach (var show in showsViewModel.Shows.OrderByDescending(x => x.Created).ThenByDescending(x => x.Type)
                 .ThenBy(x => x.Name))
             {
-                string isUpdated = show.IsUpdated ? "NEW -" : string.Empty;
-                string content = $"{show.Type} - {show.TranslatedCreated}";
+                var isUpdated = show.IsUpdated ? "NEW -" : string.Empty;
+                var content = $"{show.Type} - {show.TranslatedCreated}";
 
-                SyndicationItem item = new SyndicationItem
+                var item = new SyndicationItem
                 {
                     Title = new TextSyndicationContent($"{show.Name}"),
                     BaseUri = new Uri(show.Url),
                     Summary = new TextSyndicationContent(content),
-                    PublishDate = new DateTimeOffset(show.Created),
+                    PublishDate = new DateTimeOffset(show.Created.AddHours(1)),
                     Links = { new SyndicationLink(new Uri(show.Url), "alternate", "Title", "text/html", 1000) },
                 };
+
                 items.Add(item);
             }
 

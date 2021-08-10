@@ -32,23 +32,22 @@ namespace RecentlyAddedShows.Web.Data.Entities
 
                 if (TimeLeft().Hours > 0)
                 {
-                    int result = TimeLeft().Hours;
+                    var result = TimeLeft().Hours;
                     return (result > 1) ? $"{result} hours ago" : $"{result} hour ago";
                 }
 
                 if (TimeLeft().Minutes > 0)
                 {
-                    int result = TimeLeft().Minutes;
+                    var result = TimeLeft().Minutes;
                     return (result > 1) ? $"{result} minutes ago" : $"{result} minute ago";
                 }
 
-                if (TimeLeft().Seconds > 0)
+                if (TimeLeft().Seconds <= 0) return string.Empty;
                 {
-                    int result = TimeLeft().Seconds;
+                    var result = TimeLeft().Seconds;
                     return (result > 1) ? $"{result} seconds ago" : $"{result} second ago";
                 }
 
-                return String.Empty;
             }
         }
 

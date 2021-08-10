@@ -6,7 +6,7 @@ namespace RecentlyAddedShows.Web.Data
     public class Context : DbContext
     {
         private const string ConnectionString =
-            "Server=sql.bsite.net\\MSSQL2016;Database=kaser47_RecentlyAddedShows;User Id=kaser47_RecentlyAddedShows;Password=123qwe";
+            "workstation id=rasDatabase.mssql.somee.com;packet size=4096;user id=kaser47_SQLLogin_1;pwd=87mcm5rsla;data source=rasDatabase.mssql.somee.com;persist security info=False;initial catalog=rasDatabase";
         public Context() : base(ConnectionString)
         {
 
