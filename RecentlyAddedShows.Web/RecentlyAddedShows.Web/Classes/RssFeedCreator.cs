@@ -25,17 +25,17 @@ namespace RecentlyAddedShows.Web.Classes
         {
             var items = new List<SyndicationItem>();
 
+            
             foreach (var show in showsViewModel.Shows.OrderByDescending(x => x.Created).ThenByDescending(x => x.Type)
                 .ThenBy(x => x.Name))
             {
-                var isUpdated = show.IsUpdated ? "NEW -" : string.Empty;
-                var content = $"{show.Type} - {show.TranslatedCreated}";
+                var content = $"{show.Type} - {show.TranslatedCreated} <img src='{show.Image}'>";
 
                 var item = new SyndicationItem
                 {
                     Title = new TextSyndicationContent($"{show.Name}"),
                     BaseUri = new Uri(show.Url),
-                    Summary = new TextSyndicationContent(content),
+                    Content = SyndicationContent.CreateHtmlContent(content),
                     PublishDate = new DateTimeOffset(show.Created.AddHours(-7)),
                     Links = { new SyndicationLink(new Uri(show.Url), "alternate", "Title", "text/html", 1000) },
                 };
