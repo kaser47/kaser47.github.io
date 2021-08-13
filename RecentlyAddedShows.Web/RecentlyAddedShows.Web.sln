@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecentlyAddedShows.Web", "RecentlyAddedShows.Web\RecentlyAddedShows.Web.csproj", "{4005EB47-8DC7-4659-8257-4B1726F74292}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecentlyAddedShows.Test", "..\RecentlyAddedShows.Test\RecentlyAddedShows.Test.csproj", "{F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecentlyAddedShows.Test", "..\RecentlyAddedShows.Test\RecentlyAddedShows.Test.csproj", "{F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord", "Discord\Discord.csproj", "{F99EC280-085A-45D9-ABE9-1755C466FFCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Console", "Discord.Console\Discord.Console.csproj", "{370B9B46-C1C1-42F4-9C46-9A37E386C58D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99EC280-085A-45D9-ABE9-1755C466FFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99EC280-085A-45D9-ABE9-1755C466FFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99EC280-085A-45D9-ABE9-1755C466FFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99EC280-085A-45D9-ABE9-1755C466FFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{370B9B46-C1C1-42F4-9C46-9A37E386C58D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{370B9B46-C1C1-42F4-9C46-9A37E386C58D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{370B9B46-C1C1-42F4-9C46-9A37E386C58D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{370B9B46-C1C1-42F4-9C46-9A37E386C58D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

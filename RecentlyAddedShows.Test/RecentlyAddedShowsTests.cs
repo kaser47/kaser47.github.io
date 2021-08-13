@@ -10,6 +10,13 @@ namespace RecentlyAddedShows.Test
     public class RecentlyAddedShowsTests
     {
         [Test]
+        public void Discord()
+        {
+            var discord = new Discord.Class1();
+            discord.Run();
+        }
+
+        [Test]
         public void GetShows()
         {
             var recentlyAddedShows = new Web.Classes.RecentlyAddedShows(null);

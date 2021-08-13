@@ -1,8 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5239f10a_002D1d26_002D4a4a_002D9629_002D61bba60feea5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetShows #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5239f10a_002D1d26_002D4a4a_002D9629_002D61bba60feea5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetShows #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E::net5.0::RecentlyAddedShows.Test.RecentlyAddedShowsTests.GetShows&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E::net5.0::RecentlyAddedShows.Test.RecentlyAddedShowsTests.Dates&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E::net5.0::RecentlyAddedShows.Test.RecentlyAddedShowsTests.Discord&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=99e55bea_002Dc329_002D420e_002D9195_002D482bb94d06cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetShows" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
