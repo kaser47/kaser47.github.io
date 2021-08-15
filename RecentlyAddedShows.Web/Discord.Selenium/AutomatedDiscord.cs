@@ -118,6 +118,18 @@ namespace Discord.Selenium
             messageBox.SendMessage("!clean");
         }
 
+        public void Claim()
+        {
+            var messageBox = FindTacoShackMessageBox();
+            messageBox.SendMessage("!task claim");
+        }
+
+        public void Daily()
+        {
+            var messageBox = FindTacoShackMessageBox();
+            messageBox.SendMessage("!daily");
+        }
+
         private void HandleChangeServerIdentity()
         {
             var gotIt = driver.FindElement(By.XPath("//div[text()='Got it']"), Consts.timeout);

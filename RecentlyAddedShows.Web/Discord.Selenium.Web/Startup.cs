@@ -28,53 +28,47 @@ namespace Discord.Selenium.Web
         {
             services.AddControllers();
 
+            //services.AddCronJob<WorkCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
             services.AddCronJob<WorkCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"*/10 * * * *";
+                c.CronExpression = @"*/11 * * * *";
             });
 
             services.AddCronJob<TipsCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"*/5 * * * *";
+                c.CronExpression = @"*/6 * * * *";
             });
 
             services.AddCronJob<OvertimeCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"*/30 * * * *";
+                c.CronExpression = @"15 * * * *";
             });
 
             services.AddCronJob<CleanCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"0 8 * * *";
+                c.CronExpression = @"1 0 * * *";
             });
 
-            //services.AddCronJob<WorkCronJob>(c =>
-            //{
-            //    c.TimeZoneInfo = TimeZoneInfo.Local;
-            //    c.CronExpression = @"*/1 * * * *";
-            //});
+            services.AddCronJob<ClaimCronJob>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                c.CronExpression = @"55 23 * * *";
+            });
 
-            //services.AddCronJob<TipsCronJob>(c =>
-            //{
-            //    c.TimeZoneInfo = TimeZoneInfo.Local;
-            //    c.CronExpression = @"*/1 * * * *";
-            //});
-
-            //services.AddCronJob<OvertimeCronJob>(c =>
-            //{
-            //    c.TimeZoneInfo = TimeZoneInfo.Local;
-            //    c.CronExpression = @"*/1 * * * *";
-            //});
-
-            //services.AddCronJob<CleanCronJob>(c =>
-            //{
-            //    c.TimeZoneInfo = TimeZoneInfo.Local;
-            //    c.CronExpression = @"*/1 * * * *";
-            //});
+            services.AddCronJob<DailyCronJob>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                c.CronExpression = @"10 0 * * *";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
