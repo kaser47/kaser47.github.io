@@ -1,0 +1,13 @@
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Resources\chromedriver.exe
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Discord.Selenium.Web.exe
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\appsettings.Development.json
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\appsettings.json
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Discord.Selenium.Web.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Discord.Selenium.Web.deps.json
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Discord.Selenium.Web.runtimeconfig.json
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Discord.Selenium.Web.pdb
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Cronos.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Newtonsoft.Json.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\WebDriver.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Discord.Selenium.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Docker\publish\Discord.Selenium.pdb

@@ -55,4 +55,3 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Recently
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\ref\RecentlyAddedShows.Web.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.pdb
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.genruntimeconfig.cache
-C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.csproj.AssemblyReference.cache

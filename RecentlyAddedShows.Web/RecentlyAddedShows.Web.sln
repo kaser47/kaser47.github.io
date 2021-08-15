@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecentlyAddedShows.Test", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord", "Discord\Discord.csproj", "{F99EC280-085A-45D9-ABE9-1755C466FFCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Console", "Discord.Console\Discord.Console.csproj", "{370B9B46-C1C1-42F4-9C46-9A37E386C58D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord.Console", "Discord.Console\Discord.Console.csproj", "{370B9B46-C1C1-42F4-9C46-9A37E386C58D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Selenium", "Discord.Selenium\Discord.Selenium.csproj", "{95EA4AD6-896B-4283-96EF-8A25E562A19D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Selenium.Tests", "Discord.Selenium.Tests\Discord.Selenium.Tests.csproj", "{97B342D4-1BD3-491F-906E-C1259CF8A1DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Selenium.Web", "Discord.Selenium.Web\Discord.Selenium.Web.csproj", "{CC3F0BE3-1E89-4BA0-8370-11BB889F84C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{370B9B46-C1C1-42F4-9C46-9A37E386C58D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370B9B46-C1C1-42F4-9C46-9A37E386C58D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{370B9B46-C1C1-42F4-9C46-9A37E386C58D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95EA4AD6-896B-4283-96EF-8A25E562A19D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95EA4AD6-896B-4283-96EF-8A25E562A19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95EA4AD6-896B-4283-96EF-8A25E562A19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95EA4AD6-896B-4283-96EF-8A25E562A19D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B342D4-1BD3-491F-906E-C1259CF8A1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B342D4-1BD3-491F-906E-C1259CF8A1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B342D4-1BD3-491F-906E-C1259CF8A1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B342D4-1BD3-491F-906E-C1259CF8A1DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC3F0BE3-1E89-4BA0-8370-11BB889F84C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC3F0BE3-1E89-4BA0-8370-11BB889F84C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC3F0BE3-1E89-4BA0-8370-11BB889F84C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC3F0BE3-1E89-4BA0-8370-11BB889F84C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
