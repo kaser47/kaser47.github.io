@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Discord.Selenium.Web.CronJobs;
+using Discord.Selenium.Web.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Discord.Selenium.Web
 {
@@ -29,6 +31,48 @@ namespace Discord.Selenium.Web
             services.AddControllers();
 
             //services.AddCronJob<WorkCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
+            //services.AddCronJob<TipsCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
+            //services.AddCronJob<OvertimeCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
+            //services.AddCronJob<CleanCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
+            //services.AddCronJob<ClaimCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
+            //services.AddCronJob<DailyCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
+            //services.AddCronJob<BuySauceCronJob>(c =>
+            //{
+            //    c.TimeZoneInfo = TimeZoneInfo.Local;
+            //    c.CronExpression = @"* * * * *";
+            //});
+
+            //services.AddCronJob<SellSauceCronJob>(c =>
             //{
             //    c.TimeZoneInfo = TimeZoneInfo.Local;
             //    c.CronExpression = @"* * * * *";
@@ -68,6 +112,18 @@ namespace Discord.Selenium.Web
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
                 c.CronExpression = @"10 0 * * *";
+            });
+
+            services.AddCronJob<BuySauceCronJob>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                c.CronExpression = @"20 0 * * *";
+            });
+
+            services.AddCronJob<SellSauceCronJob>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                c.CronExpression = @"20 5 * * *";
             });
         }
 

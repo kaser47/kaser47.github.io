@@ -9,7 +9,7 @@ namespace Discord.Selenium.Tests
         [SetUp]
         public void Setup()
         {
-            systemUnderTest = new AutomatedDiscord(@"C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\bin\Debug\netcoreapp3.1\Resources");
+            systemUnderTest = new AutomatedDiscord();
         }
 
         [TearDown]

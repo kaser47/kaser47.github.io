@@ -11,33 +11,10 @@ namespace Discord.Selenium
     public class AutomatedDiscord : IDisposable
     {
         private IWebDriver driver;
-        private readonly string webDriverLocation;
-
-        public AutomatedDiscord(string webDriverLocation)
-        {
-            this.webDriverLocation = webDriverLocation;
-        }
 
         public void Login()
         {
-            //var options = new ChromeOptions();
-            //options.AddArgument("--no-sandbox");
-            //options.AddArguments("headless");
-
-
-            //String remote_url_chrome = "http://0.0.0.0:4444/wd/hub";
-            //ChromeOptions options = new ChromeOptions();
-            //driver = new RemoteWebDriver(new Uri(remote_url_chrome), options);
-            //driver.Url = Consts.discordWeb;
-
-            //driver = new ChromeDriver(webDriverLocation, options) {Url = Consts.discordWeb};
-
             String remote_url_chrome = "http://chrome.ukwest.azurecontainer.io:4444/";
-            //ChromeOptions options = new ChromeOptions();
-            //options.AddArgument("no-sandbox");
-            //options.AddArgument("headless");
-            //options.AddArgument("--privileged");
-            //options.AddArgument("window-size=1200x800");
             driver = new RemoteWebDriver(new Uri(remote_url_chrome), new ChromeOptions());
             driver.Url = Consts.discordWeb;
             var email = driver.FindElement(By.Name("email"), Consts.timeout);
@@ -62,22 +39,10 @@ namespace Discord.Selenium
             closeButton?.Click();
         }
 
-        public string Display()
-        {
-            return webDriverLocation;
-        }
-
         public IWebElement FindTacoShackMessageBox()
         {
-            try
-            {
-                Login();
-            }
-            catch (Exception e)
-            {
-               return FindTacoShackMessageBox();
-            }
-
+            Login();
+            
             var tacoServerIcon = driver.FindElement(By.CssSelector("div[aria-label='  Taco server']"), Consts.timeout);
             tacoServerIcon.Click();
 
@@ -129,6 +94,20 @@ namespace Discord.Selenium
             var messageBox = FindTacoShackMessageBox();
             messageBox.SendMessage("!daily");
         }
+
+        public void BuySauce()
+        {
+            var messageBox = FindTacoShackMessageBox();
+            messageBox.SendMessage("!sm buy salsa 1");
+        }
+
+
+        public void SellSauce()
+        {
+            var messageBox = FindTacoShackMessageBox();
+            messageBox.SendMessage("!sm sell salsa 1");
+        }
+
 
         private void HandleChangeServerIdentity()
         {

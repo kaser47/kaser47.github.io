@@ -1,21 +1,21 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Discord.Selenium.Web.Data;
 
 namespace Discord.Selenium.Web.CronJobs
 {
     public class TipsCronJob : CronJobService
     {
-        private readonly AutomatedDiscord automatedDiscord;
-
         public TipsCronJob(IScheduleConfig<TipsCronJob> config) : base(config.CronExpression, config.TimeZoneInfo)
         {
-            automatedDiscord = new AutomatedDiscord(Consts.webDriverLocation());
         }
 
         public override Task DoWork(CancellationToken cancellationToken)
         {
-            automatedDiscord.Tips();
-            automatedDiscord.Dispose();
+            using (var discord = new AutomatedDiscord())
+            {
+                discord.Tips();
+            };
             return base.DoWork(cancellationToken);
         }
     }

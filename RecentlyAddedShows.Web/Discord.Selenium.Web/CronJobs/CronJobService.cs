@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cronos;
+using Discord.Selenium.Web.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace Discord.Selenium.Web
@@ -13,15 +15,20 @@ namespace Discord.Selenium.Web
         private System.Timers.Timer _timer;
         private readonly CronExpression _expression;
         private readonly TimeZoneInfo _timeZoneInfo;
+        private readonly AutomatedDiscordContext _automatedDiscordContext;
 
         protected CronJobService(string cronExpression, TimeZoneInfo timeZoneInfo)
         {
             _expression = CronExpression.Parse(cronExpression);
             _timeZoneInfo = timeZoneInfo;
+            _automatedDiscordContext = new AutomatedDiscordContext(Data.Consts.ConnectionString);
         }
 
         public virtual async Task StartAsync(CancellationToken cancellationToken)
         {
+            var log = new Log($"Starting cron job: {this.GetType()}");
+            _automatedDiscordContext.logs.Add(log);
+            await _automatedDiscordContext.SaveChangesAsync(cancellationToken);
             await ScheduleJob(cancellationToken);
         }
 
@@ -58,11 +65,17 @@ namespace Discord.Selenium.Web
 
         public virtual async Task DoWork(CancellationToken cancellationToken)
         {
+            var log = new Log($"Doing cron job: {this.GetType()}");
+            _automatedDiscordContext.logs.Add(log);
+            await _automatedDiscordContext.SaveChangesAsync(cancellationToken);
             await Task.Delay(5000, cancellationToken);  // do the work
         }
 
         public virtual async Task StopAsync(CancellationToken cancellationToken)
         {
+            var log = new Log($"Stopping cron job: {this.GetType()}");
+            _automatedDiscordContext.logs.Add(log);
+            await _automatedDiscordContext.SaveChangesAsync(cancellationToken);
             _timer?.Stop();
             await Task.CompletedTask;
         }
