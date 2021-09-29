@@ -1,4 +1,5 @@
 ﻿using System;
+using RecentlyAddedShows.Web.Classes;
 
 namespace RecentlyAddedShows.Web.Data.Entities
 {
@@ -10,6 +11,7 @@ namespace RecentlyAddedShows.Web.Data.Entities
         public string Url { get; set; }
         public string Image { get; set; }
         public DateTime Created { get; set; }
+        public int NumberViewing { get; set; }
         public bool IsUpdated { get; set; }
 
         public string TranslatedCreated
@@ -51,7 +53,13 @@ namespace RecentlyAddedShows.Web.Data.Entities
             }
         }
 
-        public Show(string name, string url, string image, Classes.RecentlyAddedShows.ShowType type, DateTime created)
+        public Show(string name, string url, string image, ShowType type, DateTime created, int numberViewing)
+        : this(name, url, image, type, created)
+        {
+            NumberViewing = numberViewing;
+        }
+
+        public Show(string name, string url, string image, ShowType type, DateTime created)
         {
             Name = name;
             Url = url;

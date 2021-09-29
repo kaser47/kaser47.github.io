@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using HtmlAgilityPack;
+using RecentlyAddedShows.Web.Data.Entities;
+
+namespace RecentlyAddedShows.Web.Classes
+{
+    public class TraktUpNextStrategy : IStrategy
+    {
+        private readonly string _url;
+        private const ShowType ShowType = Classes.ShowType.TVShowUpNext;
+        private const string homeUrl = "https://trakt.tv";
+
+        public TraktUpNextStrategy(string url)
+        {
+            _url = url;
+        }
+
+        public IList<Show> GetShows(DateTime date)
+        {
+            using var web1 = new WebClient();
+
+            var data = web1.DownloadString(_url);
+            var htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(data);
+
+            var shows = new List<Show>();
+            var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//*[@id='progress-wrapper']/div/div[@class='row posters fanarts twenty-four-cols grid-item no-overlays']");
+
+            foreach (var node in nodesMatchingXPath)
+            {
+                var name = GetName(node);
+                var urlValue = GetUrl(node);
+                var imageValue = GetImage(node);
+                date = GetDate(node);
+
+                shows.Add(new Show(name, urlValue, imageValue, ShowType, date));
+            }
+
+            return shows;
+        }
+
+        private string GetName(HtmlNode node)
+        {
+            var name = string.Empty;
+
+            var showTitle = node.GetText(2,1,0,5,1);
+            var episode = node.GetText(2, 1, 0, 5, 2);
+
+            name = $"{showTitle} - {episode}";
+
+            return name;
+        }
+
+        private string GetUrl(HtmlNode node)
+        {
+            return homeUrl + node.GetUrl(2, 1);
+        }
+
+        private string GetImage(HtmlNode node)
+        {
+            return node.GetActualImage(2, 1, 0, 1);
+        }
+
+        private DateTime GetDate(HtmlNode node)
+        {
+            return DateTime.Parse(node.GetDate(1, 2, 17));
+        }
+    }
+}

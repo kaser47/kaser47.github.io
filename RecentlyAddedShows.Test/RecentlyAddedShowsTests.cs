@@ -20,7 +20,7 @@ namespace RecentlyAddedShows.Test
         public void GetShows()
         {
             var recentlyAddedShows = new Web.Classes.RecentlyAddedShows(null);
-            recentlyAddedShows.Get();
+            var result = recentlyAddedShows.Get();
             Assert.IsTrue(true);
         }
 

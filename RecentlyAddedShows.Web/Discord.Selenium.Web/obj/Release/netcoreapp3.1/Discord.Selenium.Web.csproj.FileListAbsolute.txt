@@ -65,3 +65,4 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\bin\Release\netcoreapp3.1\Humanizer.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Release\netcoreapp3.1\Discord.Selenium.Web.GeneratedMSBuildEditorConfig.editorconfig

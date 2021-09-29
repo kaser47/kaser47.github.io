@@ -1,22 +1,18 @@
-﻿using RecentlyAddedShows.Web.Data;
-using RecentlyAddedShows.Web.Models;
-
-namespace RecentlyAddedShows.Web.Migrations
+﻿namespace RecentlyAddedShows.Web.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<RecentlyAddedShows.Web.Data.Context>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "RecentlyAddedShows.Web.Context";
         }
 
-        protected override void Seed(Context context)
+        protected override void Seed(RecentlyAddedShows.Web.Data.Context context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -93,37 +93,37 @@ namespace Discord.Selenium.Web
             services.AddCronJob<OvertimeCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"15 * * * *";
+                c.CronExpression = @"30 * * * *";
             });
 
             services.AddCronJob<CleanCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"1 0 * * *";
+                c.CronExpression = @"5 8 * * *";
             });
 
             services.AddCronJob<ClaimCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"55 23 * * *";
+                c.CronExpression = @"30 18 * * *";
             });
 
             services.AddCronJob<DailyCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"10 0 * * *";
+                c.CronExpression = @"10 8 * * *";
             });
 
             services.AddCronJob<BuySauceCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"20 0 * * *";
+                c.CronExpression = @"15 8 * * *";
             });
 
             services.AddCronJob<SellSauceCronJob>(c =>
             {
                 c.TimeZoneInfo = TimeZoneInfo.Local;
-                c.CronExpression = @"20 5 * * *";
+                c.CronExpression = @"15 13 * * *";
             });
         }
 

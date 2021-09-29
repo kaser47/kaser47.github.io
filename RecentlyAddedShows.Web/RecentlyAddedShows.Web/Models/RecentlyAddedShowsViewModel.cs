@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RecentlyAddedShows.Web.Classes;
 using RecentlyAddedShows.Web.Data.Entities;
 
 namespace RecentlyAddedShows.Web.Models
@@ -13,7 +14,7 @@ namespace RecentlyAddedShows.Web.Models
         {
             get
             {
-                return Shows.Where(x => x.Type == Classes.RecentlyAddedShows.ShowType.Cartoon.ToString()).OrderBy(x => x.Name);
+                return Shows.Where(x => x.Type == ShowType.Cartoon.ToString()).OrderBy(x => x.Name);
             }
         }
 
@@ -21,7 +22,47 @@ namespace RecentlyAddedShows.Web.Models
         {
             get
             {
-                return Shows.Where(x => x.Type == Classes.RecentlyAddedShows.ShowType.Anime.ToString()).OrderBy(x => x.Name);
+                return Shows.Where(x => x.Type == ShowType.Anime.ToString()).OrderBy(x => x.Name);
+            }
+        }
+
+        public IEnumerable<Show> NextUp
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.TVShowUpNext.ToString()).OrderByDescending(x => x.Created);
+            }
+        }
+
+        public IEnumerable<Show> TVCollection
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.TVShowCollection.ToString()).OrderBy(x => x.Name);
+            }
+        }
+
+        public IEnumerable<Show> TVPopular
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.TVShowPopular.ToString()).OrderByDescending(x => x.NumberViewing);
+            }
+        }
+
+        public IEnumerable<Show> MovieWatchlist
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.MovieFavourites.ToString()).OrderByDescending(x => x.Created);
+            }
+        }
+
+        public IEnumerable<Show> MoviePopular
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.MoviePopular.ToString()).OrderByDescending(x => x.NumberViewing);
             }
         }
 

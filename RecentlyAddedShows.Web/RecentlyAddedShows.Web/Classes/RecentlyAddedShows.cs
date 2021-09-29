@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using HtmlAgilityPack;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Web.Data;
 using RecentlyAddedShows.Web.Data.Entities;
@@ -23,50 +21,30 @@ namespace RecentlyAddedShows.Web.Classes
         {
             var shows = new List<Show>();
 
-            var urls = new List<KeyValuePair<string, ShowType>>
+            var strategies = new List<IStrategy>()
             {
-                new("https://www.wco.tv/", ShowType.Cartoon),
-                new("https://www.wcoanimedub.tv/", ShowType.Anime)
-            };
-
+               new WatchCartoonsOnlineStrategy("https://www.wco.tv/", ShowType.Cartoon),
+               new WatchCartoonsOnlineStrategy("https://www.wcoanimedub.tv/", ShowType.Anime),
+               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/activity?hide_completed=true"),
+               new TraktPopularStrategy("https://trakt.tv/movies/trending", ShowType.MoviePopular),
+               new TraktPopularStrategy("https://trakt.tv/shows/trending", ShowType.TVShowPopular),
+               new TraktGridStrategy("https://trakt.tv/users/kaser47/collection/shows/title?genres=", ShowType.TVShowCollection),
+               new TraktGridStrategy("https://trakt.tv/users/kaser47/collection/shows/title?genres=&page=2", ShowType.TVShowCollection),
+               new TraktGridStrategy("https://trakt.tv/users/kaser47/collection/shows/title?genres=&page=3", ShowType.TVShowCollection),
+               new TraktGridStrategy("https://trakt.tv/users/kaser47/collection/shows/title?genres=&page=4", ShowType.TVShowCollection),
+               new TraktGridStrategy("https://trakt.tv/users/kaser47/watchlist?display=movie&sort=added,asc", ShowType.MovieFavourites),
+            }; 
+            
             var date = DateTime.UtcNow;
 
-            foreach (var (key, value) in urls)
+            foreach (var strategy in strategies)
             {
-                var result = GetShowsFromUrl(key, value, date);
-                shows.AddRange(result);
+               shows.AddRange(strategy.GetShows(date));
             }
 
             return shows;
         }
 
-        private static IEnumerable<Show> GetShowsFromUrl(string url, ShowType type, DateTime date)
-        {
-            using var web1 = new WebClient();
-
-            var data = web1.DownloadString(url);
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(data);
-
-            var shows = new List<Show>();
-            var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//*[@id='sidebar_right']/ul/li");
-
-            foreach (var node in nodesMatchingXPath)
-            {
-                var name = node.ChildNodes[3].ChildNodes[0].InnerText;
-                var urlValue = node.ChildNodes[3].ChildNodes[0].Attributes["href"].Value;
-                var imageValue = node.ChildNodes[1].ChildNodes[1].ChildNodes[1].Attributes["src"].Value;
-                shows.Add(new Show(name, urlValue, imageValue, type, date));
-            }
-
-            return shows;
-        }
-
-        public enum ShowType
-        {
-            Cartoon,
-            Anime
-        }
 
         public RecentlyAddedShowsViewModel GetModel()
         {
@@ -75,7 +53,7 @@ namespace RecentlyAddedShows.Web.Classes
             var results = Get();
             var savedResults = dbContext.Shows.ToList();
 
-            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name));
+            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name && y.NumberViewing != x.NumberViewing));
             var itemsToAdd = results.Where(x => savedResults.All(y => y.Name != x.Name));
 
             if (itemsToAdd.Any())
@@ -90,6 +68,14 @@ namespace RecentlyAddedShows.Web.Classes
             dbContext.SaveChanges();
             savedResults = dbContext.Shows.ToList();
 
+            var model = new RecentlyAddedShowsViewModel(savedResults);
+            return model;
+        }
+
+        public RecentlyAddedShowsViewModel LoadModel()
+        {
+            var dbContext = new Context(_config.Value.ConnectionStrings[0]);
+            var savedResults = dbContext.Shows.ToList();
             var model = new RecentlyAddedShowsViewModel(savedResults);
             return model;
         }

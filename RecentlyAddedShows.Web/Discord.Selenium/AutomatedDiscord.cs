@@ -42,11 +42,11 @@ namespace Discord.Selenium
         public IWebElement FindTacoShackMessageBox()
         {
             Login();
-            
+
             var tacoServerIcon = driver.FindElement(By.CssSelector("div[aria-label='  Taco server']"), Consts.timeout);
             tacoServerIcon.Click();
 
-            HandleSayHelloToThreads();
+            //HandleSayHelloToThreads();
             HandleChangeServerIdentity();
 
             var generalChannel = driver

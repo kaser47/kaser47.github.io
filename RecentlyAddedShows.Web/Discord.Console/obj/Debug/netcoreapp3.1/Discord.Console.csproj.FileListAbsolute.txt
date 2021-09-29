@@ -20,3 +20,4 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.pdb
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.genruntimeconfig.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.csproj.AssemblyReference.cache
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.GeneratedMSBuildEditorConfig.editorconfig

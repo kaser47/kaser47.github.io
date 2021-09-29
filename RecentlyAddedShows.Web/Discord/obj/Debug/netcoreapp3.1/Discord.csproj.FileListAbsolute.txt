@@ -7,3 +7,4 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.csproj.CoreCompileInputs.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.pdb
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.GeneratedMSBuildEditorConfig.editorconfig

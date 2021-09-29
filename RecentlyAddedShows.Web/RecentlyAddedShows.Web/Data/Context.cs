@@ -7,9 +7,13 @@ namespace RecentlyAddedShows.Web.Data
     {
         public Context(string connectionString) : base(connectionString)
         {
-
         }
-        
+
+        public Context()
+        {
+            
+        }
+
         public DbSet<Show> Shows { get; set; }
     }
 }
