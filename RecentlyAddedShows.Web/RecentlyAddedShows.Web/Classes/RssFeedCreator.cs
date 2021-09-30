@@ -26,13 +26,14 @@ namespace RecentlyAddedShows.Web.Classes
         {
             var items = new List<SyndicationItem>();
 
-            
+            var i = 0;
             foreach (var show in shows)
             {
                 var content = $"{show.Type} - {show.TranslatedCreated} <img src='{show.Image}'>";
 
                 var item = new SyndicationItem
                 {
+                    Id = i.ToString(),
                     Title = new TextSyndicationContent($"{show.Name}"),
                     BaseUri = new Uri(show.Url),
                     Content = SyndicationContent.CreateHtmlContent(content),
@@ -74,9 +75,16 @@ namespace RecentlyAddedShows.Web.Classes
             var shows = recentlyAddedShows.GetModel().Shows;
 
             var items = shows.Where(x => x.Type == type.ToString())
-                .OrderByDescending(x => x.NumberViewing)
-                .ThenByDescending(x => x.Created)
-                .ThenByDescending(x => x.Type).ThenBy(x => x.Name);
+                .OrderByDescending(x => x.NumberViewing);
+
+            var i = 0;
+            var date = DateTime.UtcNow;
+
+            foreach (var item in items)
+            {
+                item.Created = date.AddSeconds(-i);
+                i++;
+            }
 
             return CreateRssFeed(items);
         }

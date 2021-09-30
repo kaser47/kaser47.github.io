@@ -1,7 +1,6 @@
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\bin\Debug\netcoreapp3.1\Discord.deps.json
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\bin\Debug\netcoreapp3.1\Discord.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\bin\Debug\netcoreapp3.1\Discord.pdb
-C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.csproj.AssemblyReference.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.AssemblyInfoInputs.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.AssemblyInfo.cs
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Debug\netcoreapp3.1\Discord.csproj.CoreCompileInputs.cache
