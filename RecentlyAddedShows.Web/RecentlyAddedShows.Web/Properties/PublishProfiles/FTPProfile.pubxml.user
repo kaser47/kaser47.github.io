@@ -8,7 +8,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA828h0t8JjUWydlcIVaa9ZwAAAAACAAAAAAADZgAAwAAAABAAAAAFhl47tT5hVxmR+OQfpBoQAAAAAASAAACgAAAAEAAAAA41e2fiwUEe93BXdFiGB84YAAAApvN2sqJmYjZCkdQPmz3UZiWQmD1nXKKcFAAAAKRAQTzXxiOGg8pxWhOVmaL+V0ym</EncryptedPassword>
     <_PublishTargetUrl>ftp://RecentlyAddedShows.somee.com/www.RecentlyAddedShows.somee.com</_PublishTargetUrl>
-    <History>True|2021-09-29T10:02:12.4415350Z;True|2021-09-29T10:14:17.5474559+01:00;False|2021-09-29T10:00:18.6031529+01:00;True|2021-09-28T22:21:27.7900935+01:00;True|2021-09-28T16:37:26.6099129+01:00;True|2021-09-28T16:07:23.0114354+01:00;True|2021-08-20T11:19:13.8876713+01:00;True|2021-08-10T16:17:53.7095278+01:00;True|2021-08-10T16:09:40.5401641+01:00;True|2021-08-10T16:03:38.9070465+01:00;True|2021-08-10T15:50:32.1112489+01:00;True|2021-08-10T15:44:10.7434576+01:00;False|2021-08-10T15:39:51.6930678+01:00;True|2021-08-10T15:34:02.0830258+01:00;True|2021-08-10T15:27:27.3752040+01:00;False|2021-08-10T15:22:34.1786978+01:00;True|2021-08-10T15:01:25.1543783+01:00;True|2021-08-10T13:06:49.9627593+01:00;True|2021-08-10T12:47:00.4871845+01:00;False|2021-08-10T12:39:25.4926068+01:00;False|2021-08-10T12:36:13.2404087+01:00;</History>
+    <History>True|2021-10-13T08:24:21.0783623Z;True|2021-10-11T11:04:06.8356718+01:00;True|2021-10-06T11:25:21.1885134+01:00;True|2021-09-30T15:49:02.2001407+01:00;True|2021-09-30T13:56:16.9912681+01:00;True|2021-09-30T13:00:13.9453080+01:00;True|2021-09-30T09:40:15.1315496+01:00;True|2021-09-29T11:02:12.4415350+01:00;True|2021-09-29T10:14:17.5474559+01:00;False|2021-09-29T10:00:18.6031529+01:00;True|2021-09-28T22:21:27.7900935+01:00;True|2021-09-28T16:37:26.6099129+01:00;True|2021-09-28T16:07:23.0114354+01:00;True|2021-08-20T11:19:13.8876713+01:00;True|2021-08-10T16:17:53.7095278+01:00;True|2021-08-10T16:09:40.5401641+01:00;True|2021-08-10T16:03:38.9070465+01:00;True|2021-08-10T15:50:32.1112489+01:00;True|2021-08-10T15:44:10.7434576+01:00;False|2021-08-10T15:39:51.6930678+01:00;True|2021-08-10T15:34:02.0830258+01:00;True|2021-08-10T15:27:27.3752040+01:00;False|2021-08-10T15:22:34.1786978+01:00;True|2021-08-10T15:01:25.1543783+01:00;True|2021-08-10T13:06:49.9627593+01:00;True|2021-08-10T12:47:00.4871845+01:00;False|2021-08-10T12:39:25.4926068+01:00;False|2021-08-10T12:36:13.2404087+01:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
@@ -27,25 +27,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2021 15:14:48</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.deps.json">
-      <publishTime>09/29/2021 10:59:24</publishTime>
+      <publishTime>10/13/2021 09:19:41</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.dll">
-      <publishTime>09/29/2021 10:59:23</publishTime>
+      <publishTime>10/13/2021 09:19:40</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.exe">
-      <publishTime>09/29/2021 10:59:23</publishTime>
+      <publishTime>10/13/2021 09:19:40</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.pdb">
-      <publishTime>09/29/2021 10:59:23</publishTime>
+      <publishTime>10/13/2021 09:19:40</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.runtimeconfig.json">
-      <publishTime>09/28/2021 22:09:07</publishTime>
+      <publishTime>10/06/2021 11:22:45</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.Views.dll">
-      <publishTime>09/29/2021 10:59:23</publishTime>
+      <publishTime>10/13/2021 09:19:40</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.Views.pdb">
-      <publishTime>09/29/2021 10:59:23</publishTime>
+      <publishTime>10/13/2021 09:19:40</publishTime>
     </File>
     <File Include="runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll">
       <publishTime>01/17/2020 18:41:36</publishTime>
@@ -81,7 +81,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2020 19:51:30</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>09/29/2021 10:59:24</publishTime>
+      <publishTime>10/13/2021 09:19:41</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>09/28/2021 21:17:03</publishTime>

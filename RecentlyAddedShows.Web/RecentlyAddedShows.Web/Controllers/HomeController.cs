@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using RecentlyAddedShows.Web.Models;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Web.Classes;
 using RecentlyAddedShows = RecentlyAddedShows.Web.Classes.RecentlyAddedShows;

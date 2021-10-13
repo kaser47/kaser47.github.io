@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RecentlyAddedShows.Web.Data.Entities;
 
 namespace RecentlyAddedShows.Web.Classes
 {
     public interface IStrategy
     {
-        IList<Show> GetShows(DateTime date);
+        ConcurrentBag<Show> GetShows(DateTime date);
     }
 }

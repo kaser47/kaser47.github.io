@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Web.Data;
 using RecentlyAddedShows.Web.Data.Entities;
@@ -17,9 +21,9 @@ namespace RecentlyAddedShows.Web.Classes
             _config = config;
         }
 
-        public List<Show> Get()
+        public IList<Show> Get()
         {
-            var shows = new List<Show>();
+            var shows = new ConcurrentBag<Show>();
 
             var strategies = new List<IStrategy>()
             {
@@ -37,14 +41,17 @@ namespace RecentlyAddedShows.Web.Classes
             
             var date = DateTime.UtcNow;
 
-            foreach (var strategy in strategies)
+            Parallel.ForEach(strategies, strategy =>
             {
-               shows.AddRange(strategy.GetShows(date));
-            }
+                var results = strategy.GetShows(date);
+                Parallel.ForEach(results, result =>
+                {
+                    shows.Add(result);
+                });
+            });
 
-            return shows;
+            return shows.ToList();
         }
-
 
         public RecentlyAddedShowsViewModel GetModel()
         {
@@ -52,9 +59,9 @@ namespace RecentlyAddedShows.Web.Classes
 
             var results = Get();
             var savedResults = dbContext.Shows.ToList();
-
-            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name && y.NumberViewing != x.NumberViewing));
-            var itemsToAdd = results.Where(x => savedResults.All(y => y.Name != x.Name));
+            var t = dbContext.Shows.ToList();
+            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing));
+            var itemsToAdd = results.Where(x => savedResults.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing));
 
             if (itemsToAdd.Any())
             {

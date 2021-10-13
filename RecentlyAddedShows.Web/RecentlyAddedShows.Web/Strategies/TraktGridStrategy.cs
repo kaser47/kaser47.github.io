@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
 using RecentlyAddedShows.Web.Data.Entities;
 
@@ -19,7 +21,7 @@ namespace RecentlyAddedShows.Web.Classes
             _showType = showType;
         }
 
-        public IList<Show> GetShows(DateTime date)
+        public ConcurrentBag<Show> GetShows(DateTime date)
         {
             using var web1 = new WebClient();
 
@@ -27,10 +29,10 @@ namespace RecentlyAddedShows.Web.Classes
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(data);
 
-            var shows = new List<Show>();
+            var shows = new ConcurrentBag<Show>();
             var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//div[contains(@class,'row posters')]/div[@class='grid-item col-xs-6 col-md-2 col-sm-3']");
 
-            foreach (var node in nodesMatchingXPath)
+            Parallel.ForEach(nodesMatchingXPath, node =>
             {
                 var name = GetName(node);
                 var urlValue = GetUrl(node);
@@ -42,7 +44,7 @@ namespace RecentlyAddedShows.Web.Classes
                 }
 
                 shows.Add(new Show(name, urlValue, imageValue, _showType, date));
-            }
+            });
 
             return shows;
         }

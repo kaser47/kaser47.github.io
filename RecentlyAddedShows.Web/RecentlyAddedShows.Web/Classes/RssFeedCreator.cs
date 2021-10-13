@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -29,7 +30,33 @@ namespace RecentlyAddedShows.Web.Classes
             var i = 0;
             foreach (var show in shows)
             {
-                var content = $"{show.Type} - {show.TranslatedCreated} <img src='{show.Image}'>";
+                var description = string.Empty; 
+
+                ShowType showType;
+                Enum.TryParse(show.Type, out showType);
+                
+                switch (showType)
+                {
+                    case ShowType.Cartoon:
+                    case ShowType.Anime:
+                        description = $"{show.Type} - {show.TranslatedCreated}";
+                        break;
+                    case ShowType.TVShowUpNext:
+                        description = $"{show.TranslatedCreated}";
+                        break;
+                    case ShowType.TVShowPopular:
+                    case ShowType.MoviePopular:
+                        description = $"Number Viewing: {show.NumberViewing}";
+                        break;
+                    case ShowType.TVShowCollection:
+                    case ShowType.MovieFavourites:
+                        break;
+                    default:
+                        description = $"Invalid Type: {showType}";
+                        break;
+                }
+
+                var content = $"{description}<img src='{show.Image}'>";
 
                 var item = new SyndicationItem
                 {
@@ -50,8 +77,8 @@ namespace RecentlyAddedShows.Web.Classes
         public IActionResult CreateCartoonRssFeed()
         {
             var recentlyAddedShows = new RecentlyAddedShows(_config);
-            var shows = recentlyAddedShows.GetModel().Shows;
-
+            var recentlyAddedShowsViewModel = recentlyAddedShows.GetModel();
+            var shows = recentlyAddedShowsViewModel.Shows;
             var items = shows.Where(x => x.Type == "Anime" || x.Type == "Cartoon")
                 .OrderByDescending(x => x.Created).ThenByDescending(x => x.Type).ThenBy(x => x.Name);
 
@@ -61,7 +88,7 @@ namespace RecentlyAddedShows.Web.Classes
         public IActionResult CreateRssFeed(ShowType type)
         {
             var recentlyAddedShows = new RecentlyAddedShows(_config);
-            var shows = recentlyAddedShows.GetModel().Shows;
+            var shows = recentlyAddedShows.LoadModel().Shows;
 
             var items = shows.Where(x => x.Type == type.ToString())
                 .OrderByDescending(x => x.Created).ThenByDescending(x => x.Type).ThenBy(x => x.Name);
@@ -72,7 +99,7 @@ namespace RecentlyAddedShows.Web.Classes
         public IActionResult CreatePopularRssFeed(ShowType type)
         {
             var recentlyAddedShows = new RecentlyAddedShows(_config);
-            var shows = recentlyAddedShows.GetModel().Shows;
+            var shows = recentlyAddedShows.LoadModel().Shows;
 
             var items = shows.Where(x => x.Type == type.ToString())
                 .OrderByDescending(x => x.NumberViewing);

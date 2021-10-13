@@ -24,6 +24,25 @@ namespace RecentlyAddedShows.Test
             Assert.IsTrue(true);
         }
 
+        [Test]
+        public void Performance()
+        {
+            var timeTaken = new List<long>();
+            var recentlyAddedShows = new Web.Classes.RecentlyAddedShows(null);
+
+            for (int i = 0; i < 20; i++)
+            {
+                var stopwatch = Stopwatch.StartNew();
+                var result = recentlyAddedShows.Get();
+                stopwatch.Stop();
+                timeTaken.Add(stopwatch.ElapsedMilliseconds);
+
+            }
+
+            Assert.IsTrue(true);
+        }
+
+
         List<string> messages = new List<string>();
 
         [Test]

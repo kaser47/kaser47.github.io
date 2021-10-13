@@ -10,11 +10,12 @@
     &lt;TestId&gt;NUnit3x::4005EB47-8DC7-4659-8257-4B1726F74292::net5.0::RecentlyAddedShows.Web.RecentlyAddedShowsTests.GetShows&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cf5253b8_002D3a29_002D47fc_002Dab60_002Dbdc83b270dc5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetShows #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cf5253b8_002D3a29_002D47fc_002Dab60_002Dbdc83b270dc5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetShows #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;
       &lt;TestId&gt;NUnit3x::F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E::net5.0::RecentlyAddedShows.Test.RecentlyAddedShowsTests.GetShows&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;NUnit3x::97B342D4-1BD3-491F-906E-C1259CF8A1DC::.NETCoreApp,Version=v3.1::Discord.Selenium.Tests.AutomatedDiscordTests.WorkTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::F5615340-F5FD-4EA2-AFDF-E3EAE04ADE9E::net5.0::RecentlyAddedShows.Test.RecentlyAddedShowsTests.Performance&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;And&gt;&#xD;
       &lt;TestAncestor&gt;&#xD;

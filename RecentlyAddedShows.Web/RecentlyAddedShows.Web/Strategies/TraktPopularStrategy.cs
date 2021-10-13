@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
 using RecentlyAddedShows.Web.Data.Entities;
 
@@ -18,7 +20,7 @@ namespace RecentlyAddedShows.Web.Classes
             _showType = showType;
         }
 
-        public IList<Show> GetShows(DateTime date)
+        public ConcurrentBag<Show> GetShows(DateTime date)
         {
             using var web1 = new WebClient();
 
@@ -26,24 +28,24 @@ namespace RecentlyAddedShows.Web.Classes
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(data);
 
-            var shows = new List<Show>();
+            var shows = new ConcurrentBag<Show>();
             var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//div[@class='row fanarts']/div[@data-show-id]|//div[@class='row fanarts']/div[@data-movie-id]");
 
-            foreach (var node in nodesMatchingXPath)
+            Parallel.ForEach(nodesMatchingXPath, node =>
             {
                 var name = GetName(node);
                 var urlValue = GetUrl(node);
                 var imageValue = GetImage(node);
                 var numberOfViewers = GetNumberOfViewers(node);
                 shows.Add(new Show(name, urlValue, imageValue, _showType, date, numberOfViewers));
-            }
+            });
 
             return shows;
         }
 
         private string GetName(HtmlNode node)
         {
-            return node.GetText(1, 0, 5, 1);
+            return node.GetText(1, 0, 4, 1);
         }
 
         private string GetUrl(HtmlNode node)
@@ -58,7 +60,7 @@ namespace RecentlyAddedShows.Web.Classes
 
         private int GetNumberOfViewers(HtmlNode node)
         {
-            var result = node.GetText(1, 0, 5, 0);
+            var result = node.GetText(1, 0, 4, 0);
             result = result.Replace(" people watching", "");
             var number = int.Parse(result);
             return number;
