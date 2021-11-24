@@ -53,3 +53,5 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Recently
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.genruntimeconfig.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.csproj.AssemblyReference.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.Migrations.Initial.resources
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\WebDriver.dll

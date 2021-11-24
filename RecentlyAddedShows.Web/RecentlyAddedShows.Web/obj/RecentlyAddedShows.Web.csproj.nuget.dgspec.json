@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[1.11.34, )"
             },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
             "System.ServiceModel.Syndication": {
               "target": "Package",
               "version": "[5.0.0, )"

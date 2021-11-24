@@ -58,13 +58,20 @@ namespace RecentlyAddedShows.Web.Classes
 
                 var content = $"{description}<img src='{show.Image}'>";
 
+                var publishedDate = show.Created;
+
+                if (show.Type == "Anime" || show.Type == "Cartoon")
+                {
+                    publishedDate.AddHours(-7);
+                }
+
                 var item = new SyndicationItem
                 {
                     Id = i.ToString(),
                     Title = new TextSyndicationContent($"{show.Name}"),
                     BaseUri = new Uri(show.Url),
                     Content = SyndicationContent.CreateHtmlContent(content),
-                    PublishDate = new DateTimeOffset(show.Created.AddHours(-7)),
+                    PublishDate = new DateTimeOffset(publishedDate),
                     Links = { new SyndicationLink(new Uri(show.Url), "alternate", "Title", "text/html", 1000) },
                 };
 

@@ -133,3 +133,4 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Test\bin\Deb
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Test\bin\Debug\net5.0\System.Linq.Async.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Test\bin\Debug\net5.0\Discord.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Test\bin\Debug\net5.0\Discord.pdb
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Test\bin\Debug\net5.0\WebDriver.dll

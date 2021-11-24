@@ -27,7 +27,7 @@ namespace RecentlyAddedShows.Web.Classes
 
             var strategies = new List<IStrategy>()
             {
-               new WatchCartoonsOnlineStrategy("https://www.wco.tv/", ShowType.Cartoon),
+               new CartoonsStrategy(),
                new WatchCartoonsOnlineStrategy("https://www.wcoanimedub.tv/", ShowType.Anime),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/activity?hide_completed=true"),
                new TraktPopularStrategy("https://trakt.tv/movies/trending", ShowType.MoviePopular),
@@ -40,7 +40,7 @@ namespace RecentlyAddedShows.Web.Classes
             }; 
             
             var date = DateTime.UtcNow;
-
+            
             Parallel.ForEach(strategies, strategy =>
             {
                 var results = strategy.GetShows(date);
