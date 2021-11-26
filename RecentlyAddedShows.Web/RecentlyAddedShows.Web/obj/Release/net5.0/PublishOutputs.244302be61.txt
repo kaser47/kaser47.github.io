@@ -55,5 +55,7 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Recently
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\PubTmp\Out\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\PubTmp\Out\RecentlyAddedShows.Service.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\PubTmp\Out\RecentlyAddedShows.Service.pdb
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\PubTmp\Out\RecentlyAddedShows.Web.Views.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\PubTmp\Out\RecentlyAddedShows.Web.Views.pdb

@@ -1,0 +1,11 @@
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Web.Migrations.Initial.resources
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.csproj.GenerateResource.cache
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfoInputs.cache
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfo.cs
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.csproj.CoreCompileInputs.cache
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.deps.json
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.pdb
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.dll
+C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.pdb

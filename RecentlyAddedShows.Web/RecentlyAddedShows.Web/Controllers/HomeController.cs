@@ -1,27 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RecentlyAddedShows.Web.Models;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using RecentlyAddedShows.Web.Classes;
-using RecentlyAddedShows = RecentlyAddedShows.Web.Classes.RecentlyAddedShows;
+using RecentlyAddedShows.Service;
+using RecentlyAddedShows.Service.Classes;
+using RecentlyAddedShows.Service.Models;
+using RssFeedCreator = RecentlyAddedShows.Service.Classes.RssFeedCreator;
 
 namespace RecentlyAddedShows.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly Classes.RecentlyAddedShows _recentlyAddedShows;
-        private readonly Classes.RssFeedCreator _rssFeedCreator;
-        private readonly IOptions<Configuration> _config;
-
-        public HomeController(ILogger<HomeController> logger, IOptions<Configuration> config)
+        private readonly Service.Classes.RecentlyAddedShows _recentlyAddedShows;
+        private readonly RssFeedCreator _rssFeedCreator;
+        
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _config = config;
-            _recentlyAddedShows = new Classes.RecentlyAddedShows(_config);
-            _rssFeedCreator = new RssFeedCreator(_config);
+            _recentlyAddedShows = new Service.Classes.RecentlyAddedShows();
+            _rssFeedCreator = new RssFeedCreator();
         }
 
         public IActionResult Index()
@@ -33,37 +31,38 @@ namespace RecentlyAddedShows.Web.Controllers
         public IActionResult Rss()
         {
             var result = _rssFeedCreator.CreateCartoonRssFeed();
-            return result;
+
+            return result.ToRss();
         }
 
         public IActionResult RssUpNext()
         {
             var result = _rssFeedCreator.CreateRssFeed(ShowType.TVShowUpNext);
-            return result;
+            return result.ToRss();
         }
 
         public IActionResult RssPopularMovies()
         {
             var result = _rssFeedCreator.CreatePopularRssFeed(ShowType.MoviePopular);
-            return result;
+            return result.ToRss();
         }
 
         public IActionResult RssPopularShows()
         {
             var result = _rssFeedCreator.CreatePopularRssFeed(ShowType.TVShowPopular);
-            return result;
+            return result.ToRss();
         }
 
         public IActionResult RssShowCollection()
         {
             var result = _rssFeedCreator.CreateRssFeed(ShowType.TVShowCollection);
-            return result;
+            return result.ToRss();
         }
 
         public IActionResult RssMovieWatchlist()
         {
             var result = _rssFeedCreator.CreateRssFeed(ShowType.MovieFavourites);
-            return result;
+            return result.ToRss();
         }
 
         public IActionResult Json()
@@ -76,6 +75,16 @@ namespace RecentlyAddedShows.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+
+    public static class Extensions
+    {
+        public static FileContentResult ToRss(this byte[] result)
+        {
+            var file = new FileContentResult(result, "application/rss+xml;charset=utf-8");
+
+            return file;
         }
     }
 }

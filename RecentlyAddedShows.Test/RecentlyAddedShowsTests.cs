@@ -19,7 +19,7 @@ namespace RecentlyAddedShows.Test
         [Test]
         public void GetShows()
         {
-            var recentlyAddedShows = new Web.Classes.RecentlyAddedShows(null);
+            var recentlyAddedShows = new Service.Classes.RecentlyAddedShows();
             var result = recentlyAddedShows.Get();
             Assert.IsTrue(true);
         }
@@ -28,7 +28,7 @@ namespace RecentlyAddedShows.Test
         public void Performance()
         {
             var timeTaken = new List<long>();
-            var recentlyAddedShows = new Web.Classes.RecentlyAddedShows(null);
+            var recentlyAddedShows = new Service.Classes.RecentlyAddedShows();
 
             for (int i = 0; i < 20; i++)
             {
