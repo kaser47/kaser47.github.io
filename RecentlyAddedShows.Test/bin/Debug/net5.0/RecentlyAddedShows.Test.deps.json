@@ -1010,7 +1010,6 @@
       },
       "RecentlyAddedShows.Web/1.0.0": {
         "dependencies": {
-          "EntityFramework": "6.4.4",
           "RecentlyAddedShows.Service": "1.0.0"
         },
         "runtime": {

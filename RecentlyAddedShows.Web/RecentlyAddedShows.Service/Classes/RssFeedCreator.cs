@@ -50,10 +50,10 @@ namespace RecentlyAddedShows.Service.Classes
                 var publishedDate = show.Created;
 
                 // ReSharper disable once StringLiteralTypo
-                //if (show.Type == "Anime" || show.Type == "Cartoon")
-                //{
-                //    publishedDate = publishedDate.AddHours(-7);
-                //}
+                if (show.Type == "Anime")
+                {
+                    publishedDate = publishedDate.AddHours(-7);
+                }
 
                 var item = new SyndicationItem
                 {
