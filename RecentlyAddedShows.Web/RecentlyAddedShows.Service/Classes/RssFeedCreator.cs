@@ -50,7 +50,7 @@ namespace RecentlyAddedShows.Service.Classes
                 var publishedDate = show.Created;
 
                 // ReSharper disable once StringLiteralTypo
-                if (show.Type == "Anime")
+                if (show.Type == "Anime" || show.Type == "Cartoon")
                 {
                     publishedDate = publishedDate.AddHours(-7);
                 }
