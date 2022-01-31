@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord\\Discord.csproj": {}
+    "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord\\Discord.csproj": {}
   },
   "projects": {
-    "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord\\Discord.csproj": {
+    "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord\\Discord.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord\\Discord.csproj",
+        "projectUniqueName": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord\\Discord.csproj",
         "projectName": "Discord",
-        "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord\\Discord.csproj",
-        "packagesPath": "C:\\Users\\ash.rhodes\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord\\obj\\",
+        "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord\\Discord.csproj",
+        "packagesPath": "C:\\Users\\kaser\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ash.rhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kaser\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

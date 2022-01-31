@@ -21,7 +21,12 @@ namespace RecentlyAddedShows.Service.Classes
             {
                new CartoonsStrategy(),
                new WatchCartoonsOnlineStrategy("https://www.wcoanimedub.tv/", ShowType.Anime),
-               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/activity?hide_completed=true"),
+               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=1", true),
+               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=2", true),
+               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=3", true),
+               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/activity?hide_completed=true&page=1"),
+               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/activity?hide_completed=true&page=2"),
+               new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/activity?hide_completed=true&page=3"),
                new TraktPopularStrategy("https://trakt.tv/movies/trending", ShowType.MoviePopular),
                new TraktPopularStrategy("https://trakt.tv/shows/trending", ShowType.TVShowPopular),
                new TraktGridStrategy("https://trakt.tv/users/kaser47/collection/shows/title?genres=", ShowType.TVShowCollection),
@@ -53,16 +58,37 @@ namespace RecentlyAddedShows.Service.Classes
             var savedResults = dbContext.Shows.ToList();
             var t = dbContext.Shows.ToList();
             var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing));
-            var itemsToAdd = results.Where(x => savedResults.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing));
+            var savedResultKeyPairs = savedResults.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
+            var resultKeyPairs = results.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
+            var moreItemsToAddKeyPairs = resultKeyPairs.Where(x => !savedResultKeyPairs.Contains(x));
+            var extraItemsToAdd = new List<Show>();
+            foreach (var item in moreItemsToAddKeyPairs)
+            {
+                try
+                {
+                    var itemValue = results.Where(x => x.Name == item.Key && x.Type == item.Key).FirstOrDefault();
+                    if (itemValue != null)
+                    {
+                        extraItemsToAdd.Add(itemValue);
+                    }
+                }
+                catch (Exception)
+                {
 
-            if (itemsToAdd.Any())
+                }
+            }
+            var itemsToAdd = results.Where(x => savedResults.All(y => (y.Name != x.Name && y.Type != x.Type) | y.NumberViewing != x.NumberViewing));
+            var ultimateItemsToAdd = itemsToAdd.Concat(extraItemsToAdd).Distinct();
+
+
+            if (ultimateItemsToAdd.Any())
             {
                 savedResults.ForEach(SetIsUpdatedFalse);
-                itemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
+                ultimateItemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
             }
 
             dbContext.Shows.RemoveRange(itemsToRemove);
-            dbContext.Shows.AddRange(itemsToAdd);
+            dbContext.Shows.AddRange(ultimateItemsToAdd);
 
             dbContext.SaveChanges();
             savedResults = dbContext.Shows.ToList();

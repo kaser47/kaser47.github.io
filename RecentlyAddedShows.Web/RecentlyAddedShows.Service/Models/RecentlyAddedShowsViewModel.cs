@@ -66,10 +66,24 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
-        public DateTime LastUpdated => Shows.OrderByDescending(x => x.Created).FirstOrDefault().Created;
+        public DateTime LastUpdated() {
+            var result = Shows.OrderByDescending(x => x.Created).FirstOrDefault();
+            if (result != null)
+            {
+                return result.Created;
+            }
+            return DateTime.UtcNow;
+        }
 
-        public string TranslatedLastUpdated =>
-            Shows.OrderByDescending(x => x.Created).FirstOrDefault().TranslatedCreated;
+        public string TranslatedLastUpdated()
+        {
+            var result = Shows.OrderByDescending(x => x.Created).FirstOrDefault();
+            if (result != null)
+            {
+                return result.TranslatedCreated;
+            }
+            return string.Empty;
+        }
 
         public RecentlyAddedShowsViewModel(IEnumerable<Show> shows)
         {

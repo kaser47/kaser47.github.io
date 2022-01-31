@@ -31,6 +31,7 @@ namespace RecentlyAddedShows.Service.Classes
                         description = $"{show.Type} - {show.TranslatedCreated}";
                         break;
                     case ShowType.TVShowUpNext:
+                    case ShowType.TVShowRecentlyAired:
                         description = $"{show.TranslatedCreated}";
                         break;
                     case ShowType.TVShowPopular:

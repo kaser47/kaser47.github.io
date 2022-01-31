@@ -12,12 +12,23 @@ namespace RecentlyAddedShows.Service.Strategies
     public class TraktUpNextStrategy : IStrategy
     {
         private readonly string _url;
-        private const ShowType ShowType = Classes.ShowType.TVShowUpNext;
+        private readonly bool _isRecentlyAired = false;
+        private ShowType ShowType { get {
+                if (_isRecentlyAired)
+                {
+                    return ShowType.TVShowRecentlyAired;
+                }
+                else
+                {
+                    return ShowType.TVShowUpNext;
+                }
+                    } }
         private const string HomeUrl = "https://trakt.tv";
 
-        public TraktUpNextStrategy(string url)
+        public TraktUpNextStrategy(string url, bool isRecentlyAired = false)
         {
             _url = url;
+            _isRecentlyAired = isRecentlyAired;
         }
 
         public ConcurrentBag<Show> GetShows(DateTime date)
@@ -36,8 +47,15 @@ namespace RecentlyAddedShows.Service.Strategies
                 var name = GetName(node);
                 var urlValue = GetUrl(node);
                 var imageValue = GetImage(node);
-                date = GetDate(node);
 
+                if (_isRecentlyAired)
+                {
+                    date = GetRecentlyAiredDate(node);
+                }
+                else
+                {
+                    date = GetDate(node);
+                }
                 shows.Add(new Show(name, urlValue, imageValue, ShowType, date));
             });
 
@@ -67,6 +85,11 @@ namespace RecentlyAddedShows.Service.Strategies
         private DateTime GetDate(HtmlNode node)
         {
             return DateTime.Parse(node.GetDate(1, 2, 17));
+        }
+
+        private DateTime GetRecentlyAiredDate(HtmlNode node)
+        {
+            return DateTime.Parse(node.GetDate(2, 1, 0, 4, 0, 0));
         }
     }
 }

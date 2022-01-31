@@ -4925,19 +4925,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ash.rhodes\\.nuget\\packages\\": {}
+    "C:\\Users\\kaser\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium.Tests\\Discord.Selenium.Tests.csproj",
+      "projectUniqueName": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium.Tests\\Discord.Selenium.Tests.csproj",
       "projectName": "Discord.Selenium.Tests",
-      "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium.Tests\\Discord.Selenium.Tests.csproj",
-      "packagesPath": "C:\\Users\\ash.rhodes\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium.Tests\\obj\\",
+      "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium.Tests\\Discord.Selenium.Tests.csproj",
+      "packagesPath": "C:\\Users\\kaser\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ash.rhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kaser\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4951,8 +4951,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj": {
-              "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj"
+            "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj": {
+              "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj"
             }
           }
         }
@@ -4999,7 +4999,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

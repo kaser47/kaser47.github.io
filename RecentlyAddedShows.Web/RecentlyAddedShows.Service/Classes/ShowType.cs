@@ -5,6 +5,7 @@
         Cartoon,
         Anime,
         TVShowUpNext,
+        TVShowRecentlyAired,
         TVShowPopular,
         TVShowCollection,
         MoviePopular,

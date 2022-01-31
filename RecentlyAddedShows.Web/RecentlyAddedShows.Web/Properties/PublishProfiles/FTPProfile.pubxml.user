@@ -8,65 +8,65 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA828h0t8JjUWydlcIVaa9ZwAAAAACAAAAAAADZgAAwAAAABAAAAAFhl47tT5hVxmR+OQfpBoQAAAAAASAAACgAAAAEAAAAA41e2fiwUEe93BXdFiGB84YAAAApvN2sqJmYjZCkdQPmz3UZiWQmD1nXKKcFAAAAKRAQTzXxiOGg8pxWhOVmaL+V0ym</EncryptedPassword>
     <_PublishTargetUrl>ftp://RecentlyAddedShows.somee.com/www.RecentlyAddedShows.somee.com</_PublishTargetUrl>
-    <History>True|2021-11-26T15:49:30.4733134Z;True|2021-11-26T15:33:06.7295014+00:00;False|2021-11-26T15:27:28.1011764+00:00;True|2021-11-26T14:59:28.8223148+00:00;True|2021-11-24T13:52:17.1128586+00:00;True|2021-11-10T16:27:33.2225957+00:00;False|2021-11-10T16:17:15.1454174+00:00;True|2021-11-10T15:43:55.9157782+00:00;True|2021-10-28T14:04:49.9231059+01:00;True|2021-10-28T13:07:05.9104860+01:00;True|2021-10-13T09:24:21.0783623+01:00;True|2021-10-11T11:04:06.8356718+01:00;True|2021-10-06T11:25:21.1885134+01:00;True|2021-09-30T15:49:02.2001407+01:00;True|2021-09-30T13:56:16.9912681+01:00;True|2021-09-30T13:00:13.9453080+01:00;True|2021-09-30T09:40:15.1315496+01:00;True|2021-09-29T11:02:12.4415350+01:00;True|2021-09-29T10:14:17.5474559+01:00;False|2021-09-29T10:00:18.6031529+01:00;True|2021-09-28T22:21:27.7900935+01:00;True|2021-09-28T16:37:26.6099129+01:00;True|2021-09-28T16:07:23.0114354+01:00;True|2021-08-20T11:19:13.8876713+01:00;True|2021-08-10T16:17:53.7095278+01:00;True|2021-08-10T16:09:40.5401641+01:00;True|2021-08-10T16:03:38.9070465+01:00;True|2021-08-10T15:50:32.1112489+01:00;True|2021-08-10T15:44:10.7434576+01:00;False|2021-08-10T15:39:51.6930678+01:00;True|2021-08-10T15:34:02.0830258+01:00;True|2021-08-10T15:27:27.3752040+01:00;False|2021-08-10T15:22:34.1786978+01:00;True|2021-08-10T15:01:25.1543783+01:00;True|2021-08-10T13:06:49.9627593+01:00;True|2021-08-10T12:47:00.4871845+01:00;False|2021-08-10T12:39:25.4926068+01:00;False|2021-08-10T12:36:13.2404087+01:00;</History>
+    <History>True|2022-01-31T15:21:16.2959236Z;True|2022-01-29T15:06:16.7027184+00:00;True|2022-01-28T22:59:58.6323313+00:00;True|2022-01-28T22:47:49.8902397+00:00;True|2022-01-28T22:36:27.7269742+00:00;True|2022-01-28T21:32:08.4341108+00:00;False|2022-01-28T21:27:24.7739893+00:00;True|2021-11-26T15:49:30.4733134+00:00;True|2021-11-26T15:33:06.7295014+00:00;False|2021-11-26T15:27:28.1011764+00:00;True|2021-11-26T14:59:28.8223148+00:00;True|2021-11-24T13:52:17.1128586+00:00;True|2021-11-10T16:27:33.2225957+00:00;False|2021-11-10T16:17:15.1454174+00:00;True|2021-11-10T15:43:55.9157782+00:00;True|2021-10-28T14:04:49.9231059+01:00;True|2021-10-28T13:07:05.9104860+01:00;True|2021-10-13T09:24:21.0783623+01:00;True|2021-10-11T11:04:06.8356718+01:00;True|2021-10-06T11:25:21.1885134+01:00;True|2021-09-30T15:49:02.2001407+01:00;True|2021-09-30T13:56:16.9912681+01:00;True|2021-09-30T13:00:13.9453080+01:00;True|2021-09-30T09:40:15.1315496+01:00;True|2021-09-29T11:02:12.4415350+01:00;True|2021-09-29T10:14:17.5474559+01:00;False|2021-09-29T10:00:18.6031529+01:00;True|2021-09-28T22:21:27.7900935+01:00;True|2021-09-28T16:37:26.6099129+01:00;True|2021-09-28T16:07:23.0114354+01:00;True|2021-08-20T11:19:13.8876713+01:00;True|2021-08-10T16:17:53.7095278+01:00;True|2021-08-10T16:09:40.5401641+01:00;True|2021-08-10T16:03:38.9070465+01:00;True|2021-08-10T15:50:32.1112489+01:00;True|2021-08-10T15:44:10.7434576+01:00;False|2021-08-10T15:39:51.6930678+01:00;True|2021-08-10T15:34:02.0830258+01:00;True|2021-08-10T15:27:27.3752040+01:00;False|2021-08-10T15:22:34.1786978+01:00;True|2021-08-10T15:01:25.1543783+01:00;True|2021-08-10T13:06:49.9627593+01:00;True|2021-08-10T12:47:00.4871845+01:00;False|2021-08-10T12:39:25.4926068+01:00;False|2021-08-10T12:36:13.2404087+01:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:48</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>11/26/2021 15:15:07</publishTime>
+      <publishTime>01/28/2022 14:34:48</publishTime>
     </File>
     <File Include="EntityFramework.dll">
-      <publishTime>04/16/2020 21:38:44</publishTime>
+      <publishTime>04/16/2020 20:38:44</publishTime>
     </File>
     <File Include="EntityFramework.SqlServer.dll">
-      <publishTime>04/16/2020 21:39:00</publishTime>
+      <publishTime>04/16/2020 20:39:00</publishTime>
     </File>
     <File Include="HtmlAgilityPack.dll">
       <publishTime>11/10/2021 01:24:30</publishTime>
     </File>
     <File Include="Newtonsoft.Json.dll">
-      <publishTime>09/11/2019 00:56:44</publishTime>
+      <publishTime>11/09/2019 00:56:44</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Service.dll">
-      <publishTime>11/26/2021 15:29:34</publishTime>
+      <publishTime>01/31/2022 15:18:27</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Service.pdb">
-      <publishTime>11/26/2021 15:29:34</publishTime>
+      <publishTime>01/31/2022 15:18:27</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.deps.json">
-      <publishTime>11/26/2021 15:46:02</publishTime>
+      <publishTime>01/31/2022 15:18:37</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.dll">
-      <publishTime>11/26/2021 15:45:59</publishTime>
+      <publishTime>01/31/2022 15:18:28</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.exe">
-      <publishTime>11/26/2021 15:45:59</publishTime>
+      <publishTime>01/31/2022 15:18:28</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.pdb">
-      <publishTime>11/26/2021 15:45:59</publishTime>
+      <publishTime>01/31/2022 15:18:28</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.runtimeconfig.json">
-      <publishTime>11/26/2021 15:24:20</publishTime>
+      <publishTime>01/28/2022 21:27:03</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.Views.dll">
-      <publishTime>11/26/2021 15:46:02</publishTime>
+      <publishTime>01/31/2022 15:18:37</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.Views.pdb">
-      <publishTime>11/26/2021 15:46:02</publishTime>
+      <publishTime>01/31/2022 15:18:37</publishTime>
     </File>
     <File Include="runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll">
       <publishTime>01/17/2020 18:41:36</publishTime>
     </File>
     <File Include="runtimes/win-arm64/native/sni.dll">
-      <publishTime>07/12/2017 12:24:24</publishTime>
+      <publishTime>07/12/2017 11:24:24</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/sni.dll">
-      <publishTime>07/12/2017 12:24:22</publishTime>
+      <publishTime>07/12/2017 11:24:22</publishTime>
     </File>
     <File Include="runtimes/win-x86/native/sni.dll">
-      <publishTime>07/12/2017 12:24:22</publishTime>
+      <publishTime>07/12/2017 11:24:22</publishTime>
     </File>
     <File Include="runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll">
       <publishTime>01/17/2020 18:41:44</publishTime>
@@ -87,121 +87,121 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/15/2019 08:37:42</publishTime>
     </File>
     <File Include="System.ServiceModel.Syndication.dll">
-      <publishTime>10/23/2021 00:53:02</publishTime>
+      <publishTime>10/22/2021 23:53:02</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>11/26/2021 15:46:02</publishTime>
+      <publishTime>01/31/2022 15:18:38</publishTime>
     </File>
     <File Include="WebDriver.dll">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
-      <publishTime>09/28/2021 21:17:03</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/js/site.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.css">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.css.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.min.css">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.js.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.min.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/LICENSE">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation/dist/additional-methods.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation/dist/additional-methods.min.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation/dist/jquery.validate.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation/dist/jquery.validate.min.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery-validation/LICENSE.md">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery/dist/jquery.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery/dist/jquery.min.js">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery/dist/jquery.min.map">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
     <File Include="wwwroot/lib/jquery/LICENSE.txt">
-      <publishTime>07/28/2021 13:35:32</publishTime>
+      <publishTime>01/28/2022 14:34:50</publishTime>
     </File>
   </ItemGroup>
 </Project>

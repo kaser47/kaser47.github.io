@@ -303,7 +303,7 @@
 </div>
 
 <div class="text-center">
-    <p id="date">Last Updated - <span style="color: red">@Model.LastUpdated.ToString("dd/MM/yyyy")</span> - @Model.TranslatedLastUpdated</p>
+    <p id="date">Last Updated - <span style="color: red">@Model.LastUpdated().ToString("dd/MM/yyyy")</span> - @Model.TranslatedLastUpdated()</p>
 </div>
 
 <script>

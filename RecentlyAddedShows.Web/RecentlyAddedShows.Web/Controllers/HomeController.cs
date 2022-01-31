@@ -41,6 +41,13 @@ namespace RecentlyAddedShows.Web.Controllers
             return result.ToRss();
         }
 
+        public IActionResult RssRecentlyAired()
+        {
+            var result = _rssFeedCreator.CreateRssFeed(ShowType.TVShowRecentlyAired);
+            return result.ToRss();
+        }
+
+
         public IActionResult RssPopularMovies()
         {
             var result = _rssFeedCreator.CreatePopularRssFeed(ShowType.MoviePopular);

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj": {}
+    "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj": {}
   },
   "projects": {
-    "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj": {
+    "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj",
+        "projectUniqueName": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj",
         "projectName": "Discord.Selenium",
-        "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj",
-        "packagesPath": "C:\\Users\\ash.rhodes\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord.Selenium\\obj\\",
+        "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj",
+        "packagesPath": "C:\\Users\\kaser\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ash.rhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kaser\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

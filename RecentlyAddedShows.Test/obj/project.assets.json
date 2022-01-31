@@ -2858,6 +2858,7 @@
       "path": "system.appcontext/4.1.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5615,19 +5616,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ash.rhodes\\.nuget\\packages\\": {}
+    "C:\\Users\\kaser\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Test\\RecentlyAddedShows.Test.csproj",
+      "projectUniqueName": "D:\\Projects\\RAS\\RecentlyAddedShows.Test\\RecentlyAddedShows.Test.csproj",
       "projectName": "RecentlyAddedShows.Test",
-      "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Test\\RecentlyAddedShows.Test.csproj",
-      "packagesPath": "C:\\Users\\ash.rhodes\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Test\\obj\\",
+      "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Test\\RecentlyAddedShows.Test.csproj",
+      "packagesPath": "C:\\Users\\kaser\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ash.rhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kaser\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5641,11 +5642,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord\\Discord.csproj": {
-              "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\Discord\\Discord.csproj"
+            "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord\\Discord.csproj": {
+              "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord\\Discord.csproj"
             },
-            "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj": {
-              "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj"
+            "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj": {
+              "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj"
             }
           }
         }
@@ -5692,7 +5693,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

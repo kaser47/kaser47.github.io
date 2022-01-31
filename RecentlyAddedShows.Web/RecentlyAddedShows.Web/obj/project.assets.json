@@ -1235,19 +1235,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ash.rhodes\\.nuget\\packages\\": {}
+    "C:\\Users\\kaser\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj",
+      "projectUniqueName": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj",
       "projectName": "RecentlyAddedShows.Web",
-      "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj",
-      "packagesPath": "C:\\Users\\ash.rhodes\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\obj\\",
+      "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web.csproj",
+      "packagesPath": "C:\\Users\\kaser\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\RecentlyAddedShows.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ash.rhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kaser\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1261,8 +1261,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\RecentlyAddedShows.Service\\RecentlyAddedShows.Service.csproj": {
-              "projectPath": "C:\\projects\\RecentlyAddedShows\\kaser47.github.io\\RecentlyAddedShows.Web\\RecentlyAddedShows.Service\\RecentlyAddedShows.Service.csproj"
+            "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\RecentlyAddedShows.Service\\RecentlyAddedShows.Service.csproj": {
+              "projectPath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\RecentlyAddedShows.Service\\RecentlyAddedShows.Service.csproj"
             }
           }
         }
@@ -1294,7 +1294,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

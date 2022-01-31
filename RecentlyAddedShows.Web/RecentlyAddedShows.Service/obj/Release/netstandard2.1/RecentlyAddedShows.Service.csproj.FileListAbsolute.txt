@@ -10,3 +10,15 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Recently
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.csproj.CoreCompileInputs.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.pdb
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Release\netstandard2.1\RecentlyAddedShows.Service.deps.json
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Release\netstandard2.1\RecentlyAddedShows.Service.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Release\netstandard2.1\RecentlyAddedShows.Service.pdb
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.csproj.AssemblyReference.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Web.Migrations.Initial.resources
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.csproj.GenerateResource.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfoInputs.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfo.cs
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.csproj.CoreCompileInputs.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.pdb
