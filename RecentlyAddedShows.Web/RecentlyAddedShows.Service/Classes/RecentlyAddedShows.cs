@@ -56,6 +56,8 @@ namespace RecentlyAddedShows.Service.Classes
 
             var results = Get();
             var savedResults = dbContext.Shows.ToList();
+            int resultsCount = results.Count();
+            int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
             var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing));
             var savedResultKeyPairs = savedResults.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
@@ -66,7 +68,7 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 try
                 {
-                    var itemValue = results.Where(x => x.Name == item.Key && x.Type == item.Key).FirstOrDefault();
+                    var itemValue = results.Where(x => x.Name == item.Key && x.Type == item.Value).FirstOrDefault();
                     if (itemValue != null)
                     {
                         extraItemsToAdd.Add(itemValue);
@@ -77,8 +79,10 @@ namespace RecentlyAddedShows.Service.Classes
 
                 }
             }
+            int extraItemsCount = extraItemsToAdd.Count();
             var itemsToAdd = results.Where(x => savedResults.All(y => (y.Name != x.Name && y.Type != x.Type) | y.NumberViewing != x.NumberViewing));
             var ultimateItemsToAdd = itemsToAdd.Concat(extraItemsToAdd).Distinct();
+            int ultimateItemsToAddCount = ultimateItemsToAdd.Count();
 
 
             if (ultimateItemsToAdd.Any())
