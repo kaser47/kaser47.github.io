@@ -10,5 +10,8 @@
         TVShowCollection,
         MoviePopular,
         MovieFavourites,
+        GameSwitch,
+        GamePC,
+        GamePS4,
     }
 }

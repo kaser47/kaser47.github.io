@@ -34,6 +34,9 @@ namespace RecentlyAddedShows.Service.Classes
                new TraktGridStrategy("https://trakt.tv/users/kaser47/collection/shows/title?genres=&page=3", ShowType.TVShowCollection),
                new TraktGridStrategy("https://trakt.tv/users/kaser47/collection/shows/title?genres=&page=4", ShowType.TVShowCollection),
                new TraktGridStrategy("https://trakt.tv/users/kaser47/watchlist?display=movie&sort=added,asc", ShowType.MovieFavourites),
+               new MetacriticStrategy(ShowType.GameSwitch),
+               new MetacriticStrategy(ShowType.GamePC),
+               new MetacriticStrategy(ShowType.GamePS4)
             }; 
             
             var date = DateTime.UtcNow;

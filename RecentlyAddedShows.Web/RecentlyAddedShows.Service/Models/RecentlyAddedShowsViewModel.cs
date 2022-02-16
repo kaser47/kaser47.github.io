@@ -66,6 +66,38 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public IEnumerable<Show> RecentlyUpdated
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).OrderByDescending(x => x.NumberViewing);
+            }
+        }
+
+        public IEnumerable<Show> Switch
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.GameSwitch.ToString()).OrderByDescending(x => x.NumberViewing);
+            }
+        }
+
+        public IEnumerable<Show> PC
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.GamePC.ToString()).OrderByDescending(x => x.NumberViewing);
+            }
+        }
+
+        public IEnumerable<Show> PS4
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.GamePS4.ToString()).OrderByDescending(x => x.NumberViewing);
+            }
+        }
+
         public DateTime LastUpdated() {
             var result = Shows.OrderByDescending(x => x.Created).FirstOrDefault();
             if (result != null)

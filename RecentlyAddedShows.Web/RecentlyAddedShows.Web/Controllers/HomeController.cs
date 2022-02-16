@@ -72,6 +72,24 @@ namespace RecentlyAddedShows.Web.Controllers
             return result.ToRss();
         }
 
+        public IActionResult RssSwitch()
+        {
+            var result = _rssFeedCreator.CreateRssFeed(ShowType.GameSwitch);
+            return result.ToRss();
+        }
+
+        public IActionResult RssPC()
+        {
+            var result = _rssFeedCreator.CreateRssFeed(ShowType.GamePC);
+            return result.ToRss();
+        }
+
+        public IActionResult RssPS4()
+        {
+            var result = _rssFeedCreator.CreateRssFeed(ShowType.GamePS4);
+            return result.ToRss();
+        }
+
         public IActionResult Json()
         {
             var model = _recentlyAddedShows.GetModel();

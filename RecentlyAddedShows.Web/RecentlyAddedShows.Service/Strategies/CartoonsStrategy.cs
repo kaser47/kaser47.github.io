@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -14,12 +15,20 @@ namespace RecentlyAddedShows.Service.Strategies
         public ConcurrentBag<Show> GetShows(DateTime date)
         {
             const string baseUrl = "https://www.wcoforever.net";
-            using var webClient = new WebClient();
-            string data;
-
+            String data;
             try
             {
-                data = webClient.DownloadString(baseUrl);
+ 
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl);
+            request.UserAgent = $"{Guid.NewGuid()} {Guid.NewGuid()} {Guid.NewGuid()} {Guid.NewGuid()} {Guid.NewGuid()}";
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                data = reader.ReadToEnd();
+            }
+
             }
             catch (Exception)
             {
