@@ -120,7 +120,7 @@ namespace RecentlyAddedShows.Service.Models
         public RecentlyAddedShowsViewModel(IEnumerable<Show> shows, IEnumerable<ErrorMessage> errors)
         {
             Shows = shows;
-            Errors = errors;
+            Errors = errors.OrderByDescending(x => x.Created);
         }
     }
 }

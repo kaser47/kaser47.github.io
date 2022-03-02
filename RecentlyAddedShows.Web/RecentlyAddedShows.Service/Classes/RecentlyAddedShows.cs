@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Service.Data;
 using RecentlyAddedShows.Service.Data.Entities;
@@ -56,11 +57,22 @@ namespace RecentlyAddedShows.Service.Classes
 
         public RecentlyAddedShowsViewModel GetModel()
         {
-            var dbContext = new Context(Configuration.ConnectionString);
-
+            //var optionsBuilder = new DbContextOptionsBuilder<Context>();
+            //optionsBuilder.UseSqlServer(Configuration.ConnectionString);
+            //var dbContext = new Context(optionsBuilder.Options);
+            var dbContext = new Context();
             var results = Get();
             var savedResults = dbContext.Shows.ToList();
-            var errors = dbContext.ErrorMessages.ToList();
+            var errors = new List<ErrorMessage>();
+
+            try
+            {
+                errors = dbContext.ErrorMessages.ToList();
+            }
+            catch (Exception)
+            {
+
+            }
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
@@ -108,9 +120,21 @@ namespace RecentlyAddedShows.Service.Classes
 
         public RecentlyAddedShowsViewModel LoadModel()
         {
-            var dbContext = new Context(Configuration.ConnectionString);
+            //var optionsBuilder = new DbContextOptionsBuilder<Context>();
+            //optionsBuilder.UseSqlServer(Configuration.ConnectionString);
+            //var dbContext = new Context(optionsBuilder.Options);
+            var dbContext = new Context();
             var savedResults = dbContext.Shows.ToList();
-            var errors = dbContext.ErrorMessages.ToList();
+            var errors = new List<ErrorMessage>();
+
+            try
+            {
+                errors = dbContext.ErrorMessages.ToList();
+            }
+            catch (Exception)
+            {
+
+            }
             var model = new RecentlyAddedShowsViewModel(savedResults, errors);
             return model;
         }

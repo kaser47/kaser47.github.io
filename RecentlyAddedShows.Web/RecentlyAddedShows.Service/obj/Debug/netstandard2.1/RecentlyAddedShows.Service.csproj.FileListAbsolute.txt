@@ -13,8 +13,6 @@ D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\nets
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.csproj.AssemblyReference.cache
-D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Web.Migrations.Initial.resources
-D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.csproj.GenerateResource.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfoInputs.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfo.cs

@@ -1,17 +1,13 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using RecentlyAddedShows.Service.Data.Entities;
 
 namespace RecentlyAddedShows.Service.Data
 {
     public class Context : DbContext
     {
-        public Context(string connectionString) : base(connectionString)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-        }
-
-        public Context()
-        {
-            
+            optionsBuilder.UseSqlServer(Configuration.ConnectionString);
         }
 
         public DbSet<Show> Shows { get; set; }

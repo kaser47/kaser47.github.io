@@ -1,4 +1,5 @@
-﻿using RecentlyAddedShows.Service.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RecentlyAddedShows.Service.Data;
 using RecentlyAddedShows.Service.Data.Entities;
 using System;
 using System.Collections.Concurrent;
@@ -23,7 +24,10 @@ namespace RecentlyAddedShows.Service.Strategies
             }
             catch (Exception ex)
             {
-                var dbContext = new Context(Configuration.ConnectionString);
+                //var optionsBuilder = new DbContextOptionsBuilder<Context>();
+                //optionsBuilder.UseSqlServer(Configuration.ConnectionString);
+                //var dbContext = new Context(optionsBuilder.Options);
+                var dbContext = new Context();
                 var errorMessage = new ErrorMessage(ex.Message, ex.StackTrace);
 
                 dbContext.ErrorMessages.Add(errorMessage);

@@ -40,13 +40,13 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.38, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.14, )"
             },
             "Microsoft.Extensions.Options": {
               "target": "Package",

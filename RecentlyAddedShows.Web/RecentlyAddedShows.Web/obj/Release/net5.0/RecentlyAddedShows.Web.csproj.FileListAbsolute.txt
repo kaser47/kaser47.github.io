@@ -89,7 +89,6 @@ D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.RazorAssemblyInfo.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.RazorAssemblyInfo.cs
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\staticwebassets\RecentlyAddedShows.Web.StaticWebAssets.Manifest.cache
-D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\staticwebassets\RecentlyAddedShows.Web.StaticWebAssets.xml
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\scopedcss\bundle\RecentlyAddedShows.Web.styles.css
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.TagHelpers.input.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net5.0\RecentlyAddedShows.Web.TagHelpers.output.cache
