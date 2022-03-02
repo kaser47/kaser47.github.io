@@ -14,7 +14,10 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
                         <li class="nav-item">
-                            <a target="_blank" class="nav-link active" href="#cartoons" role="tab" aria-controls="cartoons" aria-selected="true">Cartoons</a>
+                            <a target="_blank" class="nav-link active" href="#errors" role="tab" aria-controls="errors" aria-selected="true">Errors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#cartoons" role="tab" aria-controls="cartoons" aria-selected="false">Cartoons</a>
                         </li>
                         <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#anime" role="tab" aria-controls="anime" aria-selected="false">Anime</a>
@@ -46,15 +49,42 @@
                         <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#ps4" role="tab" aria-controls="ps4" aria-selected="false">Game - PS4</a>
                         </li>
-                        <li class="nav-item">
-                            <a target="_blank" class="nav-link" href="#errors" role="tab" aria-controls="ps4" aria-selected="false">Errors</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
 
                     <div class="tab-content mt-3">
-                        <div class="tab-pane active" id="cartoons" role="tabpanel">
+
+                        <div class="tab-pane active" id="errors" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Clear", "Home")'">Clear All</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Created</th>
+                                    <th class="thead-dark col-3">Message</th>
+                                    <th class="thead-dark col-4">StrackTrace</th>
+                                </tr>
+                                @foreach (var item in Model.Errors)
+                                    {
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        <p>@item.Created</p>
+                                    </td>
+                                    <td class="align-middle">
+                                        <p>@item.Message</p>
+                                    </td>
+                                    <td class="align-middle">
+                                        <p>@item.StackTrace</p>
+                                    </td>
+                                </tr>
+                                    }
+                            </table>
+                        </div>
+
+
+                        <div class="tab-pane" id="cartoons" role="tabpanel">
 
                             <table class="table table-striped table-bordered center">
                                 <tr>
@@ -63,29 +93,29 @@
                                 </tr>
                                 @foreach (var item in Model.Cartoons)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -101,29 +131,29 @@
                                 </tr>
                                 @foreach (var item in Model.Anime)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -137,29 +167,29 @@
                                 </tr>
                                 @foreach (var item in Model.NextUp)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -173,29 +203,29 @@
                                 </tr>
                                 @foreach (var item in Model.TVPopular)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -209,29 +239,29 @@
                                 </tr>
                                 @foreach (var item in Model.TVCollection)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -245,29 +275,29 @@
                                 </tr>
                                 @foreach (var item in Model.MoviePopular)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -282,29 +312,29 @@
                                 </tr>
                                 @foreach (var item in Model.MovieWatchlist)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -319,29 +349,29 @@
                                 </tr>
                                 @foreach (var item in Model.RecentlyUpdated)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -356,29 +386,29 @@
                                 </tr>
                                 @foreach (var item in Model.Switch)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -393,29 +423,29 @@
                                 </tr>
                                 @foreach (var item in Model.PC)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
-                            <div class="container">
-                                <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                </div>
+                                    </td>
+                                    @*<td>
+                        <div class="container">
+                            <div class="px-0 center">
+                                <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                </a>
                             </div>
-                        </td>*@
-                                    </tr>
+                        </div>
+                    </td>*@
+                                </tr>
                                 }
                             </table>
 
@@ -430,20 +460,20 @@
                                 </tr>
                                 @foreach (var item in Model.PS4)
                                 {
-                                    <tr id="item">
-                                        <td class="align-middle">
-                                            @if (item.IsUpdated)
+                                <tr id="item">
+                                    <td class="align-middle">
+                                        @if (item.IsUpdated)
                                             {
-                                                <strong>
-                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
-                                                </strong>
+                                        <strong>
+                                            <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        </strong>
                                             }
                                             else
                                             {
-                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                        <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
-                                        </td>
-                                        @*<td>
+                                    </td>
+                                    @*<td>
                         <div class="container">
                             <div class="px-0 center">
                                 <a target="_blank" href="@item.Image" >
@@ -452,46 +482,11 @@
                             </div>
                         </div>
                     </td>*@
-                                    </tr>
+                                </tr>
                                 }
                             </table>
-
-                            <div class="tab-pane" id="errors" role="tabpanel" aria-labelledby="deals-tab">
-                                <table class="table table-striped table-bordered center">
-                                    <tr>
-                                        <th class="thead-dark col-3">Message</th>
-                                        <th class="thead-dark col-2">Created</th>
-                                        <th class="thead-dark col-4">StrackTrace</th>
-                                    </tr>
-                                    @foreach (var item in Model.Errors)
-                                    {
-                                <tr id="item">
-                                    <td class="align-middle">
-                                        <p>@item.Message</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p>@item.Created</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p>@item.StackTrace</p>
-                                    </td>
-
-                                    @*<td>
-            <div class="container">
-                <div class="px-0 center">
-                    <a target="_blank" href="@item.Image" >
-                        <img src="@item.Image" class="img-thumbnail img-fluid">
-                    </a>
-                </div>
-            </div>
-        </td>*@
-                                </tr>
-                                    }
-                                </table>
-
-
-                            </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

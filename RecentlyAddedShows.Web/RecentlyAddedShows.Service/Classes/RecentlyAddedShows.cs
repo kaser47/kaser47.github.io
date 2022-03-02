@@ -55,6 +55,18 @@ namespace RecentlyAddedShows.Service.Classes
             return shows.ToList();
         }
 
+        public void ClearErrors()
+        {
+            var dbContext = new Context();
+
+            foreach (var item in dbContext.ErrorMessages)
+            {
+                dbContext.ErrorMessages.Remove(item);
+            }
+
+            dbContext.SaveChanges();
+        }
+
         public RecentlyAddedShowsViewModel GetModel()
         {
             //var optionsBuilder = new DbContextOptionsBuilder<Context>();

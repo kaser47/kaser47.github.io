@@ -28,6 +28,13 @@ namespace RecentlyAddedShows.Web.Controllers
             return View(model);
         }
 
+        public IActionResult Clear()
+        {
+            _recentlyAddedShows.ClearErrors();
+            return RedirectToAction("Index");
+        }
+
+
         public IActionResult Rss()
         {
             var result = _rssFeedCreator.CreateCartoonRssFeed();
