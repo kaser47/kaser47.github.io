@@ -43,7 +43,8 @@ namespace RecentlyAddedShows.Service.Classes
             
             Parallel.ForEach(strategies, strategy =>
             {
-                var results = strategy.GetShows(date);
+                StrategyWrapper strategyWrapper = new StrategyWrapper(strategy);
+                var results = strategyWrapper.GetShows(date);
                 Parallel.ForEach(results, result =>
                 {
                     shows.Add(result);
@@ -59,6 +60,7 @@ namespace RecentlyAddedShows.Service.Classes
 
             var results = Get();
             var savedResults = dbContext.Shows.ToList();
+            var errors = dbContext.ErrorMessages.ToList();
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
@@ -100,7 +102,7 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.SaveChanges();
             savedResults = dbContext.Shows.ToList();
 
-            var model = new RecentlyAddedShowsViewModel(savedResults);
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors);
             return model;
         }
 
@@ -108,7 +110,8 @@ namespace RecentlyAddedShows.Service.Classes
         {
             var dbContext = new Context(Configuration.ConnectionString);
             var savedResults = dbContext.Shows.ToList();
-            var model = new RecentlyAddedShowsViewModel(savedResults);
+            var errors = dbContext.ErrorMessages.ToList();
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors);
             return model;
         }
 

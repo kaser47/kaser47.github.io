@@ -46,22 +46,22 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private static string GetName(HtmlNode node)
         {
-            return node.GetText(1, 0, 4, 1);
+            return node.GetText(1, 4, 1);
         }
 
         private static string GetUrl(HtmlNode node)
         {
-            return HomeUrl + node.GetUrl(1);
+            return HomeUrl + node.GetUrlData(1);
         }
 
         private static string GetImage(HtmlNode node)
         {
-            return node.GetActualImage(1, 0, 1);
+            return node.GetActualImage(1, 1);
         }
 
         private static int GetNumberOfViewers(HtmlNode node)
         {
-            var result = node.GetText(1, 0, 4, 0);
+            var result = node.GetText(1, 4, 0);
             result = result.Replace(" people watching", "");
             var number = int.Parse(result);
             return number;

@@ -79,4 +79,19 @@ namespace RecentlyAddedShows.Service.Data.Entities
             return message;
         }
     }
+
+    public class ErrorMessage
+    {
+        public int id { get; set; }
+        public string Message { get; set; }
+        public string StackTrace { get; set; }
+        public DateTime Created { get; set; }
+
+        public ErrorMessage(string message, string stackTrace)
+        {
+            this.Message = message;
+            this.StackTrace = stackTrace;
+            Created = DateTime.UtcNow;
+        }
+    }
 }

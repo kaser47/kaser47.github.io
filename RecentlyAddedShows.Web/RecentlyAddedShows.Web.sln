@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord.Selenium.Tests", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discord.Selenium.Web", "Discord.Selenium.Web\Discord.Selenium.Web.csproj", "{CC3F0BE3-1E89-4BA0-8370-11BB889F84C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecentlyAddedShows.Service", "RecentlyAddedShows.Service\RecentlyAddedShows.Service.csproj", "{DCA6EFED-BACC-4C7A-BB97-DEDCCFDC56F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecentlyAddedShows.Service", "RecentlyAddedShows.Service\RecentlyAddedShows.Service.csproj", "{DCA6EFED-BACC-4C7A-BB97-DEDCCFDC56F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

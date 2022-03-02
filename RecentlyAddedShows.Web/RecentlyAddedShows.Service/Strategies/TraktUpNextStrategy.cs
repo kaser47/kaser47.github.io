@@ -64,8 +64,8 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private static string GetName(HtmlNode node)
         {
-            var showTitle = node.GetText(2,1,0,4,1);
-            var episode = node.GetText(2, 1, 0, 4, 2);
+            var showTitle = node.GetText(2,1,4,1);
+            var episode = node.GetText(2, 1, 4, 2);
 
             var name = $"{showTitle} - {episode}";
 
@@ -74,12 +74,12 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private static string GetUrl(HtmlNode node)
         {
-            return HomeUrl + node.GetUrl(2, 1);
+            return HomeUrl + node.GetUrlData(2, 1);
         }
 
         private static string GetImage(HtmlNode node)
         {
-            return node.GetActualImage(2, 1, 0, 1);
+            return node.GetActualImage(2, 1, 1);
         }
 
         private DateTime GetDate(HtmlNode node)
@@ -89,7 +89,7 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private DateTime GetRecentlyAiredDate(HtmlNode node)
         {
-            return DateTime.Parse(node.GetDate(2, 1, 0, 4, 0, 0));
+            return DateTime.Parse(node.GetDate(2, 1, 4, 0, 0));
         }
     }
 }

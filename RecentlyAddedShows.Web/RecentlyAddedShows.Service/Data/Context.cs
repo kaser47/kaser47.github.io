@@ -15,5 +15,6 @@ namespace RecentlyAddedShows.Service.Data
         }
 
         public DbSet<Show> Shows { get; set; }
+        public DbSet<ErrorMessage> ErrorMessages { get; set; }
     }
 }

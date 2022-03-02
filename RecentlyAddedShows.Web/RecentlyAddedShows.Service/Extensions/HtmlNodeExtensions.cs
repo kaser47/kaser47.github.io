@@ -63,6 +63,18 @@ namespace RecentlyAddedShows.Service.Extensions
             return newNode.GetAttributeValue(attribute: attribute, path);
         }
 
+        public static string GetUrlData(this HtmlNode node, params int[] path)
+        {
+            var attribute = "data-onclick";
+            if (path.Length <= 0) return node.Attributes[attribute].Value;
+
+            var i = path.First();
+            var newNode = node.ChildNodes[i];
+            path = path.Skip(1).ToArray();
+
+            return newNode.GetAttributeValue(attribute: attribute, path);
+        }
+
         public static string GetDateAdded(this HtmlNode node, params int[] path)
         {
             var attribute = "data-added";

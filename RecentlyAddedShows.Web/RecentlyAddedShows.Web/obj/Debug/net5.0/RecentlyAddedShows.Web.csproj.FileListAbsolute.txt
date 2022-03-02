@@ -89,7 +89,6 @@ D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\R
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.RazorAssemblyInfo.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.RazorAssemblyInfo.cs
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\staticwebassets\RecentlyAddedShows.Web.StaticWebAssets.Manifest.cache
-D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\staticwebassets\RecentlyAddedShows.Web.StaticWebAssets.xml
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\scopedcss\bundle\RecentlyAddedShows.Web.styles.css
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.TagHelpers.input.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.TagHelpers.output.cache
@@ -108,3 +107,10 @@ D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\R
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\ref\RecentlyAddedShows.Web.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Debug\net5.0\RecentlyAddedShows.Web.genruntimeconfig.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\Humanizer.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll

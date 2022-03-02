@@ -7,3 +7,13 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.pdb
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\bin\Debug\netcoreapp3.1\Discord.Selenium.deps.json
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\bin\Debug\netcoreapp3.1\Discord.Selenium.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\bin\Debug\netcoreapp3.1\Discord.Selenium.pdb
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.AssemblyInfoInputs.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.AssemblyInfo.cs
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.csproj.CoreCompileInputs.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.pdb
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.csproj.AssemblyReference.cache
