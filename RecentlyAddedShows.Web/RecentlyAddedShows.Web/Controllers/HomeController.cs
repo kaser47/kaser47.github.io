@@ -34,6 +34,12 @@ namespace RecentlyAddedShows.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Refresh()
+        {
+            var model = _recentlyAddedShows.GetModel();
+            return View("Index", model);
+        }
+
 
         public IActionResult Rss()
         {

@@ -28,13 +28,26 @@ namespace RecentlyAddedShows.Service.Strategies
                 //optionsBuilder.UseSqlServer(Configuration.ConnectionString);
                 //var dbContext = new Context(optionsBuilder.Options);
                 var dbContext = new Context();
-                var errorMessage = new ErrorMessage(ex.Message, ex.StackTrace);
+                var errorMessage = ex.FindInnerException();
 
                 dbContext.ErrorMessages.Add(errorMessage);
                 dbContext.SaveChanges();
 
                 return new ConcurrentBag<Show>();
             }
+        }
+    }
+
+    public static class ExceptionExtensions
+    {
+        public static ErrorMessage FindInnerException(this Exception ex)
+        {
+            if (ex.InnerException != null)
+            {
+                return ex.InnerException.FindInnerException();
+            }
+
+            return new ErrorMessage(ex.Message, ex.StackTrace);
         }
     }
 }

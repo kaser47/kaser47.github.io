@@ -57,6 +57,7 @@
 
                         <div class="tab-pane active" id="errors" role="tabpanel" aria-labelledby="deals-tab">
                             <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Clear", "Home")'">Clear All</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
                             <p />
                             <p />
                             <p />
@@ -494,7 +495,7 @@
 </div>
 
 <div class="text-center">
-    <p id="date">Last Updated - <span style="color: red">@Model.LastUpdated().ToString("dd/MM/yyyy")</span> - @Model.TranslatedLastUpdated()</p>
+    <p id="date">Last Updated - <span style="color: red">@Model.LastUpdated().ToString("dd/MM/yyyy")</span> @Model.TranslatedLastUpdated()</p>
 </div>
 
 <script>

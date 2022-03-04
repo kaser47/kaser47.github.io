@@ -44,12 +44,13 @@ namespace RecentlyAddedShows.Service.Data.Entities
                     return (result > 1) ? $"{result} minutes ago" : $"{result} minute ago";
                 }
 
-                if (TimeLeft().Seconds <= 0) return string.Empty;
+                if (TimeLeft().Seconds <= 0)
                 {
                     var result = TimeLeft().Seconds;
                     return (result > 1) ? $"{result} seconds ago" : $"{result} second ago";
                 }
 
+                return string.Empty;
             }
         }
 
