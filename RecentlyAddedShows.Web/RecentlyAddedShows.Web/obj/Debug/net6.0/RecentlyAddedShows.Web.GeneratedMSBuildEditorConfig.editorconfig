@@ -15,6 +15,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/Favourites/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/Favourites/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/Favourites/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/Favourites/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/Favourites/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -37,4 +57,4 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope =
+build_metadata.AdditionalFiles.CssScope = 

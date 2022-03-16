@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -22,18 +23,27 @@ namespace RecentlyAddedShows.Service.Strategies
 
         public ConcurrentBag<Show> GetShows(DateTime date)
         {
-            using var webClient = new WebClient();
-            string data;
-
-            try 
+            string baseUrl = _url;
+            String data;
+            try
             {
-                data = webClient.DownloadString(_url);
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl);
+                request.UserAgent = $"{Guid.NewGuid()} {Guid.NewGuid()} {Guid.NewGuid()} {Guid.NewGuid()} {Guid.NewGuid()}";
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    data = reader.ReadToEnd();
+                }
+
             }
             catch (Exception)
             {
                 return new ConcurrentBag<Show>();
             }
-            
+
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(data);
 

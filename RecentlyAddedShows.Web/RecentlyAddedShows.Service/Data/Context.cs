@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using RecentlyAddedShows.Service.Data.Entities;
+using System;
 
 namespace RecentlyAddedShows.Service.Data
 {

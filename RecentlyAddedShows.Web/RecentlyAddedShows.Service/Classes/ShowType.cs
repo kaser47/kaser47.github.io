@@ -13,5 +13,6 @@
         GameSwitch,
         GamePC,
         GamePS4,
+        Favourite
     }
 }

@@ -69,6 +69,15 @@ namespace RecentlyAddedShows.Service.Data.Entities
             Created = created;
         }
 
+        public Show(Show show)
+        {
+            Name = show.Name;
+            Url = show.Url;
+            Image = show.Image;
+            Type = ShowType.Favourite.ToString();
+            Created = show.Created;
+        }
+
         public Show()
         {
             
@@ -106,6 +115,11 @@ namespace RecentlyAddedShows.Service.Data.Entities
         {
             this.Title = title;
             Created = DateTime.UtcNow;
+        }
+
+        public Favourite()
+        {
+
         }
     }
 }

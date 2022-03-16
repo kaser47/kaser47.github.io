@@ -42,3 +42,4 @@ D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\D
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.genruntimeconfig.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.csproj.AssemblyReference.cache

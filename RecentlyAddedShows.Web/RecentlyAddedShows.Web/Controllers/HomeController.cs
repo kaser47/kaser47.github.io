@@ -103,6 +103,12 @@ namespace RecentlyAddedShows.Web.Controllers
             return result.ToRss();
         }
 
+        public IActionResult RssFavourites()
+        {
+            var result = _rssFeedCreator.CreateRssFeed(ShowType.Favourite);
+            return result.ToRss();
+        }
+
         public IActionResult Json()
         {
             var model = _recentlyAddedShows.GetModel();

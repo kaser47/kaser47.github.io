@@ -84,7 +84,14 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private DateTime GetDate(HtmlNode node)
         {
-            return DateTime.Parse(node.GetDate(1, 2, 17));
+            try
+            {
+                return DateTime.Parse(node.GetDate(1, 2, 17));
+            }
+            catch (Exception)
+            {
+                return DateTime.MinValue;
+            }
         }
 
         private DateTime GetRecentlyAiredDate(HtmlNode node)

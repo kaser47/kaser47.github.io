@@ -69,9 +69,6 @@ namespace RecentlyAddedShows.Service.Classes
 
         public RecentlyAddedShowsViewModel GetModel()
         {
-            //var optionsBuilder = new DbContextOptionsBuilder<Context>();
-            //optionsBuilder.UseSqlServer(Configuration.ConnectionString);
-            //var dbContext = new Context(optionsBuilder.Options);
             var dbContext = new Context();
             var results = Get();
             var savedResults = dbContext.Shows.ToList();
@@ -111,17 +108,40 @@ namespace RecentlyAddedShows.Service.Classes
             int extraItemsCount = extraItemsToAdd.Count();
             var itemsToAdd = results.Where(x => savedResults.All(y => (y.Name != x.Name && y.Type != x.Type) | y.NumberViewing != x.NumberViewing));
             var ultimateItemsToAdd = itemsToAdd.Concat(extraItemsToAdd).Distinct();
-            int ultimateItemsToAddCount = ultimateItemsToAdd.Count();
+
+            var favouritesToAdd = new List<Show>();
+            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
+            var sortedItemsToAdd = ultimateItemsToAdd.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString());
+
+            foreach (var item in sortedItemsToAdd)
+            {
+                foreach (var favourite in favouriteNames)
+                {
+                    if (item.Name.Contains(favourite))
+                    {
+                        var existingItem = existingFavouriteInstances.Where(x => x.Name == item.Name).FirstOrDefault();
+                        if(existingItem == null)
+                        {
+                            favouritesToAdd.Add(new Show(item));
+                        }
+                    }
+                }
+            }
+
+            var finishedItemsToAdd = ultimateItemsToAdd.Concat(favouritesToAdd).Distinct();
+
+            int ultimateItemsToAddCount = finishedItemsToAdd.Count();
 
 
-            if (ultimateItemsToAdd.Any())
+            if (finishedItemsToAdd.Any())
             {
                 savedResults.ForEach(SetIsUpdatedFalse);
-                ultimateItemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
+                finishedItemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
             }
 
             dbContext.Shows.RemoveRange(itemsToRemove);
-            dbContext.Shows.AddRange(ultimateItemsToAdd);
+            dbContext.Shows.AddRange(finishedItemsToAdd);
 
             dbContext.SaveChanges();
             savedResults = dbContext.Shows.ToList();
@@ -132,9 +152,6 @@ namespace RecentlyAddedShows.Service.Classes
 
         public RecentlyAddedShowsViewModel LoadModel()
         {
-            //var optionsBuilder = new DbContextOptionsBuilder<Context>();
-            //optionsBuilder.UseSqlServer(Configuration.ConnectionString);
-            //var dbContext = new Context(optionsBuilder.Options);
             var dbContext = new Context();
             var savedResults = dbContext.Shows.ToList();
             var errors = new List<ErrorMessage>();
