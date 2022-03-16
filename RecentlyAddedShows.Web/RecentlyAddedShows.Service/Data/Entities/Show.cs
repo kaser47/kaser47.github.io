@@ -95,4 +95,17 @@ namespace RecentlyAddedShows.Service.Data.Entities
             Created = DateTime.UtcNow;
         }
     }
+
+    public class Favourite
+    {
+        public int id { get; set; }
+        public string Title { get; set; }
+        public DateTime Created { get; set; }
+
+        public Favourite(string title)
+        {
+            this.Title = title;
+            Created = DateTime.UtcNow;
+        }
+    }
 }

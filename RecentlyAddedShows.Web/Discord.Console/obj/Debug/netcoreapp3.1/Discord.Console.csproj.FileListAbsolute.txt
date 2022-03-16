@@ -34,7 +34,6 @@ D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\bin\Debug\netcoreapp3.1\D
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\bin\Debug\netcoreapp3.1\System.Interactive.Async.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\bin\Debug\netcoreapp3.1\System.Linq.Async.dll
-D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.csproj.AssemblyReference.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.AssemblyInfoInputs.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.AssemblyInfo.cs

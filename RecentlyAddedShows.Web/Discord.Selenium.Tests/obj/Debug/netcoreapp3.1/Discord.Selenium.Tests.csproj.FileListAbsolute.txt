@@ -102,14 +102,14 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.genruntimeconfig.cache
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\CoverletSourceRootsMapping
-D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\testhost.exe
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\testhost.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\testhost.exe
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\nunit.engine.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\nunit.engine.api.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\nunit.engine.core.dll
-D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\Discord.Selenium.Tests.deps.json
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\Discord.Selenium.Tests.runtimeconfig.json
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\bin\Debug\netcoreapp3.1\Discord.Selenium.Tests.runtimeconfig.dev.json

@@ -40,6 +40,24 @@ namespace RecentlyAddedShows.Service.Migrations
                     b.ToTable("ErrorMessages");
                 });
 
+            modelBuilder.Entity("RecentlyAddedShows.Service.Data.Entities.Favourite", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Favourites");
+                });
+
             modelBuilder.Entity("RecentlyAddedShows.Service.Data.Entities.Show", b =>
                 {
                     b.Property<int>("Id")
