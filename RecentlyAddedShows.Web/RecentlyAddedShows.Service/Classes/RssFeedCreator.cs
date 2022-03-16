@@ -40,6 +40,10 @@ namespace RecentlyAddedShows.Service.Classes
                         break;
                     case ShowType.TVShowCollection:
                     case ShowType.MovieFavourites:
+                    case ShowType.Favourite:
+                    case ShowType.GameSwitch:
+                    case ShowType.GamePC:
+                    case ShowType.GamePS4:
                         break;
                     default:
                         description = $"Invalid Type: {showType}";

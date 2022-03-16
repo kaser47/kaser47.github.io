@@ -118,7 +118,7 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 foreach (var favourite in favouriteNames)
                 {
-                    if (item.Name.Contains(favourite))
+                    if (item.Name.ToLower().Trim().Contains(favourite.ToLower().Trim()))
                     {
                         var existingItem = existingFavouriteInstances.Where(x => x.Name == item.Name).FirstOrDefault();
                         if(existingItem == null)
