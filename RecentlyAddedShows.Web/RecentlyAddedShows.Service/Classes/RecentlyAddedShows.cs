@@ -85,7 +85,7 @@ namespace RecentlyAddedShows.Service.Classes
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
-            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing));
+            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing)).Where(x => x.Type != ShowType.Favourite.ToString());
             var savedResultKeyPairs = savedResults.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var resultKeyPairs = results.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var moreItemsToAddKeyPairs = resultKeyPairs.Where(x => !savedResultKeyPairs.Contains(x));
