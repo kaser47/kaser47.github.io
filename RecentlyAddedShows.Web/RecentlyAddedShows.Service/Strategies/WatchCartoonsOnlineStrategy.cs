@@ -52,10 +52,11 @@ namespace RecentlyAddedShows.Service.Strategies
 
             Parallel.ForEach(nodesMatchingXPath, node =>
             {
-                var name = node.GetText(3, 0);
-                var urlValue = node.GetUrl(3, 0);
+                var name = node.GetText(3, 1);
+                var urlValue = node.GetUrl(3, 1);
                 var imageValue = node.GetImage(1, 1, 1);
-                shows.Add(new Show(name, urlValue, imageValue, _showType, date));
+                if (name.Contains("Dubbed"))
+                { shows.Add(new Show(name, urlValue, imageValue, _showType, date)); }
             });
 
             return shows;

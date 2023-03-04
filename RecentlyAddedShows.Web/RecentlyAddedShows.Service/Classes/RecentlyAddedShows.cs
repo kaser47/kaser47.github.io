@@ -21,7 +21,7 @@ namespace RecentlyAddedShows.Service.Classes
             var strategies = new List<IStrategy>()
             {
                new CartoonsStrategy(),
-               new WatchCartoonsOnlineStrategy("https://www.wcoanimedub.tv/", ShowType.Anime),
+               new WatchCartoonsOnlineStrategy("https://www.wco.tv/#dubbed", ShowType.Anime),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=1", true),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=2", true),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=3", true),
