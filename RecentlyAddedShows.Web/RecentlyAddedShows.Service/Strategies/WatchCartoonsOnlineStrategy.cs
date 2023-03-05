@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -59,7 +60,14 @@ namespace RecentlyAddedShows.Service.Strategies
                 { shows.Add(new Show(name, urlValue, imageValue, _showType, date)); }
             });
 
-            return shows;
+            var list = shows.ToList();
+
+            var distinctShows = list
+              .GroupBy(s => s.Name)
+              .Select(g => g.First())
+              .ToList();
+
+            return new ConcurrentBag<Show>(distinctShows);
         }
     }
 }
