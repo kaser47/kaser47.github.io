@@ -61,10 +61,18 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private static int GetNumberOfViewers(HtmlNode node)
         {
-            var result = node.GetText(1, 3, 0);
-            result = result.Replace(" people watching", "");
-            var number = int.Parse(result);
-            return number;
+            try
+            {
+                var result = node.GetText(1, 3, 0);
+                result = result.Replace(" people watching", "");
+                var number = int.Parse(result);
+                return number;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+
         }
     }
 }

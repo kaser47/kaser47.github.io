@@ -146,15 +146,23 @@ namespace RecentlyAddedShows.Service.Strategies
 
             Parallel.ForEach(nodesMatchingXPath, node =>
             {
+            try
+            {
                 var name = GetName(node);
                 var urlValue = GetUrl(node);
                 var imageValue = GetImage(node);
 
                 date = GetDate(node);
-             
-                shows.Add(new Show(name, urlValue, imageValue, _showType, date));
-            });
 
+                shows.Add(new Show(name, urlValue, imageValue, _showType, date));
+            
+            }
+            catch (Exception)
+            {
+                    var name = GetName(node);
+                    shows.Add(new Show(name, "", "", _showType, date));
+                }
+});
             return shows;
         }
 
