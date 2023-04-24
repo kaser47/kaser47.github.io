@@ -11,6 +11,18 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public string Url { get; set; }
         public string Image { get; set; }
         public DateTime Created { get; set; }
+        public virtual DateTime PublishiedDate { get {
+                var utc = Created;
+                var localTime = TimeZoneInfo.ConvertTimeFromUtc(utc, TimeZoneInfo.Local);
+                var englishTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
+                var currentEnglishTime = TimeZoneInfo.ConvertTimeFromUtc(utc, englishTimeZoneInfo);
+                if (!TimeZoneInfo.Local.IsDaylightSavingTime(currentEnglishTime) && englishTimeZoneInfo.IsDaylightSavingTime(currentEnglishTime))
+                {
+                    localTime = localTime.AddHours(1);
+                }
+                
+                return localTime; } }
+
         public int NumberViewing { get; set; }
         public bool IsUpdated { get; set; }
 
@@ -18,12 +30,11 @@ namespace RecentlyAddedShows.Service.Data.Entities
         {
             get
             {
-                var now = DateTime.Now;
-                var lastUpdated = Created;
+                var now = DateTime.UtcNow;
 
                 TimeSpan TimeLeft()
                 {
-                    return (now - lastUpdated);
+                    return (now - Created);
                 }
 
                 if (TimeLeft().Days > 0)
@@ -66,7 +77,9 @@ namespace RecentlyAddedShows.Service.Data.Entities
             Url = url;
             Image = image;
             Type = type.ToString();
-            Created = created;
+
+            var utcTime  = TimeZoneInfo.ConvertTimeToUtc(created);
+            Created = utcTime;
         }
 
         public Show(Show show)

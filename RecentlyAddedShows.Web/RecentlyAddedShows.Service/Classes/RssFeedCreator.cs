@@ -54,7 +54,7 @@ namespace RecentlyAddedShows.Service.Classes
 
                 var content = $"{description}<img src='{show.Image}'>";
 
-                var publishedDate = show.Created;
+                var publishedDate = show.PublishiedDate;
 
                 // ReSharper disable once StringLiteralTypo
                 //if (show.Type == "Anime" || show.Type == "Cartoon")
