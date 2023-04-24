@@ -142,7 +142,7 @@ namespace RecentlyAddedShows.Service.Strategies
             htmlDocument.LoadHtml(data);
 
             var shows = new ConcurrentBag<Show>();
-            var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//div[contains(@class,'title_bump')]/div[contains(@class,'browse_list_wrapper')]/table/tr[not(contains(@class, 'spacer'))]");
+            var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//div[contains(@class,'title_bump')]/div[contains(@class,'browse_list_wrapper')]/table/tbody/tr[not(contains(@class, 'spacer'))]");
 
             Parallel.ForEach(nodesMatchingXPath, node =>
             {

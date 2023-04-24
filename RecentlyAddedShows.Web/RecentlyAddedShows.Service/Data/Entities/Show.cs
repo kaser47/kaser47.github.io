@@ -18,7 +18,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
         {
             get
             {
-                var now = DateTime.UtcNow;
+                var now = DateTime.Now;
                 var lastUpdated = Created;
 
                 TimeSpan TimeLeft()

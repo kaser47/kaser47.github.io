@@ -31,6 +31,8 @@ namespace RecentlyAddedShows.Service.Classes
                         description = $"{show.Type} - {show.TranslatedCreated}";
                         break;
                     case ShowType.TVShowUpNext:
+                        description = $"{show.TranslatedCreated}";
+                        break;
                     case ShowType.TVShowRecentlyAired:
                     case ShowType.Favourite:
                     case ShowType.GameSwitch:
@@ -55,10 +57,10 @@ namespace RecentlyAddedShows.Service.Classes
                 var publishedDate = show.Created;
 
                 // ReSharper disable once StringLiteralTypo
-                if (show.Type == "Anime" || show.Type == "Cartoon")
-                {
-                    publishedDate = publishedDate.AddHours(-7);
-                }
+                //if (show.Type == "Anime" || show.Type == "Cartoon")
+                //{
+                //    publishedDate = publishedDate.AddHours(-7);
+                //}
 
                 var item = new SyndicationItem
                 {
