@@ -32,36 +32,53 @@ namespace RecentlyAddedShows.Service.Data.Entities
             {
                 var now = DateTime.UtcNow;
 
-                TimeSpan TimeLeft()
+                TimeDifference TimeSpanToDateParts(DateTime d1, DateTime d2)
                 {
-                    return (now - Created);
+                    int years, months, days, hours, minutes, seconds;
+                    if (d1 < d2)
+                    {
+                        var d3 = d2;
+                        d2 = d1;
+                        d1 = d3;
+                    }
+
+                    var span = d1 - d2;
+
+                    months = 12 * (d1.Year - d2.Year) + (d1.Month - d2.Month);
+
+                    //month may need to be decremented because the above calculates the ceiling of the months, not the floor.
+                    //to do so we increase d2 by the same number of months and compare.
+                    //(500ms fudge factor because datetimes are not precise enough to compare exactly)
+                    if (d1.CompareTo(d2.AddMonths(months).AddMilliseconds(-500)) <= 0)
+                    {
+                        --months;
+                    }
+
+                    years = months / 12;
+                    months -= years * 12;
+
+                    if (months == 0 && years == 0)
+                    {
+                        days = span.Days;
+                    }
+                    else
+                    {
+                        var md1 = new DateTime(d1.Year, d1.Month, d1.Day);
+                        var md2 = new DateTime(d2.Year, d2.Month, d2.Day);                      
+                        
+                        days = (int)(md1.AddMonths(-(months)).AddYears(-((years))) - md2).TotalDays;
+                    }
+                    hours = span.Hours;
+                    minutes = span.Minutes;
+                    seconds = span.Seconds;
+
+                    return new TimeDifference(years, months, days, hours, minutes, seconds);
                 }
 
-                if (TimeLeft().Days > 0)
-                {
-                    var result = TimeLeft().Days;
-                    return (result > 1) ? $"{result} days ago" : $"{result} day ago";
-                }
+                var timeleft = TimeSpanToDateParts(now, Created);
 
-                if (TimeLeft().Hours > 0)
-                {
-                    var result = TimeLeft().Hours;
-                    return (result > 1) ? $"{result} hours ago" : $"{result} hour ago";
-                }
-
-                if (TimeLeft().Minutes > 0)
-                {
-                    var result = TimeLeft().Minutes;
-                    return (result > 1) ? $"{result} minutes ago" : $"{result} minute ago";
-                }
-
-                if (TimeLeft().Seconds <= 0)
-                {
-                    var result = TimeLeft().Seconds;
-                    return (result > 1) ? $"{result} seconds ago" : $"{result} second ago";
-                }
-
-                return string.Empty;
+         
+                return timeleft.ToString();
             }
         }
 
@@ -133,6 +150,57 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public Favourite()
         {
 
+        }
+    }
+
+    public class TimeDifference
+    {
+        public int Years { get; set; }
+        public int Months { get; set; }
+        public int Days { get; set; }
+        public int Hours { get; set; }
+        public int Minutes { get; set; }
+        public int Seconds { get; set; }
+        public TimeDifference(int years, int months, int days, int hours, int minutes, int seconds)
+        {
+            Years = years;
+            Months = months;
+            Days = days;
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+        }
+
+        public override string ToString()
+        {
+            if (Years > 0)
+            {
+                return $"{Years} year(s), {Months} month(s), {Days} day(s) ago";
+            }
+            if (Months > 0)
+            {
+                return $"{Months} month(s), {Days} day(s) ago";
+            }
+            if (Days > 0)
+            {
+                return $"{Days} day(s), {Hours} hour(s), {Minutes} minute(s) ago";
+            }
+            if (Hours > 0)
+            {
+                return $"{Hours} hour(s), {Minutes} minute(s) ago";
+            }
+            if (Minutes > 0)
+            {
+                return $"{Minutes} minutes(s), {Seconds} second(s) ago";
+            }
+            if (Seconds > 0)
+            {
+                return $"{Seconds} second(s) ago";
+            }
+            else
+            {
+                return "Less than a second ago";
+            }
         }
     }
 }
