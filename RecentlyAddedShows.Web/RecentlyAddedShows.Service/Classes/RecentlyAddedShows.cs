@@ -138,6 +138,16 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 savedResults.ForEach(SetIsUpdatedFalse);
                 finishedItemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
+
+                var popularMovies = finishedItemsToAdd.Where(x => x.Type != ShowType.MoviePopular.ToString());
+                foreach (var item in popularMovies)
+                {
+                    var savedItem = savedResults.Where(x => x.Name == item.Name && x.Type == item.Type).FirstOrDefault();
+                    if (savedItem != null && savedItem.hasReleaseDate)
+                    {
+                        item.ReleaseDate = savedItem.ReleaseDate;
+                    }
+                }
             }
 
             dbContext.Shows.RemoveRange(itemsToRemove);

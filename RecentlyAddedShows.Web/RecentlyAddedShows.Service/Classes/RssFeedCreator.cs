@@ -42,8 +42,15 @@ namespace RecentlyAddedShows.Service.Classes
                         break;
                     case ShowType.TVShowPopular:
                     case ShowType.MoviePopular:
-                        description = $"Number Viewing: {show.NumberViewing}";
-                        break;
+                            description = $"Number Viewing: {show.NumberViewing}";
+                        if (show.hasReleaseDate)
+                        {
+                            if (show.ReleaseDate <= DateTime.UtcNow)
+                            {
+                                description = description + " READY";
+                            }
+                        }
+                            break;
                     case ShowType.TVShowCollection:
                     case ShowType.MovieFavourites:
                         break;

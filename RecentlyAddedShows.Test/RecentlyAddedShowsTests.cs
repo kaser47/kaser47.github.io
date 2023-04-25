@@ -1,14 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using NUnit.Framework;
+using RecentlyAddedShows.Service.Classes;
 
 namespace RecentlyAddedShows.Test
 {
     [TestFixture]
     public class RecentlyAddedShowsTests
     {
+        [Test]
+        public void MovieFinder()
+        {
+            var result = MovieReleaseDateFinder.GetDetailsAsync("Die Hard").Result;
+        }
+
+
+
         [Test]
         public void Discord()
         {

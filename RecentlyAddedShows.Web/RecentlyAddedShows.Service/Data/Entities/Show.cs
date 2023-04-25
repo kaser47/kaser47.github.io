@@ -20,11 +20,15 @@ namespace RecentlyAddedShows.Service.Data.Entities
                 {
                     localTime = localTime.AddHours(1);
                 }
-                
+
                 return localTime; } }
 
         public int NumberViewing { get; set; }
         public bool IsUpdated { get; set; }
+
+        public DateTime? ReleaseDate { get; set; }
+
+        public virtual bool hasReleaseDate { get { return ReleaseDate.HasValue; } }
 
         public string TranslatedCreated
         {
@@ -35,11 +39,13 @@ namespace RecentlyAddedShows.Service.Data.Entities
                 TimeDifference TimeSpanToDateParts(DateTime d1, DateTime d2)
                 {
                     int years, months, days, hours, minutes, seconds;
+                    bool isFuture = false;
                     if (d1 < d2)
                     {
                         var d3 = d2;
                         d2 = d1;
                         d1 = d3;
+                        isFuture = true;
                     }
 
                     var span = d1 - d2;
@@ -72,7 +78,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
                     minutes = span.Minutes;
                     seconds = span.Seconds;
 
-                    return new TimeDifference(years, months, days, hours, minutes, seconds);
+                    return new TimeDifference(years, months, days, hours, minutes, seconds, isFuture);
                 }
 
                 var timeleft = TimeSpanToDateParts(now, Created);
@@ -97,6 +103,12 @@ namespace RecentlyAddedShows.Service.Data.Entities
 
             var utcTime  = TimeZoneInfo.ConvertTimeToUtc(created);
             Created = utcTime;
+
+            if (Type == ShowType.MoviePopular.ToString() && Name != null)
+            {
+                var searchableName = Name.Substring(0, Name.Length - 5);
+                ReleaseDate = MovieReleaseDateFinder.GetDetailsAsync(searchableName).Result;
+            }
         }
 
         public Show(Show show)
@@ -110,7 +122,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
 
         public Show()
         {
-            
+
         }
 
         public override string ToString()
@@ -161,7 +173,8 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public int Hours { get; set; }
         public int Minutes { get; set; }
         public int Seconds { get; set; }
-        public TimeDifference(int years, int months, int days, int hours, int minutes, int seconds)
+        public bool IsFuture { get; set; }
+        public TimeDifference(int years, int months, int days, int hours, int minutes, int seconds, bool isFuture)
         {
             Years = years;
             Months = months;
@@ -169,38 +182,47 @@ namespace RecentlyAddedShows.Service.Data.Entities
             Hours = hours;
             Minutes = minutes;
             Seconds = seconds;
+            IsFuture = isFuture;
         }
 
         public override string ToString()
         {
+            string result = "";
             if (Years > 0)
             {
-                return $"{Years} year(s), {Months} month(s), {Days} day(s) ago";
+                result = $"{Years} year(s), {Months} month(s), {Days} day(s) ago";
             }
-            if (Months > 0)
+            else if (Months > 0)
             {
-                return $"{Months} month(s), {Days} day(s) ago";
+                result = $"{Months} month(s), {Days} day(s) ago";
             }
-            if (Days > 0)
+            else if (Days > 0)
             {
-                return $"{Days} day(s), {Hours} hour(s), {Minutes} minute(s) ago";
+                result = $"{Days} day(s), {Hours} hour(s), {Minutes} minute(s) ago";
             }
-            if (Hours > 0)
+            else if (Hours > 0)
             {
-                return $"{Hours} hour(s), {Minutes} minute(s) ago";
+                result = $"{Hours} hour(s), {Minutes} minute(s) ago";
             }
-            if (Minutes > 0)
+            else if (Minutes > 0)
             {
-                return $"{Minutes} minutes(s), {Seconds} second(s) ago";
+                result = $"{Minutes} minutes(s), {Seconds} second(s) ago";
             }
-            if (Seconds > 0)
+            else if (Seconds > 0)
             {
-                return $"{Seconds} second(s) ago";
+                result = $"{Seconds} second(s) ago";
             }
             else
             {
-                return "Less than a second ago";
+                result = "Less than a second ago";
             }
+
+            if (IsFuture)
+            {
+                result = result.Replace("ago", "until release");
+            }
+
+            return result;
         }
     }
 }
