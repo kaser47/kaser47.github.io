@@ -47,7 +47,11 @@ namespace RecentlyAddedShows.Service.Classes
                         {
                             if (show.ReleaseDate <= DateTime.UtcNow)
                             {
-                                description = description + " READY";
+                                description = description + " - READY";
+                            }
+                            else
+                            {
+                                description = description + $" - {show.TranslatedReleaseDate}";
                             }
                         }
                             break;

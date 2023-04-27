@@ -30,60 +30,72 @@ namespace RecentlyAddedShows.Service.Data.Entities
 
         public virtual bool hasReleaseDate { get { return ReleaseDate.HasValue; } }
 
-        public string TranslatedCreated
+        public string TranslatedReleaseDate
+        {
+            get {
+                if (ReleaseDate.HasValue)
+                {
+                    var now = DateTime.UtcNow;
+                    var timeleft = TimeSpanToDateParts(now, ReleaseDate.Value);
+                    return timeleft.ToString();
+                }
+                return null;
+            }
+        }
+
+        public static TimeDifference TimeSpanToDateParts(DateTime d1, DateTime d2)
+        {
+            int years, months, days, hours, minutes, seconds;
+            bool isFuture = false;
+            if (d1 < d2)
+            {
+                var d3 = d2;
+                d2 = d1;
+                d1 = d3;
+                isFuture = true;
+            }
+
+            var span = d1 - d2;
+
+            months = 12 * (d1.Year - d2.Year) + (d1.Month - d2.Month);
+
+            //month may need to be decremented because the above calculates the ceiling of the months, not the floor.
+            //to do so we increase d2 by the same number of months and compare.
+            //(500ms fudge factor because datetimes are not precise enough to compare exactly)
+            if (d1.CompareTo(d2.AddMonths(months).AddMilliseconds(-500)) <= 0)
+            {
+                --months;
+            }
+
+            years = months / 12;
+            months -= years * 12;
+
+            if (months == 0 && years == 0)
+            {
+                days = span.Days;
+            }
+            else
+            {
+                var md1 = new DateTime(d1.Year, d1.Month, d1.Day);
+                var md2 = new DateTime(d2.Year, d2.Month, d2.Day);
+
+                days = (int)(md1.AddMonths(-(months)).AddYears(-((years))) - md2).TotalDays;
+            }
+            hours = span.Hours;
+            minutes = span.Minutes;
+            seconds = span.Seconds;
+
+            return new TimeDifference(years, months, days, hours, minutes, seconds, isFuture);
+        }
+
+
+
+    public string TranslatedCreated
         {
             get
             {
                 var now = DateTime.UtcNow;
-
-                TimeDifference TimeSpanToDateParts(DateTime d1, DateTime d2)
-                {
-                    int years, months, days, hours, minutes, seconds;
-                    bool isFuture = false;
-                    if (d1 < d2)
-                    {
-                        var d3 = d2;
-                        d2 = d1;
-                        d1 = d3;
-                        isFuture = true;
-                    }
-
-                    var span = d1 - d2;
-
-                    months = 12 * (d1.Year - d2.Year) + (d1.Month - d2.Month);
-
-                    //month may need to be decremented because the above calculates the ceiling of the months, not the floor.
-                    //to do so we increase d2 by the same number of months and compare.
-                    //(500ms fudge factor because datetimes are not precise enough to compare exactly)
-                    if (d1.CompareTo(d2.AddMonths(months).AddMilliseconds(-500)) <= 0)
-                    {
-                        --months;
-                    }
-
-                    years = months / 12;
-                    months -= years * 12;
-
-                    if (months == 0 && years == 0)
-                    {
-                        days = span.Days;
-                    }
-                    else
-                    {
-                        var md1 = new DateTime(d1.Year, d1.Month, d1.Day);
-                        var md2 = new DateTime(d2.Year, d2.Month, d2.Day);                      
-                        
-                        days = (int)(md1.AddMonths(-(months)).AddYears(-((years))) - md2).TotalDays;
-                    }
-                    hours = span.Hours;
-                    minutes = span.Minutes;
-                    seconds = span.Seconds;
-
-                    return new TimeDifference(years, months, days, hours, minutes, seconds, isFuture);
-                }
-
                 var timeleft = TimeSpanToDateParts(now, Created);
-
-         
                 return timeleft.ToString();
             }
         }

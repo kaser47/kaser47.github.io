@@ -129,7 +129,11 @@ namespace RecentlyAddedShows.Service.Classes
                 }
             }
 
-            var finishedItemsToAdd = ultimateItemsToAdd.Concat(favouritesToAdd).Distinct();
+            var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
+                                                    .Select(g => g.First())
+                                                    .ToList();
+
+            var finishedItemsToAdd = ultimateItemsToAdd.Concat(sortedFavourites).Distinct();
 
             int ultimateItemsToAddCount = finishedItemsToAdd.Count();
 
