@@ -85,7 +85,7 @@ namespace RecentlyAddedShows.Service.Classes
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
-            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name | y.NumberViewing != x.NumberViewing)).Where(x => x.Type != ShowType.Favourite.ToString());
+            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name || y.NumberViewing != x.NumberViewing || x.hasReleaseDate != y.hasReleaseDate || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate) )).Where(x => x.Type != ShowType.Favourite.ToString());
             var savedResultKeyPairs = savedResults.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var resultKeyPairs = results.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var moreItemsToAddKeyPairs = resultKeyPairs.Where(x => !savedResultKeyPairs.Contains(x));
@@ -147,7 +147,7 @@ namespace RecentlyAddedShows.Service.Classes
                 foreach (var item in popularMovies)
                 {
                     var savedItem = savedResults.Where(x => x.Name == item.Name && x.Type == item.Type).FirstOrDefault();
-                    if (savedItem != null && savedItem.hasReleaseDate)
+                    if (savedItem != null && savedItem.hasReleaseDate  && !item.hasReleaseDate)
                     {
                         item.ReleaseDate = savedItem.ReleaseDate;
                     }

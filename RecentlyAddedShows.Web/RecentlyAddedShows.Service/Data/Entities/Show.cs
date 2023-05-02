@@ -119,7 +119,8 @@ namespace RecentlyAddedShows.Service.Data.Entities
             if (Type == ShowType.MoviePopular.ToString() && Name != null)
             {
                 var searchableName = Name.Substring(0, Name.Length - 5);
-                ReleaseDate = MovieReleaseDateFinder.GetDetailsAsync(searchableName).Result;
+                var date = Name.Substring(Name.Length - 4, 4);
+                ReleaseDate = MovieReleaseDateFinder.GetDetailsAsync(searchableName, date).Result;
             }
         }
 

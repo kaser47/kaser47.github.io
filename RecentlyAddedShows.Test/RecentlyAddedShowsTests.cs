@@ -12,7 +12,7 @@ namespace RecentlyAddedShows.Test
         [Test]
         public void MovieFinder()
         {
-            var result = MovieReleaseDateFinder.GetDetailsAsync("Die Hard").Result;
+            var result = MovieReleaseDateFinder.GetDetailsAsync("Avatar", "2009").Result;
         }
 
 

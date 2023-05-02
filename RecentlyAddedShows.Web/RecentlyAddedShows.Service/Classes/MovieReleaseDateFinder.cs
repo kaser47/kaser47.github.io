@@ -12,8 +12,11 @@ namespace RecentlyAddedShows.Service.Classes
     public static class MovieReleaseDateFinder
     {
         const string ApiKey = "10b8b8b339f213d5a7c04a44ad8208de";
-        public static async Task<DateTime?> GetDetailsAsync(string title)
+        public static async Task<DateTime?> GetDetailsAsync(string title, string year)
         {
+            int nowYear = DateTime.UtcNow.Year;
+            int monvieReleaseYear = int.Parse(year);
+
             try
             {
             var encodedTitle = HttpUtility.UrlEncode(title);
@@ -29,8 +32,9 @@ namespace RecentlyAddedShows.Service.Classes
             if (totalSearchResults == 0)
                 return null;
 
-            JToken searchResults = searchJson.GetValue("results");
-            JToken firstSearchResult = searchResults[0];
+            JArray searchResults = JArray.Parse(searchJson.GetValue("results").ToString());
+            JToken firstSearchResult = searchResults.Where(x => x.SelectToken("title").ToString() == title && x.SelectToken("release_date").ToString().Contains(year)).FirstOrDefault();
+
             var movieId = firstSearchResult.SelectToken("id").ToString();
 
             string releaseDatesUrl = $"https://api.themoviedb.org/3/movie/{movieId}/release_dates?api_key={ApiKey}";
@@ -59,8 +63,17 @@ namespace RecentlyAddedShows.Service.Classes
                 }
             }
 
-            if (releaseDatesPerRegion.Count == 0)
-                return null;
+                if (releaseDatesPerRegion.Count == 0)
+                {
+                    int difference = nowYear - monvieReleaseYear;
+                    if ((difference) >= 2)
+                    {
+                        DateTime newDate = DateTime.Now.AddYears(-difference);
+                        return newDate;
+                    }
+
+                    return null;
+                }
 
             var earliestPossibleReleaseDate = releaseDatesPerRegion.OrderBy(x => x).First();
             var utcReleaseDate = TimeZoneInfo.ConvertTimeToUtc(earliestPossibleReleaseDate); 
