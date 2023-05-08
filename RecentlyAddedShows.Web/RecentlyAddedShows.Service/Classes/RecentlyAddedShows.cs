@@ -85,7 +85,14 @@ namespace RecentlyAddedShows.Service.Classes
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
-            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name || y.NumberViewing != x.NumberViewing || x.hasReleaseDate != y.hasReleaseDate || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate) || (x.Type == ShowType.ReleaseDate.ToString() && x.hasReleaseDate && x.ReleaseDate.Value <= DateTime.UtcNow.AddMonths(-6)))).Where(x => x.Type != ShowType.Favourite.ToString());
+            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name 
+            || y.NumberViewing != x.NumberViewing 
+            || x.hasReleaseDate != y.hasReleaseDate 
+            || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
+            ))
+                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString()).ToList();
+            var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
+            itemsToRemove.AddRange(addtionalItemsToRemove);
             var savedResultKeyPairs = savedResults.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var resultKeyPairs = results.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var moreItemsToAddKeyPairs = resultKeyPairs.Where(x => !savedResultKeyPairs.Contains(x));
