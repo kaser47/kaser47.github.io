@@ -67,9 +67,16 @@ namespace RecentlyAddedShows.Web.Controllers
             return result.ToRss();
         }
 
+
         public IActionResult RssPopularShows()
         {
             var result = _rssFeedCreator.CreatePopularRssFeed(ShowType.TVShowPopular);
+            return result.ToRss();
+        }
+
+        public IActionResult RssReleaseDates()
+        {
+            var result = _rssFeedCreator.CreateRssFeed(ShowType.ReleaseDate);
             return result.ToRss();
         }
 

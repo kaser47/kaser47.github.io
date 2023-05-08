@@ -13,6 +13,7 @@
         GameSwitch,
         GamePC,
         GamePS4,
-        Favourite
+        Favourite,
+        ReleaseDate
     }
 }

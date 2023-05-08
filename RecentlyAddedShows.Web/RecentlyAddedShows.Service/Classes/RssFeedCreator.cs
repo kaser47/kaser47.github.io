@@ -55,6 +55,16 @@ namespace RecentlyAddedShows.Service.Classes
                             }
                         }
                             break;
+                    case ShowType.ReleaseDate:
+                        if (show.ReleaseDate <= DateTime.UtcNow)
+                        {
+                            description = description + " - READY";
+                        }
+                        else
+                        {
+                            description = description + $" - {show.TranslatedReleaseDate}";
+                        }
+                        break;
                     case ShowType.TVShowCollection:
                     case ShowType.MovieFavourites:
                         break;

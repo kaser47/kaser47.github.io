@@ -124,13 +124,20 @@ namespace RecentlyAddedShows.Service.Data.Entities
             }
         }
 
-        public Show(Show show)
+        public Show(Show show, string showType = "Favourite")
         {
             Name = show.Name;
             Url = show.Url;
             Image = show.Image;
-            Type = ShowType.Favourite.ToString();
-            Created = show.Created;
+            Type = showType;
+            if (showType == ShowType.ReleaseDate.ToString())
+            {
+                Created = show.ReleaseDate.Value;
+            }
+            else
+            {
+                Created = show.Created;
+            }
         }
 
         public Show()

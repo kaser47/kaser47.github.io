@@ -85,7 +85,7 @@ namespace RecentlyAddedShows.Service.Classes
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
-            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name || y.NumberViewing != x.NumberViewing || x.hasReleaseDate != y.hasReleaseDate || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate) )).Where(x => x.Type != ShowType.Favourite.ToString());
+            var itemsToRemove = savedResults.Where(x => results.All(y => y.Name != x.Name || y.NumberViewing != x.NumberViewing || x.hasReleaseDate != y.hasReleaseDate || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate) || (x.Type == ShowType.ReleaseDate.ToString() && x.hasReleaseDate && x.ReleaseDate.Value <= DateTime.UtcNow.AddMonths(-6)))).Where(x => x.Type != ShowType.Favourite.ToString());
             var savedResultKeyPairs = savedResults.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var resultKeyPairs = results.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var moreItemsToAddKeyPairs = resultKeyPairs.Where(x => !savedResultKeyPairs.Contains(x));
@@ -137,22 +137,35 @@ namespace RecentlyAddedShows.Service.Classes
 
             int ultimateItemsToAddCount = finishedItemsToAdd.Count();
 
-
+            var releaseDates = new List<Show>();
             if (finishedItemsToAdd.Any())
             {
                 savedResults.ForEach(SetIsUpdatedFalse);
                 finishedItemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
-
-                var popularMovies = finishedItemsToAdd.Where(x => x.Type != ShowType.MoviePopular.ToString());
+                var popularMovies = finishedItemsToAdd.Where(x => x.Type == ShowType.MoviePopular.ToString());
                 foreach (var item in popularMovies)
                 {
                     var savedItem = savedResults.Where(x => x.Name == item.Name && x.Type == item.Type).FirstOrDefault();
-                    if (savedItem != null && savedItem.hasReleaseDate  && !item.hasReleaseDate)
+                    if (savedItem != null && savedItem.hasReleaseDate && !item.hasReleaseDate)
                     {
                         item.ReleaseDate = savedItem.ReleaseDate;
                     }
+
+                    if (item.hasReleaseDate && item.ReleaseDate.Value > DateTime.UtcNow.AddMonths(-6))
+                    {
+                        var releaseDate = new Show(item, ShowType.ReleaseDate.ToString());
+                        releaseDates.Add(releaseDate);
+                    }
+
                 }
             }
+                var releaseDatesFiltered = releaseDates.Where(rd => !savedResults.Any(sr => sr.Name == rd.Name && sr.Type == rd.Type && sr.hasReleaseDate == rd.hasReleaseDate && sr.ReleaseDate == rd.ReleaseDate));
+
+            foreach (var item in releaseDatesFiltered)
+            {
+                    finishedItemsToAdd = finishedItemsToAdd.Append(item);
+            }
+            
 
             dbContext.Shows.RemoveRange(itemsToRemove);
             dbContext.Shows.AddRange(finishedItemsToAdd);
