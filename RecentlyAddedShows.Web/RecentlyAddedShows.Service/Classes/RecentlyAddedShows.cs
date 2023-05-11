@@ -92,7 +92,23 @@ namespace RecentlyAddedShows.Service.Classes
             ))
                 .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString()).ToList();
             var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
-            itemsToRemove.AddRange(addtionalItemsToRemove);
+
+            var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString());
+            var releaseDateMovies = savedResults.Where(x => x.Type.ToString() == ShowType.ReleaseDate.ToString());
+
+            //Fix incorrect release dates when they get updated.
+            foreach (var popularMovie in listPopularMovies)
+            {
+                foreach (var releaseDate in releaseDateMovies)
+                {
+                    if (popularMovie.Name == releaseDate.Name && popularMovie.hasReleaseDate && popularMovie.ReleaseDate.Value != releaseDate.Created)
+                    {
+                        releaseDate.Created = popularMovie.ReleaseDate.Value;
+                    }
+                }
+            }
+
+           itemsToRemove.AddRange(addtionalItemsToRemove);
             var savedResultKeyPairs = savedResults.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var resultKeyPairs = results.Select(x => new KeyValuePair<string, string>(x.Name, x.Type));
             var moreItemsToAddKeyPairs = resultKeyPairs.Where(x => !savedResultKeyPairs.Contains(x));
@@ -166,7 +182,7 @@ namespace RecentlyAddedShows.Service.Classes
 
                 }
             }
-                var releaseDatesFiltered = releaseDates.Where(rd => !savedResults.Any(sr => sr.Name == rd.Name && sr.Type == rd.Type && sr.hasReleaseDate == rd.hasReleaseDate && sr.ReleaseDate == rd.ReleaseDate));
+                var releaseDatesFiltered = releaseDates.Where(rd => !savedResults.Any(sr => sr.Name == rd.Name && sr.Type == rd.Type));
 
             foreach (var item in releaseDatesFiltered)
             {
