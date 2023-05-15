@@ -182,7 +182,11 @@ namespace RecentlyAddedShows.Service.Classes
 
                 }
             }
-                var releaseDatesFiltered = releaseDates.Where(rd => !savedResults.Any(sr => sr.Name == rd.Name && sr.Type == rd.Type));
+            releaseDates = releaseDates
+                            .GroupBy(p => p.Name)
+                            .Select(g => g.First())
+                            .ToList();
+            var releaseDatesFiltered = releaseDates.Where(rd => !savedResults.Any(sr => sr.Name == rd.Name && sr.Type == rd.Type));
 
             foreach (var item in releaseDatesFiltered)
             {
