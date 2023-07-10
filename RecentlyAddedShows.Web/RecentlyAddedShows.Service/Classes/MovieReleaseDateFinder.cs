@@ -33,7 +33,7 @@ namespace RecentlyAddedShows.Service.Classes
                 return null;
 
             JArray searchResults = JArray.Parse(searchJson.GetValue("results").ToString());
-            JToken firstSearchResult = searchResults.Where(x => x.SelectToken("title").ToString() == title && x.SelectToken("release_date").ToString().Contains(year)).FirstOrDefault();
+            JToken firstSearchResult = searchResults.Where(x => x.SelectToken("release_date").ToString().Contains(year)).FirstOrDefault();
 
             var movieId = firstSearchResult.SelectToken("id").ToString();
 

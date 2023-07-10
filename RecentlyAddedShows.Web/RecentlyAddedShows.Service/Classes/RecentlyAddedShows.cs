@@ -176,10 +176,13 @@ namespace RecentlyAddedShows.Service.Classes
 
                     if (item.hasReleaseDate && item.ReleaseDate.Value > DateTime.UtcNow.AddMonths(-6))
                     {
-                        var releaseDate = new Show(item, ShowType.ReleaseDate.ToString());
-                        releaseDates.Add(releaseDate);
+                        var savedReleaseDate = savedResults.Where(x => x.Name == item.Name && x.Type == ShowType.ReleaseDate.ToString()).FirstOrDefault();
+                        if (savedReleaseDate == null)
+                        {
+                            var releaseDate = new Show(item, ShowType.ReleaseDate.ToString());
+                            releaseDates.Add(releaseDate);
+                        }
                     }
-
                 }
             }
             releaseDates = releaseDates
