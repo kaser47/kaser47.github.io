@@ -89,6 +89,7 @@ namespace RecentlyAddedShows.Service.Classes
             || y.NumberViewing != x.NumberViewing 
             || x.hasReleaseDate != y.hasReleaseDate 
             || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
+            || (x.Type == ShowType.TVShowUpNext.ToString() && y.Created != x.Created) 
             ))
                 .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString()).ToList();
             var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
