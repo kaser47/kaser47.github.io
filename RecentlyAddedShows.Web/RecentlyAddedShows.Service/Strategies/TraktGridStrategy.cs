@@ -142,7 +142,7 @@ namespace RecentlyAddedShows.Service.Strategies
             htmlDocument.LoadHtml(data);
 
             var shows = new ConcurrentBag<Show>();
-            var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//div[contains(@class,'title_bump')]/div[contains(@class,'browse_list_wrapper')]/table/tr[not(contains(@class, 'spacer'))]");
+            var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes("//div[contains(@class,'c-productListings')]/div[contains(@class,'c-finderProductCard c-finderProductCard-game')]");
 
             Parallel.ForEach(nodesMatchingXPath, node =>
             {
@@ -168,23 +168,27 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private string GetName(HtmlNode node)
         {
-            return node.GetText(3, 5, 0);
+            return node.GetText(0,1,0,0);    
+            #return node.GetText(3, 5, 0);
         }
 
         private string GetUrl(HtmlNode node)
         {
-            var url = node.GetUrl(3, 5);
+            var url = node.GetUrl(0);
+            #var url = node.GetUrl(3, 5);
             return HomeUrl + url;
         }
 
         private string GetImage(HtmlNode node)
         {
-            return node.GetImage(1, 1, 0);
+            return node.GetImage(0,0,0,0,1,0);
+            #return node.GetImage(1, 1, 0);
         }
 
         private DateTime GetDate(HtmlNode node)
         {
-            return DateTime.Parse(node.GetText(3, 7, 3));
+            #return DateTime.Parse(node.GetText(3, 7, 3));
+            return DateTime.Parse(node.GetText(0, 1, 1));
         }
 
         private bool DateExists(HtmlNode node)
