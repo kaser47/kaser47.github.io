@@ -157,7 +157,7 @@ namespace RecentlyAddedShows.Service.Strategies
                 shows.Add(new Show(name, urlValue, imageValue, _showType, date));
             
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                     var name = GetName(node);
                     shows.Add(new Show(name, "", "", _showType, date));
@@ -168,27 +168,27 @@ namespace RecentlyAddedShows.Service.Strategies
 
         private string GetName(HtmlNode node)
         {
-            return node.GetText(0,1,0,0);    
-            #return node.GetText(3, 5, 0);
+            return node.GetText(0,2,0,0);    
+            //return node.GetText(3, 5, 0);
         }
 
         private string GetUrl(HtmlNode node)
         {
             var url = node.GetUrl(0);
-            #var url = node.GetUrl(3, 5);
+            //var url = node.GetUrl(3, 5);
             return HomeUrl + url;
         }
 
         private string GetImage(HtmlNode node)
         {
-            return node.GetImage(0,0,0,0,1,0);
-            #return node.GetImage(1, 1, 0);
+            return node.GetImage(0,0,0,0,2,0,1);
+            //return node.GetImage(1, 1, 0);
         }
 
         private DateTime GetDate(HtmlNode node)
         {
-            #return DateTime.Parse(node.GetText(3, 7, 3));
-            return DateTime.Parse(node.GetText(0, 1, 1));
+            //return DateTime.Parse(node.GetText(3, 7, 3));
+            return DateTime.Parse(node.GetText(0, 2, 2, 0));
         }
 
         private bool DateExists(HtmlNode node)
