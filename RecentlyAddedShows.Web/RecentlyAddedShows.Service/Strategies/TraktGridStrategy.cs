@@ -97,7 +97,7 @@ namespace RecentlyAddedShows.Service.Strategies
             switch (showType)
             {
                 case ShowType.GameSwitch:
-                    gameType = "switch";
+                    gameType = "nintendo-switch";
                     break;
                 case ShowType.GamePC:
                     gameType = "pc";
@@ -109,7 +109,7 @@ namespace RecentlyAddedShows.Service.Strategies
                     break;
             }
 
-            _url = $"https://www.metacritic.com/browse/games/release-date/new-releases/{gameType}/date";
+            _url = $"https://www.metacritic.com/browse/game/{gameType}/all/all-time/new/";
             _showType = showType;
         }
 
@@ -160,7 +160,9 @@ namespace RecentlyAddedShows.Service.Strategies
             catch (Exception ex)
             {
                     var name = GetName(node);
-                    shows.Add(new Show(name, "", "", _showType, date));
+                    var urlValue = GetUrl(node);
+                    var image = "https://images.pexels.com/photos/3616764/pexels-photo-3616764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+                    shows.Add(new Show(name, urlValue, image, _showType, date));
                 }
 });
             return shows;
