@@ -159,10 +159,8 @@ namespace RecentlyAddedShows.Service.Strategies
             }
             catch (Exception ex)
             {
-                    var name = GetName(node);
-                    var urlValue = GetUrl(node);
-                    var image = "https://images.pexels.com/photos/3616764/pexels-photo-3616764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-                    shows.Add(new Show(name, urlValue, image, _showType, date));
+                    var name = GetName(node);          
+                    shows.Add(new Show(name, "https://www.google.com", "", _showType, date));
                 }
 });
             return shows;
@@ -171,25 +169,28 @@ namespace RecentlyAddedShows.Service.Strategies
         private string GetName(HtmlNode node)
         {
             return node.GetText(0,2,0,0);    
-            //return node.GetText(3, 5, 0);
         }
 
         private string GetUrl(HtmlNode node)
         {
             var url = node.GetUrl(0);
-            //var url = node.GetUrl(3, 5);
             return HomeUrl + url;
         }
 
         private string GetImage(HtmlNode node)
         {
-            return node.GetImage(0,0,0,0,2,0,1);
-            //return node.GetImage(1, 1, 0);
+            try
+            {
+                return node.GetImage(0, 0, 0, 0, 2, 0, 1);
+            }
+            catch (Exception)
+            {
+                return "https://images.pexels.com/photos/3616764/pexels-photo-3616764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+            }
         }
 
         private DateTime GetDate(HtmlNode node)
         {
-            //return DateTime.Parse(node.GetText(3, 7, 3));
             return DateTime.Parse(node.GetText(0, 2, 2, 0));
         }
 
