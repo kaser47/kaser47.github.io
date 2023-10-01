@@ -37,7 +37,10 @@ namespace RecentlyAddedShows.Service.Classes
                new TraktGridStrategy("https://trakt.tv/users/kaser47/watchlist?display=movie&sort=added,asc", ShowType.MovieFavourites),
                new MetacriticStrategy(ShowType.GameSwitch),
                new MetacriticStrategy(ShowType.GamePC),
-               new MetacriticStrategy(ShowType.GamePS4)
+               new MetacriticStrategy(ShowType.GamePS4),
+               new InTheatresStrategy("https://www.themoviedb.org/movie/now-playing?page=1&language=en-GB"),
+               new InTheatresStrategy("https://www.themoviedb.org/movie/now-playing?page=2&language=en-GB"),
+               new InTheatresStrategy("https://www.themoviedb.org/movie/now-playing?page=3&language=en-GB")
             }; 
             
             var date = DateTime.UtcNow;
@@ -94,7 +97,7 @@ namespace RecentlyAddedShows.Service.Classes
                 .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString()).ToList();
             var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
 
-            var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString());
+            var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
             var releaseDateMovies = savedResults.Where(x => x.Type.ToString() == ShowType.ReleaseDate.ToString());
 
             //Fix incorrect release dates when they get updated.
@@ -166,7 +169,7 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 savedResults.ForEach(SetIsUpdatedFalse);
                 finishedItemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
-                var popularMovies = finishedItemsToAdd.Where(x => x.Type == ShowType.MoviePopular.ToString());
+                var popularMovies = finishedItemsToAdd.Where(x => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
                 foreach (var item in popularMovies)
                 {
                     var savedItem = savedResults.Where(x => x.Name == item.Name && x.Type == item.Type).FirstOrDefault();

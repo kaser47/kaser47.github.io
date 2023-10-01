@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CYC23JE7e19CDOkS44X5L0VEwqOEVnPO5pnh48H6PP9cUn3lqlh/UN1jctX+uy+NZwM4Yhvb9YyAIcOwJph4lg==",
+  "dgSpecHash": "b+rtr50IlGKYKuC3nLkMBSyYY6zY3iH+m7wc/TufZ+5QGnykMUXYA2IpV/4u4nC4qjQeH5E/aBiYiiheXsHwnA==",
   "success": true,
   "projectFilePath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Console\\Discord.Console.csproj",
   "expectedPackageFiles": [
@@ -28,7 +28,11 @@
     "C:\\Users\\kaser\\.nuget\\packages\\system.runtime.extensions\\4.3.0\\system.runtime.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\kaser\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\kaser\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
-    "C:\\Users\\kaser\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
+    "C:\\Users\\kaser\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
+    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
   ],
   "logs": []
 }

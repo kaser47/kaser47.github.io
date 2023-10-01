@@ -57,7 +57,7 @@ namespace RecentlyAddedShows.Service.Classes
                     var earliestReleaseDate = validReleaseDates.OrderBy(x => DateTime.Parse(x.SelectToken("release_date").ToString())).Select(x => DateTime.Parse(x.SelectToken("release_date").ToString())).First();
                     releaseDatesPerRegion.Add(earliestReleaseDate);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     continue;
                 }

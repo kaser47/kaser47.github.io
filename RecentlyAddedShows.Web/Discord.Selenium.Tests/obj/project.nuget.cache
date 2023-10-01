@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5Eoq9ky9eQV3Fd89bBbmFj65aQDG808D0UlgxfKLWRZWu85TYuu8T2xU6SvTS3Ob41S9w3bhQF/ISkHxLNj6xw==",
+  "dgSpecHash": "Q3C5vpiAUITJJOtYn9wybNuogLgbnGcNk3wX7ax81imr9yuwHMIlCmapE8O35AfepkuztluvvK7e7l1BoiTpeg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium.Tests\\Discord.Selenium.Tests.csproj",
   "expectedPackageFiles": [
@@ -69,7 +69,10 @@
     "C:\\Users\\kaser\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\kaser\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\kaser\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\kaser\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\kaser\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
   ],
   "logs": []
 }

@@ -116,7 +116,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
             var utcTime  = TimeZoneInfo.ConvertTimeToUtc(created);
             Created = utcTime;
 
-            if (Type == ShowType.MoviePopular.ToString() && Name != null)
+            if ((Type == ShowType.MoviePopular.ToString() || Type == ShowType.InTheatre.ToString()) && Name != null)
             {
                 var searchableName = Name.Substring(0, Name.Length - 5);
                 var date = Name.Substring(Name.Length - 4, 4);

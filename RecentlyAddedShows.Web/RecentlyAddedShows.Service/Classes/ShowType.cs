@@ -14,6 +14,7 @@
         GamePC,
         GamePS4,
         Favourite,
-        ReleaseDate
+        ReleaseDate,
+        InTheatre
     }
 }
