@@ -13,10 +13,12 @@ namespace RecentlyAddedShows.Web.Controllers
     public class FavouritesController : Controller
     {
         private readonly Context _context;
+        private readonly Service.Classes.RecentlyAddedShows _recentlyAddedShows;
 
         public FavouritesController(Context context)
         {
             _context = context;
+            _recentlyAddedShows = new Service.Classes.RecentlyAddedShows();
         }
 
         // GET: Favourites
@@ -61,6 +63,7 @@ namespace RecentlyAddedShows.Web.Controllers
             {
                 _context.Add(favourite);
                 await _context.SaveChangesAsync();
+                _recentlyAddedShows.RefreshFavourites();
                 return RedirectToAction(nameof(Index));
             }
             return View(favourite);

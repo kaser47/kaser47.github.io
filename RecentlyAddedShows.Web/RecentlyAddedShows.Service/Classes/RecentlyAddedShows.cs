@@ -136,31 +136,32 @@ namespace RecentlyAddedShows.Service.Classes
             var itemsToAdd = results.Where(x => savedResults.All(y => (y.Name != x.Name && y.Type != x.Type) | y.NumberViewing != x.NumberViewing));
             var ultimateItemsToAdd = itemsToAdd.Concat(extraItemsToAdd).Distinct();
 
-            var favouritesToAdd = new List<Show>();
-            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
-            var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
-            var sortedItemsToAdd = ultimateItemsToAdd.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString());
+            //var favouritesToAdd = new List<Show>();
+            //var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            //var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
+            //var sortedItemsToAdd = ultimateItemsToAdd.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString());
 
-            foreach (var item in sortedItemsToAdd)
-            {
-                foreach (var favourite in favouriteNames)
-                {
-                    if (item.Name.ToLower().Trim().Contains(favourite.ToLower().Trim()))
-                    {
-                        var existingItem = existingFavouriteInstances.Where(x => x.Name == item.Name).FirstOrDefault();
-                        if(existingItem == null)
-                        {
-                            favouritesToAdd.Add(new Show(item));
-                        }
-                    }
-                }
-            }
+            //foreach (var item in sortedItemsToAdd)
+            //{
+            //    foreach (var favourite in favouriteNames)
+            //    {
+            //        if (item.Name.ToLower().Trim().Contains(favourite.ToLower().Trim()))
+            //        {
+            //            var existingItem = existingFavouriteInstances.Where(x => x.Name == item.Name).FirstOrDefault();
+            //            if(existingItem == null)
+            //            {
+            //                favouritesToAdd.Add(new Show(item));
+            //            }
+            //        }
+            //    }
+            //}
 
-            var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
-                                                    .Select(g => g.First())
-                                                    .ToList();
+            //var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
+            //                                        .Select(g => g.First())
+            //                                        .ToList();
 
-            var finishedItemsToAdd = ultimateItemsToAdd.Concat(sortedFavourites).Distinct();
+            //var finishedItemsToAdd = ultimateItemsToAdd.Concat(sortedFavourites).Distinct();
+            var finishedItemsToAdd = ultimateItemsToAdd.Distinct();
 
             int ultimateItemsToAddCount = finishedItemsToAdd.Count();
 
@@ -200,11 +201,12 @@ namespace RecentlyAddedShows.Service.Classes
                     finishedItemsToAdd = finishedItemsToAdd.Append(item);
             }
             
-
             dbContext.Shows.RemoveRange(itemsToRemove);
             dbContext.Shows.AddRange(finishedItemsToAdd);
 
             dbContext.SaveChanges();
+
+            RefreshFavourites();
             savedResults = dbContext.Shows.ToList();
 
             var model = new RecentlyAddedShowsViewModel(savedResults, errors);
@@ -227,6 +229,49 @@ namespace RecentlyAddedShows.Service.Classes
             }
             var model = new RecentlyAddedShowsViewModel(savedResults, errors);
             return model;
+        }
+
+        public void RefreshFavourites()
+        {
+            var dbContext = new Context();
+            var favouritesToAdd = new List<Show>();
+            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
+            var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString()).ToList();
+
+            foreach (var cartoon in cartoonsAndAnime)
+            {
+                foreach (var favourite in favouriteNames)
+                {
+                    if (checkTitle(favourite, cartoon.Name))
+                    {
+                       var newFavourite = new Show(cartoon);
+                       var existingItem = existingFavouriteInstances.Where(x => x.Name == newFavourite.Name).FirstOrDefault();
+                       if (existingItem == null)
+                       {
+                            favouritesToAdd.Add(newFavourite);
+                       }
+                    }
+                }
+            }
+            var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
+                                                    .Select(g => g.First())
+                                                    .ToList();
+            dbContext.Shows.AddRange(sortedFavourites);
+            dbContext.SaveChanges();
+        }
+
+        private bool checkTitle(string title, string cartoonTitle)
+        {
+            title = title.ToLower().Replace(" ", "");
+            cartoonTitle = cartoonTitle.ToLower().Replace(" ", "");
+
+            if (cartoonTitle.Contains(title))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private static void SetIsUpdatedTrue(Show show)

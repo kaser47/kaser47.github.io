@@ -263,3 +263,8 @@ D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\RecentlyAddedShows.Web.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\RecentlyAddedShows.Web.genruntimeconfig.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\ref\RecentlyAddedShows.Web.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\staticwebassets\msbuild.RecentlyAddedShows.Web.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\staticwebassets\msbuild.build.RecentlyAddedShows.Web.props
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\staticwebassets\msbuild.buildMultiTargeting.RecentlyAddedShows.Web.props
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\staticwebassets\msbuild.buildTransitive.RecentlyAddedShows.Web.props
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\obj\Release\net6.0\staticwebassets.pack.json

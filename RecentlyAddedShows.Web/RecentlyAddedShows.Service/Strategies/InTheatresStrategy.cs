@@ -57,7 +57,7 @@ namespace RecentlyAddedShows.Service.Strategies
                 var movieDate = node.GetText(3, 5).Substring(node.GetText(3, 5).Length - 4, 4);
                 var formattedName = $"{name} {movieDate}";
                 var urlValue = baseUrl + node.GetUrl(3, 3, 0);
-                var imageValue = node.GetImage(1, 1, 1, 1);
+                var imageValue = string.Empty;
                 shows.Add(new Show(formattedName, urlValue, imageValue, ShowType.InTheatre, date));
             });
 

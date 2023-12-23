@@ -67,6 +67,13 @@ namespace RecentlyAddedShows.Service.Strategies
             var showTitle = node.GetText(2,1,3,1);
             var episode = node.GetText(2, 1, 3, 2);
 
+            var result = new DateTime();
+            if (DateTime.TryParse(showTitle, out result))
+            {
+                showTitle = node.GetText(2, 1, 3, 2);
+                episode = node.GetText(2, 1, 3, 3);
+            }
+
             var name = $"{showTitle} - {episode}";
 
             return name;
