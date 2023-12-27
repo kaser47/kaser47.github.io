@@ -250,7 +250,11 @@ namespace RecentlyAddedShows.Service.Classes
                        if (existingItem == null)
                        {
                             favouritesToAdd.Add(newFavourite);
-                       }
+                        }
+                       else if (existingItem.hasDeletedDate)
+                        {
+                            existingItem.DeletedDate = null;
+                        }
                     }
                 }
             }
@@ -258,6 +262,34 @@ namespace RecentlyAddedShows.Service.Classes
                                                     .Select(g => g.First())
                                                     .ToList();
             dbContext.Shows.AddRange(sortedFavourites);
+            dbContext.SaveChanges();
+
+            DeleteFavourites();
+        }
+
+        private void DeleteFavourites()
+        {
+            var dbContext = new Context();
+            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
+
+            foreach (var favourite in existingFavouriteInstances)
+            {
+                bool found = false;
+                foreach (var favouriteName in favouriteNames)
+                {
+                    if (checkTitle(favouriteName, favourite.Name))
+                    {
+                        found = true; break;    
+                    }
+                }
+
+                if (!found)
+                {
+                    favourite.DeletedDate = DateTime.UtcNow;
+                }
+            }
+
             dbContext.SaveChanges();
         }
 

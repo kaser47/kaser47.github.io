@@ -24,6 +24,7 @@ namespace RecentlyAddedShows.Web.Controllers
         // GET: Favourites
         public async Task<IActionResult> Index()
         {
+            _recentlyAddedShows.RefreshFavourites();
             return View(await _context.Favourites.ToListAsync());
         }
 
@@ -63,7 +64,6 @@ namespace RecentlyAddedShows.Web.Controllers
             {
                 _context.Add(favourite);
                 await _context.SaveChangesAsync();
-                _recentlyAddedShows.RefreshFavourites();
                 return RedirectToAction(nameof(Index));
             }
             return View(favourite);

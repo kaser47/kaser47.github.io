@@ -11,6 +11,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public string Url { get; set; }
         public string Image { get; set; }
         public DateTime Created { get; set; }
+        public DateTime? DeletedDate { get; set; }
         public virtual DateTime PublishiedDate { get {
                 var utc = Created;
                 var localTime = TimeZoneInfo.ConvertTimeFromUtc(utc, TimeZoneInfo.Local);
@@ -29,6 +30,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public DateTime? ReleaseDate { get; set; }
 
         public virtual bool hasReleaseDate { get { return ReleaseDate.HasValue; } }
+        public virtual bool hasDeletedDate { get { return DeletedDate.HasValue; } }
 
         public string TranslatedReleaseDate
         {

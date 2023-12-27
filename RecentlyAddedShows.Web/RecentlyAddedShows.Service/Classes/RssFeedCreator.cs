@@ -18,7 +18,7 @@ namespace RecentlyAddedShows.Service.Classes
             var items = new List<SyndicationItem>();
 
             var i = 0;
-            foreach (var show in shows)
+            foreach (var show in shows.Where(x => !x.hasDeletedDate))
             {
                 var description = string.Empty;
 
