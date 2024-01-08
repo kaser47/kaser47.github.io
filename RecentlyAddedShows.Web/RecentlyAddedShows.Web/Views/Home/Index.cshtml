@@ -17,6 +17,8 @@
                     success: function (response) {
                         document.getElementById('translatedlastupdated').innerHTML = response.translatedLastUpdated;
                         document.getElementById('lastupdated').innerHTML = response.lastUpdated;
+                        document.getElementById('translatedlastupdated2').innerHTML = response.translatedLastUpdated;
+                        document.getElementById('lastupdated2').innerHTML = response.lastUpdated;
                     },
                     error: function (xhr, status, error) {
                         console.error("Error fetching data: ", error);
@@ -607,7 +609,7 @@
 </div>
 
 <div class="text-center">
-    <p id="date">Last Updated - <span id="lastupdated" style="color: red"></span> - <span id="translatedlastupdated"></span> </p>
+    <p>Last Updated - <span id="lastupdated2" style="color: red"></span> - <span id="translatedlastupdated2"></span></p>
 </div>
 
 <script>
