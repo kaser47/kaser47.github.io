@@ -3,8 +3,33 @@
     ViewData["Title"] = "Home Page";
 }
 
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            setInterval(fetchDataFromViewModel, 1000);
+
+            function fetchDataFromViewModel() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Home/GetLastUpdated', // Replace ControllerName with your actual controller name
+                    success: function (response) {
+                        document.getElementById('translatedlastupdated').innerHTML = response.translatedLastUpdated;
+                        document.getElementById('lastupdated').innerHTML = response.lastUpdated;
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error fetching data: ", error);
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+
 <div class="text-center">
     <h1 id="headline" class="display-4">Entertainment Tracker</h1>
+    <h5>Last Updated - <span id="lastupdated" style="color: red"></span> - <span id="translatedlastupdated"></span></h5>
 </div>
 
 <div class="container">
@@ -582,7 +607,7 @@
 </div>
 
 <div class="text-center">
-    <p id="date">Last Updated - <span style="color: red">@Model.LastUpdated().ToString("dd/MM/yyyy")</span> @Model.TranslatedLastUpdated()</p>
+    <p id="date">Last Updated - <span id="lastupdated" style="color: red"></span> - <span id="translatedlastupdated"></span> </p>
 </div>
 
 <script>

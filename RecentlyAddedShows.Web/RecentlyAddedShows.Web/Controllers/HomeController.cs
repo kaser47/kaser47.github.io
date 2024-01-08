@@ -28,6 +28,15 @@ namespace RecentlyAddedShows.Web.Controllers
             return View(model);
         }
 
+        public IActionResult GetLastUpdated()
+        {
+            var model = _recentlyAddedShows.LoadModel();
+            string TranslatedLastUpdated = model.TranslatedLastUpdated();
+            string LastUpdated = model.LastUpdated().ToString();
+            var data = new { TranslatedLastUpdated, LastUpdated };
+            return Json(data);
+        }
+
         public IActionResult Clear()
         {
             _recentlyAddedShows.ClearErrors();

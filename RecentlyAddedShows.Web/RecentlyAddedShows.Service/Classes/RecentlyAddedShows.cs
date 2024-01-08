@@ -94,8 +94,8 @@ namespace RecentlyAddedShows.Service.Classes
             || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
             || (x.Type == ShowType.TVShowUpNext.ToString() && y.Created != x.Created) 
             ))
-                //DO NOT DELETE FAVOURITES, RELEASEDATES, CARTOONS, ANIME
-                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString()).ToList();
+                //DO NOT DELETE FAVOURITES, RELEASEDATES, CARTOONS, ANIME, LASTUPDATED
+                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString() && x.Type != ShowType.LastUpdated.ToString()).ToList();
             var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
 
             var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
@@ -175,8 +175,18 @@ namespace RecentlyAddedShows.Service.Classes
             {
                     finishedItemsToAdd = finishedItemsToAdd.Append(item);
             }
-            
 
+
+            var lastUpdated = dbContext.Shows.Where(x => x.Type == ShowType.LastUpdated.ToString()).FirstOrDefault();
+            if (lastUpdated != null)
+            {
+                lastUpdated.Created = DateTime.UtcNow;
+            }
+            else
+            {
+                lastUpdated = new Show("LastUpdated", "", "", ShowType.LastUpdated, DateTime.UtcNow);
+                finishedItemsToAdd = finishedItemsToAdd.Append(lastUpdated);
+            }
 
             dbContext.Shows.RemoveRange(itemsToRemove);
             dbContext.Shows.AddRange(finishedItemsToAdd);

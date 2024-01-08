@@ -15,6 +15,7 @@
         GamePS4,
         Favourite,
         ReleaseDate,
-        InTheatre
+        InTheatre,
+        LastUpdated
     }
 }

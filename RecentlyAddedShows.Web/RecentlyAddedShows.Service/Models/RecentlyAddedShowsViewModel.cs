@@ -102,7 +102,7 @@ namespace RecentlyAddedShows.Service.Models
         }
 
         public DateTime LastUpdated() {
-            var result = Shows.OrderByDescending(x => x.Created).FirstOrDefault();
+            var result = Shows.Where(x => x.Type == ShowType.LastUpdated.ToString()).FirstOrDefault();
             if (result != null)
             {
                 return result.Created;
@@ -112,7 +112,7 @@ namespace RecentlyAddedShows.Service.Models
 
         public string TranslatedLastUpdated()
         {
-            var result = Shows.OrderByDescending(x => x.Created).FirstOrDefault();
+            var result = Shows.Where(x => x.Type == ShowType.LastUpdated.ToString()).FirstOrDefault();
             if (result != null)
             {
                 return result.TranslatedCreated;
