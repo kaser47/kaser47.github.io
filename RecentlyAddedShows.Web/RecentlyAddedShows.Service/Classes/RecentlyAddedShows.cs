@@ -94,7 +94,8 @@ namespace RecentlyAddedShows.Service.Classes
             || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
             || (x.Type == ShowType.TVShowUpNext.ToString() && y.Created != x.Created) 
             ))
-                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString()).ToList();
+                //DO NOT DELETE FAVOURITES, RELEASEDATES, CARTOONS, ANIME
+                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString()).ToList();
             var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
 
             var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
@@ -135,32 +136,6 @@ namespace RecentlyAddedShows.Service.Classes
             int extraItemsCount = extraItemsToAdd.Count();
             var itemsToAdd = results.Where(x => savedResults.All(y => (y.Name != x.Name && y.Type != x.Type) | y.NumberViewing != x.NumberViewing));
             var ultimateItemsToAdd = itemsToAdd.Concat(extraItemsToAdd).Distinct();
-
-            //var favouritesToAdd = new List<Show>();
-            //var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
-            //var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
-            //var sortedItemsToAdd = ultimateItemsToAdd.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString());
-
-            //foreach (var item in sortedItemsToAdd)
-            //{
-            //    foreach (var favourite in favouriteNames)
-            //    {
-            //        if (item.Name.ToLower().Trim().Contains(favourite.ToLower().Trim()))
-            //        {
-            //            var existingItem = existingFavouriteInstances.Where(x => x.Name == item.Name).FirstOrDefault();
-            //            if(existingItem == null)
-            //            {
-            //                favouritesToAdd.Add(new Show(item));
-            //            }
-            //        }
-            //    }
-            //}
-
-            //var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
-            //                                        .Select(g => g.First())
-            //                                        .ToList();
-
-            //var finishedItemsToAdd = ultimateItemsToAdd.Concat(sortedFavourites).Distinct();
             var finishedItemsToAdd = ultimateItemsToAdd.Distinct();
 
             int ultimateItemsToAddCount = finishedItemsToAdd.Count();
@@ -201,15 +176,19 @@ namespace RecentlyAddedShows.Service.Classes
                     finishedItemsToAdd = finishedItemsToAdd.Append(item);
             }
             
+
+
             dbContext.Shows.RemoveRange(itemsToRemove);
             dbContext.Shows.AddRange(finishedItemsToAdd);
 
             dbContext.SaveChanges();
 
             RefreshFavourites();
+            ReorderCartoonsAndAnime();
             savedResults = dbContext.Shows.ToList();
+            var favourites = dbContext.Favourites.ToList();
 
-            var model = new RecentlyAddedShowsViewModel(savedResults, errors);
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites);
             return model;
         }
 
@@ -217,6 +196,7 @@ namespace RecentlyAddedShows.Service.Classes
         {
             var dbContext = new Context();
             var savedResults = dbContext.Shows.ToList();
+            var favourites = dbContext.Favourites.ToList();
             var errors = new List<ErrorMessage>();
 
             try
@@ -227,8 +207,43 @@ namespace RecentlyAddedShows.Service.Classes
             {
 
             }
-            var model = new RecentlyAddedShowsViewModel(savedResults, errors);
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites);
             return model;
+        }
+
+        public void ReorderCartoonsAndAnime()
+        {
+            var dbContext = new Context();
+            var cartoons = dbContext.Shows.Where(x => x.Type == ShowType.Cartoon.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
+            var animes = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
+            if (cartoons.Count() > 16)
+            {
+                var i = 0;
+                foreach (Show cartoon in cartoons)
+                {
+                    i++;
+                    if (i > 16)
+                    {
+                        cartoon.DeletedDate = DateTime.UtcNow;
+                    }
+                }
+            }
+
+            if (animes.Count() > 16)
+            {
+                var i = 0;
+                foreach (Show anime in animes)
+                {
+                    i++;
+                    if (i > 16)
+                    {
+                        anime.DeletedDate = DateTime.UtcNow;
+                    }
+                }
+            }
+
+
+            dbContext.SaveChanges();
         }
 
         public void RefreshFavourites()
@@ -254,6 +269,7 @@ namespace RecentlyAddedShows.Service.Classes
                        else if (existingItem.hasDeletedDate)
                         {
                             existingItem.DeletedDate = null;
+                            existingItem.Created = DateTime.UtcNow;
                         }
                     }
                 }

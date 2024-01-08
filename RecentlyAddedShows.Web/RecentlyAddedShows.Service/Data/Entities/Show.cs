@@ -132,7 +132,12 @@ namespace RecentlyAddedShows.Service.Data.Entities
             Url = show.Url;
             Image = show.Image;
             Type = showType;
-            if (showType == ShowType.ReleaseDate.ToString())
+
+            if (showType == ShowType.Favourite.ToString())
+            {
+                Created = DateTime.UtcNow;
+            }
+            else if (showType == ShowType.ReleaseDate.ToString())
             {
                 Created = show.ReleaseDate.Value;
             }

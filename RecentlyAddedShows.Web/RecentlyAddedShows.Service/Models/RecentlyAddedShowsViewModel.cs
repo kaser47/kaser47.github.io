@@ -9,6 +9,9 @@ namespace RecentlyAddedShows.Service.Models
     public class RecentlyAddedShowsViewModel
     {
         public IEnumerable<Show> Shows { get; set; }
+
+        public IEnumerable<Favourite> Favourites { get; set; }
+
         public IEnumerable<ErrorMessage> Errors {get; set;}
         public IEnumerable<Show> Cartoons
         {
@@ -117,10 +120,11 @@ namespace RecentlyAddedShows.Service.Models
             return string.Empty;
         }
 
-        public RecentlyAddedShowsViewModel(IEnumerable<Show> shows, IEnumerable<ErrorMessage> errors)
+        public RecentlyAddedShowsViewModel(IEnumerable<Show> shows, IEnumerable<ErrorMessage> errors, IEnumerable<Favourite> favourites)
         {
             Shows = shows;
             Errors = errors.OrderByDescending(x => x.Created);
+            Favourites = favourites.OrderBy(x => x.Title);
         }
     }
 }

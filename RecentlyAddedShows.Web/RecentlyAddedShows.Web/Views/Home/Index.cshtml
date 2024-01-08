@@ -49,6 +49,9 @@
                         <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#ps4" role="tab" aria-controls="ps4" aria-selected="false">Game - PS4</a>
                         </li>
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#favourites" role="tab" aria-controls="favourites" aria-selected="false">Favourites</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -58,6 +61,7 @@
                         <div class="tab-pane active" id="errors" role="tabpanel" aria-labelledby="deals-tab">
                             <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Clear", "Home")'">Clear All</button>
                             <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
                             <p />
                             <p />
                             <p />
@@ -484,6 +488,31 @@
                         </div>
                     </td>*@
                                 </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="favourites" role="tabpanel" aria-labelledby="deals-tab">
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-10">Name</th>
+                                    @*<th class="thead-dark text-center col-2">Image</th>*@
+                                </tr>
+                                @foreach (var item in Model.Favourites)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                                <h target="_blank" id="link">@item.Title</h>
+                                        </td>
+                                        @*<td>
+                                    <div class="container">
+                                    <div class="px-0 center">
+                                    <a target="_blank" href="@item.Image" >
+                                    <img src="@item.Image" class="img-thumbnail img-fluid">
+                                    </a>
+                                    </div>
+                                    </div>
+                                    </td>*@
+                                    </tr>
                                 }
                             </table>
                         </div>
