@@ -261,6 +261,7 @@ namespace RecentlyAddedShows.Service.Classes
             var dbContext = new Context();
             var favouritesToAdd = new List<Show>();
             var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var deletedFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.DeletedDate != null).ToList();
             var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
             var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString()).ToList();
 
@@ -279,11 +280,22 @@ namespace RecentlyAddedShows.Service.Classes
                        else if (existingItem.hasDeletedDate)
                         {
                             existingItem.DeletedDate = null;
-                            existingItem.Created = DateTime.UtcNow;
                         }
                     }
                 }
             }
+
+            foreach (var deletedFavouriteInstance in deletedFavouriteInstances)
+            {
+                foreach (var favourite in favouriteNames)
+                {
+                    if (checkTitle(favourite, deletedFavouriteInstance.Name))
+                    {
+                        deletedFavouriteInstance.DeletedDate = null;
+                    }
+                }
+            }
+
             var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
                                                     .Select(g => g.First())
                                                     .ToList();
