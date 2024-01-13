@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Service.Data;
@@ -334,7 +336,11 @@ namespace RecentlyAddedShows.Service.Classes
         private bool checkTitle(string title, string cartoonTitle)
         {
             title = title.ToLower().Replace(" ", "");
+            title = HttpUtility.UrlDecode(title);
+            title = new String(title.Where(Char.IsLetter).ToArray());
             cartoonTitle = cartoonTitle.ToLower().Replace(" ", "");
+            cartoonTitle = HttpUtility.UrlDecode(cartoonTitle);
+            cartoonTitle = new String(cartoonTitle.Where(Char.IsLetter).ToArray());
 
             if (cartoonTitle.Contains(title))
             {
