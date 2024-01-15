@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Service.Data;
 using RecentlyAddedShows.Service.Data.Entities;
+using RecentlyAddedShows.Service.Extensions;
 using RecentlyAddedShows.Service.Models;
 using RecentlyAddedShows.Service.Strategies;
 
@@ -335,12 +336,8 @@ namespace RecentlyAddedShows.Service.Classes
 
         private bool checkTitle(string title, string cartoonTitle)
         {
-            title = title.ToLower().Replace(" ", "");
-            title = HttpUtility.UrlDecode(title);
-            title = new String(title.Where(Char.IsLetter).ToArray());
-            cartoonTitle = cartoonTitle.ToLower().Replace(" ", "");
-            cartoonTitle = HttpUtility.UrlDecode(cartoonTitle);
-            cartoonTitle = new String(cartoonTitle.Where(Char.IsLetter).ToArray());
+            title = title.FormatTitle();
+            cartoonTitle = cartoonTitle.FormatTitle();
 
             if (cartoonTitle.Contains(title))
             {

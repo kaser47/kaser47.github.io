@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Web;
 using HtmlAgilityPack;
 
 namespace RecentlyAddedShows.Service.Extensions
@@ -97,6 +99,18 @@ namespace RecentlyAddedShows.Service.Extensions
             path = path.Skip(1).ToArray();
 
             return newNode.GetAttributeValue(attribute: attribute, path);
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static string FormatTitle(this string title)
+        {
+            title = title.Replace(" and ", "");
+            title = title.ToLower().Replace(" ", "");
+            title = HttpUtility.UrlDecode(title);
+            title = new String(title.Where(Char.IsLetter).ToArray());
+            return title;
         }
     }
 }
