@@ -73,7 +73,7 @@ namespace RecentlyAddedShows.Service.Models
         {
             get
             {
-                return Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).OrderByDescending(x => x.NumberViewing);
+                return Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).OrderByDescending(x => x.Created);
             }
         }
 
@@ -81,7 +81,7 @@ namespace RecentlyAddedShows.Service.Models
         {
             get
             {
-                return Shows.Where(x => x.Type == ShowType.GameSwitch.ToString()).OrderByDescending(x => x.NumberViewing);
+                return Shows.Where(x => x.Type == ShowType.GameSwitch.ToString()).OrderByDescending(x => x.Created);
             }
         }
 
@@ -89,7 +89,7 @@ namespace RecentlyAddedShows.Service.Models
         {
             get
             {
-                return Shows.Where(x => x.Type == ShowType.GamePC.ToString()).OrderByDescending(x => x.NumberViewing);
+                return Shows.Where(x => x.Type == ShowType.GamePC.ToString()).OrderByDescending(x => x.Created);
             }
         }
 
@@ -97,7 +97,23 @@ namespace RecentlyAddedShows.Service.Models
         {
             get
             {
-                return Shows.Where(x => x.Type == ShowType.GamePS4.ToString()).OrderByDescending(x => x.NumberViewing);
+                return Shows.Where(x => x.Type == ShowType.GamePS4.ToString()).OrderByDescending(x => x.Created);
+            }
+        }
+
+        public IEnumerable<Show> FavouritesToWatch
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.Favourite.ToString()).OrderByDescending(x => x.Created);
+            }
+        }
+
+        public IEnumerable<Show> ReleaseDates
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.ReleaseDate.ToString()).OrderByDescending(x => x.Created);
             }
         }
 
