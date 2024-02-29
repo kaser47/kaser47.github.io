@@ -50,7 +50,7 @@ namespace RecentlyAddedShows.Web.Controllers
         }
 
 
-        public IActionResult Rss()
+        public IActionResult RssAnimation()
         {
             var result = _rssFeedCreator.CreateCartoonRssFeed();
 

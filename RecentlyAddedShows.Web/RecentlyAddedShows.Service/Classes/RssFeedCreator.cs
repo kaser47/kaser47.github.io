@@ -95,8 +95,7 @@ namespace RecentlyAddedShows.Service.Classes
         public byte[] CreateCartoonRssFeed()
         {
             var recentlyAddedShows = new RecentlyAddedShows();
-            var recentlyAddedShowsViewModel = recentlyAddedShows.GetModel();
-            var shows = recentlyAddedShowsViewModel.Shows;
+            var shows = recentlyAddedShows.LoadModel().Shows;
             var items = shows.Where(x => x.Type == "Anime" || x.Type == "Cartoon")
                 .OrderByDescending(x => x.Created).ThenByDescending(x => x.Type).ThenBy(x => x.Name);
 
