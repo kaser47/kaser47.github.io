@@ -6,6 +6,8 @@ using RecentlyAddedShows.Service;
 using RecentlyAddedShows.Service.Classes;
 using RecentlyAddedShows.Service.Models;
 using RssFeedCreator = RecentlyAddedShows.Service.Classes.RssFeedCreator;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Net;
 
 namespace RecentlyAddedShows.Web.Controllers
 {
@@ -49,6 +51,11 @@ namespace RecentlyAddedShows.Web.Controllers
             return View("Index", model);
         }
 
+        public IActionResult Update()
+        {
+            _recentlyAddedShows.GetModel();
+            return Json("success");
+        }
 
         public IActionResult RssAnimation()
         {
