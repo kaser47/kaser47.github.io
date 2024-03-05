@@ -8,6 +8,8 @@ using RecentlyAddedShows.Service.Models;
 using RssFeedCreator = RecentlyAddedShows.Service.Classes.RssFeedCreator;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Net;
+using System.Linq;
+using System;
 
 namespace RecentlyAddedShows.Web.Controllers
 {
@@ -53,8 +55,22 @@ namespace RecentlyAddedShows.Web.Controllers
 
         public IActionResult Update()
         {
-            _recentlyAddedShows.GetModel();
-            return Json("success");
+
+            ContentResult result = new ContentResult
+            {
+                Content = "Success",
+                ContentType = "text/plain" // You can set this to any content type you need
+            };
+
+            var viewModel = _recentlyAddedShows.LoadModel();
+
+
+            if (viewModel.NewFavourites != null)
+            {
+                result.Content = viewModel.NewFavourites.ToString();
+            }
+
+            return result;
         }
 
         public IActionResult RssAnimation()

@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAdaNCBkVTzUSHbET4hTSybQAAAAACAAAAAAAQZgAAAAEAACAAAABWmKp6cKxiBYekmOsEwxxWkf4hadHRJ1PFJ5wZPy2l6AAAAAAOgAAAAAIAACAAAAB1YnyuCma4sPMdaPL0ObnA/p8oRkWzF+xb6SJGkEkCLSAAAABpsatiRAs+daATR7igWmJpW4pYzBFUtPEWe6glNhtnTkAAAABCzSc3URKr9DHu4VR2YjyoJ+zi8iC+CzWIV0M8+XNwa/ywbAZ08dcSbNzwPyD+Iwr5QpDDVYpkqAKwpXXA7EO/</EncryptedPassword>
     <_PublishTargetUrl>ftp://recentlyaddedshows.somee.com/www.recentlyaddedshows.somee.com</_PublishTargetUrl>
-    <History>True|2023-11-27T09:30:18.4963812Z;</History>
+    <History>False|2024-02-29T10:38:21.6428958Z;True|2023-11-27T09:30:18.4963812+00:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -504,22 +504,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/14/2021 19:38:18</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Service.dll">
-      <publishTime>10/19/2023 11:08:18</publishTime>
+      <publishTime>02/29/2024 09:57:16</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Service.pdb">
-      <publishTime>10/19/2023 11:08:18</publishTime>
+      <publishTime>02/29/2024 09:57:16</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.deps.json">
-      <publishTime>11/27/2023 09:18:59</publishTime>
+      <publishTime>02/29/2024 10:27:47</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.dll">
-      <publishTime>11/27/2023 09:18:55</publishTime>
+      <publishTime>02/29/2024 10:27:42</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.exe">
-      <publishTime>11/27/2023 09:18:55</publishTime>
+      <publishTime>02/29/2024 10:27:42</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.pdb">
-      <publishTime>11/27/2023 09:18:55</publishTime>
+      <publishTime>02/29/2024 10:27:42</publishTime>
     </File>
     <File Include="RecentlyAddedShows.Web.runtimeconfig.json">
       <publishTime>10/19/2023 11:08:20</publishTime>
@@ -582,7 +582,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/20/2020 19:13:38</publishTime>
     </File>
     <File Include="runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll">
-      <publishTime>10/20/2020 19:13:26</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll">
       <publishTime>11/15/2019 08:54:18</publishTime>
@@ -594,7 +594,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/15/2019 08:54:30</publishTime>
     </File>
     <File Include="runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll">
-      <publishTime>09/21/2021 00:59:34</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll">
       <publishTime>11/15/2019 08:53:44</publishTime>
@@ -678,7 +678,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/14/2021 19:38:18</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>11/27/2023 09:19:03</publishTime>
+      <publishTime>02/29/2024 10:27:47</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>01/28/2022 14:34:50</publishTime>

@@ -268,19 +268,24 @@ namespace RecentlyAddedShows.Service.Classes
             var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
             var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString()).ToList();
 
+            foreach (var existingFavourite in existingFavouriteInstances)
+            {
+                existingFavourite.IsUpdated = false;
+            }
+
             foreach (var cartoon in cartoonsAndAnime)
             {
                 foreach (var favourite in favouriteNames)
                 {
                     if (checkTitle(favourite, cartoon.Name))
                     {
-                       var newFavourite = new Show(cartoon);
-                       var existingItem = existingFavouriteInstances.Where(x => x.Name == newFavourite.Name).FirstOrDefault();
-                       if (existingItem == null)
-                       {
+                        var newFavourite = new Show(cartoon);
+                        var existingItem = existingFavouriteInstances.Where(x => x.Name == newFavourite.Name).FirstOrDefault();
+                        if (existingItem == null)
+                        {
                             favouritesToAdd.Add(newFavourite);
                         }
-                       else if (existingItem.hasDeletedDate)
+                        else if (existingItem.hasDeletedDate)
                         {
                             existingItem.DeletedDate = null;
                         }
@@ -295,6 +300,7 @@ namespace RecentlyAddedShows.Service.Classes
                     if (checkTitle(favourite, deletedFavouriteInstance.Name))
                     {
                         deletedFavouriteInstance.DeletedDate = null;
+                        deletedFavouriteInstance.IsUpdated = true;
                     }
                 }
             }
@@ -302,6 +308,29 @@ namespace RecentlyAddedShows.Service.Classes
             var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
                                                     .Select(g => g.First())
                                                     .ToList();
+
+            foreach (var favouriteShow in existingFavouriteInstances)
+            {
+                bool remove = true;
+                foreach (var name in favouriteNames)
+                {
+                    if (checkTitle(name, favouriteShow.Name))
+                    {
+                        remove = false;
+                    }
+                }
+
+                if (remove && !favouriteShow.hasDeletedDate)
+                { 
+                    favouriteShow.DeletedDate = DateTime.UtcNow;
+                }
+            }
+            
+            foreach (var favourite in sortedFavourites)
+            {
+                favourite.IsUpdated = true;
+            }
+            
             dbContext.Shows.AddRange(sortedFavourites);
             dbContext.SaveChanges();
 

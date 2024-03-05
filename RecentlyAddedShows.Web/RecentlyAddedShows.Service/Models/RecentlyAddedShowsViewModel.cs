@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using RecentlyAddedShows.Service.Classes;
 using RecentlyAddedShows.Service.Data.Entities;
 
@@ -109,6 +110,85 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public string NewFavourites
+        {
+            get
+            {
+                var favourites = Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.IsUpdated).OrderByDescending(x => x.Created);
+                var count = favourites.Count();
+
+                if (count == 1)
+                {
+                    return $"<p style=\"color: white;\">{favourites.FirstOrDefault().Name} added</p>";
+                }
+                else if (count > 1)
+                {
+                    var groupOfFavourites = new Dictionary<string, int>();
+                    foreach (var favourite in favourites)
+                    {
+                        if (favourite.Name.Contains("Season"))
+                        {
+                            var name = favourite.Name;
+                            var firstPart = name.Split("Season")[0];
+                            AddOrUpdateItem(groupOfFavourites, firstPart);
+                        }
+                        else if (favourite.Name.Contains("Episode"))
+                        {
+                            var name = favourite.Name;
+                            var firstPart = name.Split("Episode")[0];
+                            AddOrUpdateItem(groupOfFavourites, firstPart);
+                        }
+                        else if (favourite.Name.Contains("English"))
+                        {
+                            var name = favourite.Name;
+                            var firstPart = name.Split("English")[0];
+                            AddOrUpdateItem(groupOfFavourites, firstPart);
+                        }
+                        else
+                        {
+                            AddOrUpdateItem(groupOfFavourites, favourite.Name);
+                        }
+                    }
+
+                    return FormatDictionaryAsHtmlTable(groupOfFavourites);
+                }
+                    return null;
+                }
+            } 
+        
+
+         static void AddOrUpdateItem(Dictionary<string, int> dictionary, string item)
+        {
+            if (dictionary.ContainsKey(item))
+            {
+                // If item exists, increment the count
+                dictionary[item]++;
+            }
+            else
+            {
+                // If item doesn't exist, add it with count 1
+                dictionary[item] = 1;
+            }
+        }
+
+        static string FormatDictionaryAsHtmlTable(Dictionary<string, int> dictionary)
+        {
+            StringBuilder html = new StringBuilder();
+            html.Append(Consts.Html);
+            html.Append("<table border='1'>");
+            html.Append("<tr><th>New Favourites</th><th>Count</th></tr>");
+            foreach (var kvp in dictionary)
+            {
+                html.Append("<tr>");
+                html.Append($"<td>{kvp.Key}</td>");
+                html.Append($"<td>{kvp.Value}</td>");
+                html.Append("</tr>");
+            }
+            html.Append("</table>");
+            html.Append(Consts.HtmlEnd);
+            return html.ToString();
+        }
+
         public IEnumerable<Show> ReleaseDates
         {
             get
@@ -135,6 +215,8 @@ namespace RecentlyAddedShows.Service.Models
             }
             return string.Empty;
         }
+
+        
 
         public RecentlyAddedShowsViewModel(IEnumerable<Show> shows, IEnumerable<ErrorMessage> errors, IEnumerable<Favourite> favourites)
         {
