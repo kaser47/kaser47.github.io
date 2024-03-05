@@ -62,7 +62,7 @@ namespace RecentlyAddedShows.Web.Controllers
                 ContentType = "text/plain" // You can set this to any content type you need
             };
 
-            var viewModel = _recentlyAddedShows.LoadModel();
+            var viewModel = _recentlyAddedShows.GetModel();
 
 
             if (viewModel.NewFavourites != null)
