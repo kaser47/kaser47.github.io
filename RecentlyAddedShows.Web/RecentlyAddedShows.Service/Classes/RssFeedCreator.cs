@@ -70,17 +70,16 @@ namespace RecentlyAddedShows.Service.Classes
 
                 var publishedDate = show.PublishiedDate;
 
-                var item = new SyndicationItem();
-                item.Id = i.ToString();
-                item.Title = new TextSyndicationContent($"{show.Name}");
-                item.Content = SyndicationContent.CreateHtmlContent(content);
-                item.PublishDate = new DateTimeOffset(publishedDate);
-                if (show.Url == null)
+                var item = new SyndicationItem
                 {
-                    item.BaseUri = new Uri(show.Url);
-                }
-                //ASHR-006
-                //Syndication Links removed from here
+                    Id = i.ToString(),
+                    Title = new TextSyndicationContent($"{show.Name}"),
+                    BaseUri = new Uri(show.Url),
+                    Content = SyndicationContent.CreateHtmlContent(content),
+                    PublishDate = new DateTimeOffset(publishedDate),
+                    Links = { new SyndicationLink(new Uri(show.Url), "alternate", "Title", "text/html", 1000) },
+                };
+
                 items.Add(item);
             }
 

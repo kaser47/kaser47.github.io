@@ -124,8 +124,8 @@ namespace RecentlyAddedShows.Service.Classes
             || (x.Type == ShowType.TVShowUpNext.ToString() && y.Created != x.Created) 
             ))
                 //DO NOT DELETE FAVOURITES, RELEASEDATES, CARTOONS, ANIME, LASTUPDATED
-                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString() && x.Type != ShowType.LastUpdated.ToString()).ToList();
-            var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
+                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.MoviePopular.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString() && x.Type != ShowType.LastUpdated.ToString()).ToList();
+            var addtionalItemsToRemove = savedResults.Where(x => (x.Type == ShowType.ReleaseDate.ToString() || x.Type == ShowType.MoviePopular.ToString()) && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
 
             var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
             var releaseDateMovies = savedResults.Where(x => x.Type.ToString() == ShowType.ReleaseDate.ToString());
@@ -138,6 +138,15 @@ namespace RecentlyAddedShows.Service.Classes
                     if (popularMovie.Name == releaseDate.Name && popularMovie.hasReleaseDate && popularMovie.ReleaseDate.Value != releaseDate.Created)
                     {
                         releaseDate.Created = popularMovie.ReleaseDate.Value;
+                    }
+                }
+
+                //Update Number viewing of popular movies
+                foreach (var show in results.Where(x => x.Type == ShowType.MoviePopular.ToString()))
+                {
+                    if (popularMovie.Type == ShowType.MoviePopular.ToString() && popularMovie.Name == show.Name && popularMovie.NumberViewing != show.NumberViewing) {
+                        popularMovie.NumberViewing = show.NumberViewing;
+                        popularMovie.IsUpdated = true;
                     }
                 }
             }
@@ -218,17 +227,17 @@ namespace RecentlyAddedShows.Service.Classes
             }
 
 
-            var addItems = ClearHTMLFlags(finishedItemsToAdd);
+
 
             dbContext.Shows.RemoveRange(itemsToRemove);
-            dbContext.Shows.AddRange(addItems);
+            dbContext.Shows.AddRange(finishedItemsToAdd);
 
             dbContext.SaveChanges();
-
-            //ShowMovieInHTML();
-            //ShowTVShowInHTML();
-            //RefreshFavourites();
-            //ReorderCartoonsAndAnime();
+            ClearHTMLFlags();
+            ShowMovieInHTML();
+            ShowTVShowInHTML();
+            RefreshFavourites();
+            ReorderCartoonsAndAnime();
             savedResults = dbContext.Shows.ToList();
             var favourites = dbContext.Favourites.ToList();
 
@@ -301,14 +310,17 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.SaveChanges();
         }
 
-        public IEnumerable<Show> ClearHTMLFlags(IEnumerable<Show> items)
+        public void ClearHTMLFlags()
         {
-            foreach (Show item in items)
+            var dbContext = new Context();
+            var htmlShows = dbContext.Shows.Where(x => x.ShowInHtml).ToList();
+
+            foreach (Show item in htmlShows)
             {
                 item.ShowInHtml = false;
             }
 
-            return items;
+            dbContext.SaveChanges();
         }
 
         public void ShowMovieInHTML()
@@ -403,6 +415,7 @@ namespace RecentlyAddedShows.Service.Classes
                 if (remove && !favouriteShow.hasDeletedDate)
                 { 
                     favouriteShow.DeletedDate = DateTime.UtcNow;
+                    favouriteShow.ShowInHtml = false;
                 }
             }
             

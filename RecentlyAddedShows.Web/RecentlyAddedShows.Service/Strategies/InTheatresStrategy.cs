@@ -56,8 +56,8 @@ namespace RecentlyAddedShows.Service.Strategies
                         var name = result.SelectToken("title").ToString();
                         var movieDate = result.SelectToken("release_date").ToString().Substring(0, 4);
                         var formattedName = $"{name} {movieDate}";
-                        var urlValue = string.Empty;
-                        var imageValue = string.Empty;
+                        var urlValue = String.Format(Consts.TMDBUrlLink, result.SelectToken("id").ToString());
+                        var imageValue = $"{Consts.TMDBCDN}{result.SelectToken("poster_path")}";
                         shows.Add(new Show(formattedName, urlValue, imageValue, ShowType.InTheatre, date));
                     }
                 }
