@@ -68,6 +68,11 @@ namespace RecentlyAddedShows.Service.Classes
                 dbContext.ErrorMessages.Remove(item);
             }
 
+            foreach (var item in dbContext.ErrorDetails)
+            {
+                dbContext.ErrorDetails.Remove(item);
+            }
+
             dbContext.SaveChanges();
         }
 
