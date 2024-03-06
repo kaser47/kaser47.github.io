@@ -700,6 +700,7 @@
                                 <tr>
                                     <th class="thead-dark col-2">Created</th>
                                     <th class="thead-dark col-3">Message</th>
+                                    <th class="thead-dark col-4">StrackTrace</th>
                                 </tr>
                                 @foreach (var item in Model.ErrorDetails)
                                 {
@@ -708,7 +709,10 @@
                                             <p>@item.Created</p>
                                         </td>
                                         <td class="align-middle">
-                                            <p>@item.ToString()</p>
+                                            <p>@item.ErrorMessage</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.StackTrace</p>
                                         </td>
                                     </tr>
                                 }

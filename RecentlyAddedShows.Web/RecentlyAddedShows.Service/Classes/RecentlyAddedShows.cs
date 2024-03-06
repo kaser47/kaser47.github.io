@@ -41,9 +41,7 @@ namespace RecentlyAddedShows.Service.Classes
                new MetacriticStrategy(ShowType.GameSwitch),
                new MetacriticStrategy(ShowType.GamePC),
                new MetacriticStrategy(ShowType.GamePS4),
-               new InTheatresStrategy("https://www.themoviedb.org/movie/now-playing?page=1&language=en-GB"),
-               new InTheatresStrategy("https://www.themoviedb.org/movie/now-playing?page=2&language=en-GB"),
-               new InTheatresStrategy("https://www.themoviedb.org/movie/now-playing?page=3&language=en-GB")
+               new InTheatresStrategy()
             }; 
             
             var date = DateTime.UtcNow;
@@ -95,6 +93,17 @@ namespace RecentlyAddedShows.Service.Classes
             try
             {
                 errors = dbContext.ErrorMessages.ToList();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            var errorDetails = new List<ErrorDetails>();
+
+            try
+            {
+                errorDetails = dbContext.ErrorDetails.ToList();
             }
             catch (Exception)
             {
@@ -211,14 +220,14 @@ namespace RecentlyAddedShows.Service.Classes
 
             dbContext.SaveChanges();
 
-            ShowMovieInHTML();
-            ShowTVShowInHTML();
-            RefreshFavourites();
-            ReorderCartoonsAndAnime();
+            //ShowMovieInHTML();
+            //ShowTVShowInHTML();
+            //RefreshFavourites();
+            //ReorderCartoonsAndAnime();
             savedResults = dbContext.Shows.ToList();
             var favourites = dbContext.Favourites.ToList();
 
-            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites);
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites, errorDetails);
             return model;
         }
 
@@ -237,7 +246,18 @@ namespace RecentlyAddedShows.Service.Classes
             {
 
             }
-            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites);
+
+            var errorDetails = new List<ErrorDetails>();
+
+            try
+            {
+                errorDetails = dbContext.ErrorDetails.ToList();
+            }
+            catch (Exception)
+            {
+
+            }
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites, errorDetails);
             return model;
         }
 
