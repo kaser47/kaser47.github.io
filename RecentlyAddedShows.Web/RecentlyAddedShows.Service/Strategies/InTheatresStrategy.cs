@@ -51,15 +51,18 @@ namespace RecentlyAddedShows.Service.Strategies
             var selector = @"//*[@class='page_wrapper']/div[@class='card style_1']";
             var nodesMatchingXPath = htmlDocument.DocumentNode.SelectNodes(selector);
 
-            Parallel.ForEach(nodesMatchingXPath, node =>
-            {
-                var name = node.GetText(3, 3);
-                var movieDate = node.GetText(3, 5).Substring(node.GetText(3, 5).Length - 4, 4);
-                var formattedName = $"{name} {movieDate}";
-                var urlValue = baseUrl + node.GetUrl(3, 3, 0);
-                var imageValue = string.Empty;
-                shows.Add(new Show(formattedName, urlValue, imageValue, ShowType.InTheatre, date));
-            });
+            if (nodesMatchingXPath.Count > 0) {
+                Parallel.ForEach(nodesMatchingXPath, node =>
+                {
+                    if (node == null) return;
+                    var name = node.GetText(3, 3);
+                    var movieDate = node.GetText(3, 5).Substring(node.GetText(3, 5).Length - 4, 4);
+                    var formattedName = $"{name} {movieDate}";
+                    var urlValue = baseUrl + node.GetUrl(3, 3, 0);
+                    var imageValue = string.Empty;
+                    shows.Add(new Show(formattedName, urlValue, imageValue, ShowType.InTheatre, date));
+                });
+            }
 
             return shows;
         }
