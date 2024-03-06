@@ -75,7 +75,7 @@ namespace RecentlyAddedShows.Service.Classes
                 item.Title = new TextSyndicationContent($"{show.Name}");
                 item.Content = SyndicationContent.CreateHtmlContent(content);
                 item.PublishDate = new DateTimeOffset(publishedDate);
-                if (show.Url != null)
+                if (show.Url == null)
                 {
                     item.BaseUri = new Uri(show.Url);
                 }
