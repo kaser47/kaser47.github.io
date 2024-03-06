@@ -700,19 +700,15 @@
                                 <tr>
                                     <th class="thead-dark col-2">Created</th>
                                     <th class="thead-dark col-3">Message</th>
-                                    <th class="thead-dark col-4">StrackTrace</th>
                                 </tr>
-                                @foreach (var item in Model.Errors)
+                                @foreach (var item in Model.ErrorDetails)
                                 {
                                     <tr id="item">
                                         <td class="align-middle">
                                             <p>@item.Created</p>
                                         </td>
                                         <td class="align-middle">
-                                            <p>@item.Message</p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <p>@item.StackTrace</p>
+                                            <p>@item.ToString()</p>
                                         </td>
                                     </tr>
                                 }

@@ -24,13 +24,10 @@ namespace RecentlyAddedShows.Service.Strategies
             }
             catch (Exception ex)
             {
-                //var optionsBuilder = new DbContextOptionsBuilder<Context>();
-                //optionsBuilder.UseSqlServer(Configuration.ConnectionString);
-                //var dbContext = new Context(optionsBuilder.Options);
                 var dbContext = new Context();
-                var errorMessage = ex.FindInnerException();
+                ErrorDetails error = new ErrorDetails(ex); 
 
-                dbContext.ErrorMessages.Add(errorMessage);
+                dbContext.ErrorDetails.Add(error);
                 dbContext.SaveChanges();
 
                 return new ConcurrentBag<Show>();
@@ -44,10 +41,27 @@ namespace RecentlyAddedShows.Service.Strategies
         {
             if (ex.InnerException != null)
             {
+
                 return ex.InnerException.FindInnerException();
             }
 
             return new ErrorMessage(ex.Message, ex.StackTrace);
+        }
+
+        public static string GetAllErrors(Exception ex)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            while (ex != null)
+            {
+                sb.AppendLine("Error Message: " + ex.Message);
+                sb.AppendLine("Stack Trace: " + ex.StackTrace);
+                sb.AppendLine();
+
+                ex = ex.InnerException;
+            }
+
+            return sb.ToString();
         }
     }
 }

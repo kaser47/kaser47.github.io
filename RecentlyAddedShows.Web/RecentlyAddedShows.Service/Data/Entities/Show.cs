@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using RecentlyAddedShows.Service.Classes;
 
 namespace RecentlyAddedShows.Service.Data.Entities
@@ -174,6 +176,67 @@ namespace RecentlyAddedShows.Service.Data.Entities
             this.Message = message;
             this.StackTrace = stackTrace;
             Created = DateTime.UtcNow;
+        }
+    }
+
+    public class ErrorDetails
+    {
+        public int id { get; set; }
+        public string ErrorMessage { get; set; }
+        public string StackTrace { get; set; }
+        public List<ErrorDetails> InnerErrors { get; set; }
+
+        public DateTime Created { get; set; }
+
+        public ErrorDetails(Exception ex)
+        {
+            ErrorMessage = ex.Message;
+            StackTrace = ex.StackTrace;
+            InnerErrors = new List<ErrorDetails>();
+            Created = DateTime.UtcNow;
+            // Recursively collect inner errors
+            if (ex.InnerException != null)
+            {
+                foreach (var innerEx in GetAllInnerExceptions(ex.InnerException))
+                {
+                    InnerErrors.Add(new ErrorDetails(innerEx));
+                }
+            }
+        }
+
+        public ErrorDetails()
+        {
+           
+        }
+
+        private IEnumerable<Exception> GetAllInnerExceptions(Exception ex)
+        {
+            yield return ex;
+
+            if (ex.InnerException != null)
+            {
+                foreach (var innerEx in GetAllInnerExceptions(ex.InnerException))
+                {
+                    yield return innerEx;
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Error Message: " + ErrorMessage);
+            sb.AppendLine("Stack Trace: " + StackTrace);
+            sb.AppendLine();
+
+            foreach (var innerError in InnerErrors)
+            {
+                sb.AppendLine("Inner Error:");
+                sb.AppendLine(innerError.ToString());
+            }
+
+            return sb.ToString();
         }
     }
 
