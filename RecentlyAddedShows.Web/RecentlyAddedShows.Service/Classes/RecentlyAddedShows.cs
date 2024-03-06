@@ -191,16 +191,16 @@ namespace RecentlyAddedShows.Service.Classes
                 finishedItemsToAdd = finishedItemsToAdd.Append(lastUpdated);
             }
 
-            foreach (Show item in finishedItemsToAdd)
-            {
-                item.ShowInHtml = false;
-            }
+
+            var addItems = ClearHTMLFlags(finishedItemsToAdd);
 
             dbContext.Shows.RemoveRange(itemsToRemove);
-            dbContext.Shows.AddRange(finishedItemsToAdd);
+            dbContext.Shows.AddRange(addItems);
 
             dbContext.SaveChanges();
 
+            ShowMovieInHTML();
+            ShowTVShowInHTML();
             RefreshFavourites();
             ReorderCartoonsAndAnime();
             savedResults = dbContext.Shows.ToList();
@@ -262,6 +262,49 @@ namespace RecentlyAddedShows.Service.Classes
 
 
             dbContext.SaveChanges();
+        }
+
+        public IEnumerable<Show> ClearHTMLFlags(IEnumerable<Show> items)
+        {
+            foreach (Show item in items)
+            {
+                item.ShowInHtml = false;
+            }
+
+            return items;
+        }
+
+        public void ShowMovieInHTML()
+        {
+            var dbContext = new Context();
+            var topMovie = dbContext.Shows.Where(x => x.Type == ShowType.MoviePopular.ToString()).OrderByDescending(x => x.NumberViewing).FirstOrDefault();
+
+            if (topMovie.hasReleaseDate && topMovie.ReleaseDate < DateTime.UtcNow.AddDays(15) && topMovie.ReleaseDate > DateTime.UtcNow.AddMonths(-2)) {
+                if (!topMovie.IsChecked)
+                {
+                    topMovie.IsChecked = true;
+                    topMovie.ShowInHtml = true;
+                }
+            }
+                dbContext.SaveChanges();
+        }
+
+        public void ShowTVShowInHTML()
+        {
+            var dbContext = new Context();
+            var upNextTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowUpNext.ToString()).OrderByDescending(x => x.Created).FirstOrDefault();
+            var recentlyAiredTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).OrderByDescending(x => x.Created).FirstOrDefault();
+
+            if (!recentlyAiredTvShow.IsChecked)
+            {
+                recentlyAiredTvShow.IsChecked = true;
+
+                if (!checkTitle(recentlyAiredTvShow.Name, upNextTvShow.Name)) {
+                    recentlyAiredTvShow.ShowInHtml = true;
+                }
+
+                dbContext.SaveChanges();
+            }
         }
 
         public void RefreshFavourites()

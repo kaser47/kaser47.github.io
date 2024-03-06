@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using RecentlyAddedShows.Service.Classes;
 using RecentlyAddedShows.Service.Data.Entities;
@@ -114,46 +115,87 @@ namespace RecentlyAddedShows.Service.Models
         {
             get
             {
-                //Add Recently Aired Shows
+                //Get Movie
+                var movies = Shows.Where(x => x.Type == ShowType.MoviePopular.ToString() && x.ShowInHtml).ToList();
+                var movieCount = movies.Count();
+                if (movieCount > 1)
+                {
+                    throw new Exception("More than one movie returned, this shouldn't happen");
+                }
+                var movie = movies.FirstOrDefault();
 
-                //Add Movies
+                //Get Show
+                var shows = Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.ShowInHtml).ToList();
+                var showCount = shows.Count();
+                if (showCount > 1)
+                {
+                    throw new Exception("More than one show returned, this shouldn't happen");
+                }
+                var show = shows.FirstOrDefault();
 
-                //Combine them
+                var favourites = Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtml).OrderByDescending(x => x.Created).ToList();
 
-                var favourites = Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtml).OrderByDescending(x => x.Created);
+                if (movie != null)
+                {
+                    favourites.Add(movie);
+                }
+
+                if (show != null)
+                {
+                    favourites.Add(show);
+                }
+
                 var count = favourites.Count();
 
                 if (count == 1)
                 {
-                    return $"<p style=\"color: white;\">{favourites.FirstOrDefault().Name} added</p>";
+                    var item = favourites.FirstOrDefault();
+                    return $"<p style=\"color: white;\">{item.Type.ToString()} - {favourites.FirstOrDefault().Name} - ADDED</p>";
                 }
                 else if (count > 1)
                 {
-                    var groupOfFavourites = new Dictionary<string, int>();
+                    var groupOfFavourites = new Dictionary<string, CounterWithShowType>();
                     foreach (var favourite in favourites)
                     {
-                        if (favourite.Name.Contains("Season"))
+                        if (favourite.Type == ShowType.Favourite.ToString())
+                        {
+                            if (favourite.Name.Contains("Season"))
+                            {
+                                var name = favourite.Name;
+                                var firstPart = name.Split("Season")[0];
+                                AddOrUpdateItem(groupOfFavourites, firstPart);
+                            }
+                            else if (favourite.Name.Contains("Episode"))
+                            {
+                                var name = favourite.Name;
+                                var firstPart = name.Split("Episode")[0];
+                                AddOrUpdateItem(groupOfFavourites, firstPart);
+                            }
+                            else if (favourite.Name.Contains("English"))
+                            {
+                                var name = favourite.Name;
+                                var firstPart = name.Split("English")[0];
+                                AddOrUpdateItem(groupOfFavourites, firstPart);
+                            }
+                            else
+                            {
+                                AddOrUpdateItem(groupOfFavourites, favourite.Name);
+                            }
+                        }
+                        else if (favourite.Type == ShowType.TVShowRecentlyAired.ToString())
                         {
                             var name = favourite.Name;
-                            var firstPart = name.Split("Season")[0];
-                            AddOrUpdateItem(groupOfFavourites, firstPart);
+                            var firstPart = name.Split("-")[0];
+                            AddItem(groupOfFavourites, firstPart, ShowType.TVShowRecentlyAired);
                         }
-                        else if (favourite.Name.Contains("Episode"))
+                        else if (favourite.Type == ShowType.MoviePopular.ToString())
                         {
                             var name = favourite.Name;
-                            var firstPart = name.Split("Episode")[0];
-                            AddOrUpdateItem(groupOfFavourites, firstPart);
+                            var firstPart = name.Split("20")[0];
+                            AddItem(groupOfFavourites, firstPart, ShowType.MoviePopular);
                         }
-                        else if (favourite.Name.Contains("English"))
-                        {
-                            var name = favourite.Name;
-                            var firstPart = name.Split("English")[0];
-                            AddOrUpdateItem(groupOfFavourites, firstPart);
-                        }
-                        else
-                        {
-                            AddOrUpdateItem(groupOfFavourites, favourite.Name);
-                        }
+
+                  
                     }
 
                     return FormatDictionaryAsHtmlTable(groupOfFavourites);
@@ -163,31 +205,46 @@ namespace RecentlyAddedShows.Service.Models
             } 
         
 
-         static void AddOrUpdateItem(Dictionary<string, int> dictionary, string item)
+         static void AddOrUpdateItem(Dictionary<string, CounterWithShowType> dictionary, string item, ShowType showType = ShowType.Favourite)
         {
             if (dictionary.ContainsKey(item))
             {
                 // If item exists, increment the count
-                dictionary[item]++;
+                var value = dictionary[item];
+                value.Count++;
+                value.ShowType = showType;
             }
             else
             {
                 // If item doesn't exist, add it with count 1
-                dictionary[item] = 1;
+                var counter = new CounterWithShowType();
+                counter.ShowType = showType;
+                counter.Count = 1;
+                dictionary.Add(item, counter);
+
             }
         }
 
-        static string FormatDictionaryAsHtmlTable(Dictionary<string, int> dictionary)
+        static void AddItem(Dictionary<string, CounterWithShowType> dictionary, string item, ShowType showType)
+        {
+            var counter = new CounterWithShowType();
+            counter.ShowType = showType;
+            counter.Count = 0;
+            dictionary.Add(item, counter);
+        }
+
+        static string FormatDictionaryAsHtmlTable(Dictionary<string, CounterWithShowType> dictionary)
         {
             StringBuilder html = new StringBuilder();
             html.Append(Consts.Html);
             html.Append("<table border='1'>");
-            html.Append("<tr><th>New Favourites</th><th>Count</th></tr>");
+            html.Append("<tr><th>New Favourites</th><th>Type</th><th>Count</th></tr>");
             foreach (var kvp in dictionary)
             {
                 html.Append("<tr>");
                 html.Append($"<td>{kvp.Key}</td>");
-                html.Append($"<td>{kvp.Value}</td>");
+                html.Append($"<td>{kvp.Value.ShowType.ToString()}</td>");
+                html.Append($"<td>{kvp.Value.Count}</td>");
                 html.Append("</tr>");
             }
             html.Append("</table>");
@@ -230,5 +287,11 @@ namespace RecentlyAddedShows.Service.Models
             Errors = errors.OrderByDescending(x => x.Created);
             Favourites = favourites.OrderBy(x => x.Title);
         }
+    }
+
+    public class CounterWithShowType
+    {
+        public ShowType ShowType { get; set; }
+        public int Count { get; set; }
     }
 }
