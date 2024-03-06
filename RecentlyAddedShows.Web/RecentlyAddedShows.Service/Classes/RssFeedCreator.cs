@@ -70,22 +70,17 @@ namespace RecentlyAddedShows.Service.Classes
 
                 var publishedDate = show.PublishiedDate;
 
-                // ReSharper disable once StringLiteralTypo
-                //if (show.Type == "Anime" || show.Type == "Cartoon")
-                //{
-                //    publishedDate = publishedDate.AddHours(-7);
-                //}
-
-                var item = new SyndicationItem
+                var item = new SyndicationItem();
+                item.Id = i.ToString();
+                item.Title = new TextSyndicationContent($"{show.Name}");
+                item.Content = SyndicationContent.CreateHtmlContent(content);
+                item.PublishDate = new DateTimeOffset(publishedDate);
+                if (show.Url != null)
                 {
-                    Id = i.ToString(),
-                    Title = new TextSyndicationContent($"{show.Name}"),
-                    BaseUri = new Uri(show.Url),
-                    Content = SyndicationContent.CreateHtmlContent(content),
-                    PublishDate = new DateTimeOffset(publishedDate),
-                    Links = { new SyndicationLink(new Uri(show.Url), "alternate", "Title", "text/html", 1000) },
-                };
-
+                    item.BaseUri = new Uri(show.Url);
+                }
+                //ASHR-006
+                //Syndication Links removed from here
                 items.Add(item);
             }
 
