@@ -47,6 +47,12 @@ namespace RecentlyAddedShows.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ClearChecked()
+        {
+            _recentlyAddedShows.ClearChecked();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Refresh()
         {
             var model = _recentlyAddedShows.GetModel();

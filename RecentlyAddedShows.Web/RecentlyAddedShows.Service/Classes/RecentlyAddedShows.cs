@@ -73,6 +73,18 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.SaveChanges();
         }
 
+        public void ClearChecked()
+        {
+            var dbContext = new Context();
+
+            foreach (var item in dbContext.Shows)
+            {
+                item.IsChecked = false;
+            }
+
+            dbContext.SaveChanges();
+        }
+
         public RecentlyAddedShowsViewModel GetModel()
         {
             var dbContext = new Context();
