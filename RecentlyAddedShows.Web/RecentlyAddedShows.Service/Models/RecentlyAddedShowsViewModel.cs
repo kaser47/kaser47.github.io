@@ -114,6 +114,22 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public IEnumerable<Show> CheckedItems
+        {
+            get
+            {
+                return Shows.Where(x => x.IsChecked).OrderByDescending(x => x.Created);
+            }
+        }
+
+        public IEnumerable<Show> ShowInHtmlItems
+        {
+            get
+            {
+                return Shows.Where(x => x.ShowInHtml).OrderByDescending(x => x.Created);
+            }
+        }
+
         public string ShowInHtml
         {
             get

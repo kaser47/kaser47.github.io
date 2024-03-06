@@ -85,6 +85,13 @@
                          <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#release-dates" role="tab" aria-controls="release-dates" aria-selected="false">Movie - Release Dates </a>
                         </li>
+                                             <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#checkedItems" role="tab" aria-controls="checkedItems" aria-selected="false">Checked Items </a>
+                        </li>
+                                             <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#htmlItems" role="tab" aria-controls="htmlItems" aria-selected="false">Html Items </a>
+                        </li>
+
                         <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#maintenance" role="tab" aria-controls="maintenance" aria-selected="false">Maintenance</a>
                         </li>
@@ -684,6 +691,63 @@
                                     </div>
                                     </div>
                                     </td>*@
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                                                <div class="tab-pane" id="checkedItems" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("ClearChecked", "Home")'">Clear Checked</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Name</th>
+                                    <th class="thead-dark col-3">Type</th>
+                                    <th class="thead-dark col-4">Created</th>
+                                </tr>
+                                @foreach (var item in Model.CheckedItems)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            <p>@item.Name</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Type</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Created</p>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="htmlItems" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Name</th>
+                                    <th class="thead-dark col-3">Type</th>
+                                    <th class="thead-dark col-4">Created</th>
+                                </tr>
+                                @foreach (var item in Model.ShowInHtmlItems)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            <p>@item.Name</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Type</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Created</p>
+                                        </td>
                                     </tr>
                                 }
                             </table>
