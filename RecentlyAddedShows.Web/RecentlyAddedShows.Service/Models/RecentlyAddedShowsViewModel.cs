@@ -110,11 +110,17 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
-        public string NewFavourites
+        public string ShowInHtml
         {
             get
             {
-                var favourites = Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.IsUpdated).OrderByDescending(x => x.Created);
+                //Add Recently Aired Shows
+
+                //Add Movies
+
+                //Combine them
+
+                var favourites = Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtml).OrderByDescending(x => x.Created);
                 var count = favourites.Count();
 
                 if (count == 1)

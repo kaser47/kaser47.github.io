@@ -80,6 +80,9 @@ namespace RecentlyAddedShows.Service.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsChecked")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsUpdated")
                         .HasColumnType("bit");
 
@@ -91,6 +94,9 @@ namespace RecentlyAddedShows.Service.Migrations
 
                     b.Property<DateTime?>("ReleaseDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("ShowInHtml")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");

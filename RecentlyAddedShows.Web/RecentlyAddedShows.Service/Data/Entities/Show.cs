@@ -12,6 +12,9 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public string Image { get; set; }
         public DateTime Created { get; set; }
         public DateTime? DeletedDate { get; set; }
+        public bool IsChecked { get; set; }
+        public bool ShowInHtml { get; set; }
+
         public virtual DateTime PublishiedDate { get {
                 var utc = Created;
                 var localTime = TimeZoneInfo.ConvertTimeFromUtc(utc, TimeZoneInfo.Local);

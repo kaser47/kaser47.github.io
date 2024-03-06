@@ -59,15 +59,15 @@ namespace RecentlyAddedShows.Web.Controllers
             ContentResult result = new ContentResult
             {
                 Content = "Success",
-                ContentType = "text/plain" // You can set this to any content type you need
+                ContentType = "text/plain"
             };
 
             var viewModel = _recentlyAddedShows.GetModel();
 
 
-            if (viewModel.NewFavourites != null)
+            if (viewModel.ShowInHtml != null)
             {
-                result.Content = viewModel.NewFavourites.ToString();
+                result.Content = viewModel.ShowInHtml.ToString();
             }
 
             return result;

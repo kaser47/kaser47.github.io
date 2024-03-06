@@ -191,6 +191,11 @@ namespace RecentlyAddedShows.Service.Classes
                 finishedItemsToAdd = finishedItemsToAdd.Append(lastUpdated);
             }
 
+            foreach (Show item in finishedItemsToAdd)
+            {
+                item.ShowInHtml = false;
+            }
+
             dbContext.Shows.RemoveRange(itemsToRemove);
             dbContext.Shows.AddRange(finishedItemsToAdd);
 
@@ -268,11 +273,6 @@ namespace RecentlyAddedShows.Service.Classes
             var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
             var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString()).ToList();
 
-            foreach (var existingFavourite in existingFavouriteInstances)
-            {
-                existingFavourite.IsUpdated = false;
-            }
-
             foreach (var cartoon in cartoonsAndAnime)
             {
                 foreach (var favourite in favouriteNames)
@@ -300,7 +300,7 @@ namespace RecentlyAddedShows.Service.Classes
                     if (checkTitle(favourite, deletedFavouriteInstance.Name))
                     {
                         deletedFavouriteInstance.DeletedDate = null;
-                        deletedFavouriteInstance.IsUpdated = true;
+                        deletedFavouriteInstance.ShowInHtml = true;
                     }
                 }
             }
@@ -328,7 +328,7 @@ namespace RecentlyAddedShows.Service.Classes
             
             foreach (var favourite in sortedFavourites)
             {
-                favourite.IsUpdated = true;
+                favourite.ShowInHtml = true;
             }
             
             dbContext.Shows.AddRange(sortedFavourites);
