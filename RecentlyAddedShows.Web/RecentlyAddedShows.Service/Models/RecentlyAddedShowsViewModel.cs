@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 using RecentlyAddedShows.Service.Classes;
 using RecentlyAddedShows.Service.Data.Entities;
 
@@ -142,10 +144,14 @@ namespace RecentlyAddedShows.Service.Models
                 || x.Type.Contains(ShowType.Cartoon.ToString())
                 ).ToList();
                 var item = string.Empty;
+                
+
+
                 try
                 {
                    var show = shows[randomNumber];
-                   item = $"{show.Type} ----- {show.Name} ----- {show.Url}";
+  
+                   item = $"{show.Type} ----- {show.Name.UrlDecode()} ----- {show.Url}";
                 }
                 catch (Exception)
                 {
@@ -208,36 +214,36 @@ namespace RecentlyAddedShows.Service.Models
                             {
                                 var name = favourite.Name;
                                 var firstPart = name.Split("Season")[0];
-                                AddOrUpdateItem(groupOfFavourites, firstPart);
+                                AddOrUpdateItem(groupOfFavourites, firstPart.UrlDecode());
                             }
                             else if (favourite.Name.Contains("Episode"))
                             {
                                 var name = favourite.Name;
                                 var firstPart = name.Split("Episode")[0];
-                                AddOrUpdateItem(groupOfFavourites, firstPart);
+                                AddOrUpdateItem(groupOfFavourites, firstPart.UrlDecode());
                             }
                             else if (favourite.Name.Contains("English"))
                             {
                                 var name = favourite.Name;
                                 var firstPart = name.Split("English")[0];
-                                AddOrUpdateItem(groupOfFavourites, firstPart);
+                                AddOrUpdateItem(groupOfFavourites, firstPart.UrlDecode());
                             }
                             else
                             {
-                                AddOrUpdateItem(groupOfFavourites, favourite.Name);
+                                AddOrUpdateItem(groupOfFavourites, favourite.Name.UrlDecode());
                             }
                         }
                         else if (favourite.Type == ShowType.TVShowRecentlyAired.ToString())
                         {
                             var name = favourite.Name;
                             var firstPart = name.Split("-")[0];
-                            AddItem(groupOfFavourites, firstPart, ShowType.TVShowRecentlyAired);
+                            AddItem(groupOfFavourites, firstPart.UrlDecode(), ShowType.TVShowRecentlyAired);
                         }
                         else if (favourite.Type == ShowType.MoviePopular.ToString())
                         {
                             var name = favourite.Name;
                             var firstPart = name.Split("20")[0];
-                            AddItem(groupOfFavourites, firstPart, ShowType.MoviePopular);
+                            AddItem(groupOfFavourites, firstPart.UrlDecode(), ShowType.MoviePopular);
                         }
 
                   
@@ -339,5 +345,14 @@ namespace RecentlyAddedShows.Service.Models
     {
         public ShowType ShowType { get; set; }
         public int Count { get; set; }
+    }
+
+    public static class StringExtentions
+    {
+        public static string UrlDecode(this string text)
+        {
+            var result = HttpUtility.UrlDecode(text);
+            return result;
+        }
     }
 }
