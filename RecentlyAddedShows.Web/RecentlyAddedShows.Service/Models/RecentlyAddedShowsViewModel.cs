@@ -173,20 +173,23 @@ namespace RecentlyAddedShows.Service.Models
                 || x.Type.Contains(ShowType.Cartoon.ToString())
                 ).ToList();
                 var item = string.Empty;
-                int randomNumber = random.Next(2, 11);
+                int randomNumber = random.Next(3, 12);
 
                 for (int i = 0; i < randomNumber; i++)
                 {
                     try
                     {
                         var show = shows[random.Next(1, 1001)];
-                        item += $"/////{show.Type} ----- {show.Name.UrlDecode()} ----- {show.Url}";
+                        item += $"{show.Type} ----- {show.Name.UrlDecode()} ----- {show.Url}/////";
                     }
                     catch (Exception)
                     {
 
                     }
                 }
+
+                item = item.Substring(0, item.Length - 5);
+
                 return item;
             }
         }
