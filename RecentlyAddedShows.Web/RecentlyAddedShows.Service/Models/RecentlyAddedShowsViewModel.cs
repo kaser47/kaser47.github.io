@@ -162,6 +162,35 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public string RandomMultipleHtmlItems
+        {
+            get
+            {
+                Random random = new Random();
+                var shows = Shows.Where(x => x.Type.Contains(ShowType.MoviePopular.ToString())
+                || x.Type.Contains(ShowType.TVShowRecentlyAired.ToString())
+                || x.Type.Contains(ShowType.Anime.ToString())
+                || x.Type.Contains(ShowType.Cartoon.ToString())
+                ).ToList();
+                var item = string.Empty;
+                int randomNumber = random.Next(2, 11);
+
+                for (int i = 0; i < randomNumber; i++)
+                {
+                    try
+                    {
+                        var show = shows[random.Next(1, 1001)];
+                        item += $"/////{show.Type} ----- {show.Name.UrlDecode()} ----- {show.Url}";
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                return item;
+            }
+        }
+
         public string ShowInHtml
         {
             get

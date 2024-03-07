@@ -100,6 +100,26 @@ namespace RecentlyAddedShows.Web.Controllers
             return result;
         }
 
+        public IActionResult TestRandomMultiple()
+        {
+            ContentResult result = new ContentResult
+            {
+                Content = "Success",
+                ContentType = "text/plain"
+            };
+
+            var viewModel = _recentlyAddedShows.LoadModel();
+
+            var item = viewModel.RandomMultipleHtmlItems;
+
+            if (item != null)
+            {
+                result.Content = item;
+            }
+
+            return result;
+        }
+
         public IActionResult RssAnimation()
         {
             var result = _rssFeedCreator.CreateCartoonRssFeed();
