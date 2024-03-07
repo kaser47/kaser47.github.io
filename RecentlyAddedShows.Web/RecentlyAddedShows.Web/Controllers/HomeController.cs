@@ -79,6 +79,27 @@ namespace RecentlyAddedShows.Web.Controllers
             return result;
         }
 
+        public IActionResult TestRandomSingle()
+        {
+
+            ContentResult result = new ContentResult
+            {
+                Content = "Success",
+                ContentType = "text/plain"
+            };
+
+            var viewModel = _recentlyAddedShows.LoadModel();
+
+            var item = viewModel.RandomSingleHtmlItem;
+
+            if (item != null)
+            {
+                result.Content = item;
+            }
+
+            return result;
+        }
+
         public IActionResult RssAnimation()
         {
             var result = _rssFeedCreator.CreateCartoonRssFeed();

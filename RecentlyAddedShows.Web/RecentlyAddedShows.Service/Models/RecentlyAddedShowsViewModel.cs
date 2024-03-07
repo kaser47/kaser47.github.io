@@ -130,6 +130,32 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public string RandomSingleHtmlItem
+        {
+            get
+            {
+                Random random = new Random();
+                int randomNumber = random.Next(1, 1001);
+                var shows = Shows.Where(x => x.Type.Contains(ShowType.MoviePopular.ToString()) 
+                || x.Type.Contains(ShowType.TVShowRecentlyAired.ToString())
+                || x.Type.Contains(ShowType.Anime.ToString())
+                || x.Type.Contains(ShowType.Cartoon.ToString())
+                ).ToList();
+                var item = string.Empty;
+                try
+                {
+                   var show = shows[randomNumber];
+                   item = $"{show.Type} ----- {show.Name} ----- {show.Url}";
+                }
+                catch (Exception)
+                {
+
+                }
+
+                return item; 
+            }
+        }
+
         public string ShowInHtml
         {
             get
@@ -169,7 +195,7 @@ namespace RecentlyAddedShows.Service.Models
                 if (count == 1)
                 {
                     var item = favourites.FirstOrDefault();
-                    return $"<p style=\"color: white;\">{item.Type.ToString()} - {favourites.FirstOrDefault().Name} - ADDED</p>";
+                    return $"{item.Type.ToString()} ----- {favourites.FirstOrDefault().Name} ----- {favourites.FirstOrDefault().Url}";
                 }
                 else if (count > 1)
                 {
