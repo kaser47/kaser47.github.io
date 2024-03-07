@@ -351,7 +351,7 @@ namespace RecentlyAddedShows.Service.Models
     {
         public static string UrlDecode(this string text)
         {
-            var result = HttpUtility.UrlDecode(text);
+            var result = HttpUtility.HtmlDecode(text);
             return result;
         }
     }
