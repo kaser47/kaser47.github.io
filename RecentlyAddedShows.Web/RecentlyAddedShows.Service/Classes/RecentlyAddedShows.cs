@@ -124,7 +124,7 @@ namespace RecentlyAddedShows.Service.Classes
             || (x.Type == ShowType.TVShowUpNext.ToString() && y.Created != x.Created) 
             ))
                 //DO NOT DELETE FAVOURITES, RELEASEDATES, CARTOONS, ANIME, LASTUPDATED
-                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.MoviePopular.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString() && x.Type != ShowType.LastUpdated.ToString()).ToList();
+                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.TVShowRecentlyAired.ToString() && x.Type != ShowType.MoviePopular.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString() && x.Type != ShowType.LastUpdated.ToString()).ToList();
             var addtionalItemsToRemove = savedResults.Where(x => (x.Type == ShowType.ReleaseDate.ToString() || x.Type == ShowType.MoviePopular.ToString()) && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
 
             var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
@@ -234,6 +234,7 @@ namespace RecentlyAddedShows.Service.Classes
 
             dbContext.SaveChanges();
             ClearHTMLFlags();
+            AddDeletedDateToRecentlyAired(results);
             ShowMovieInHTML();
             ShowTVShowInHTML();
             RefreshFavourites();
@@ -338,11 +339,49 @@ namespace RecentlyAddedShows.Service.Classes
                 dbContext.SaveChanges();
         }
 
+        public void AddDeletedDateToRecentlyAired(IList<Show> results)
+        {
+            var dbContext = new Context();
+            var savedResults = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate == null).ToList();
+
+            var deletedItems = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate != null).ToList();
+
+            var recentlyAddedShows = results.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).ToList();
+
+            foreach (var deletedItem in deletedItems)
+            {
+                bool itemFound = recentlyAddedShows.Any(show => show.Name == deletedItem.Name && show.DeletedDate == null);
+                if (itemFound)
+                {
+                    deletedItem.DeletedDate = null;
+                    if (deletedItem.Created > DateTime.UtcNow.AddDays(-14))
+                    {
+                        deletedItem.ShowInHtml = true;
+                    }
+                }
+            }
+
+
+            var itemsToDelete = savedResults.Where(x => results.All(y => y.Name != x.Name
+             || y.NumberViewing != x.NumberViewing
+             || x.hasReleaseDate != y.hasReleaseDate
+             || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
+             ));
+
+            foreach ( var item in itemsToDelete )
+            {
+                item.DeletedDate = DateTime.UtcNow;
+            }
+
+
+            dbContext.SaveChanges();
+        }
+
         public void ShowTVShowInHTML()
         {
             var dbContext = new Context();
             var upNextTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowUpNext.ToString()).OrderByDescending(x => x.Created).FirstOrDefault();
-            var recentlyAiredTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).OrderByDescending(x => x.Created).FirstOrDefault();
+            var recentlyAiredTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).FirstOrDefault();
 
             if (!recentlyAiredTvShow.IsChecked)
             {

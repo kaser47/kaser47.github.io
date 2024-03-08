@@ -80,7 +80,7 @@ namespace RecentlyAddedShows.Service.Models
         {
             get
             {
-                return Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).OrderByDescending(x => x.Created);
+                return Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && !x.hasDeletedDate).OrderByDescending(x => x.Created);
             }
         }
 
