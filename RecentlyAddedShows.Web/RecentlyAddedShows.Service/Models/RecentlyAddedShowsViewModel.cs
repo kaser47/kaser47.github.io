@@ -218,73 +218,38 @@ namespace RecentlyAddedShows.Service.Models
 
                 var favourites = Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtml).OrderByDescending(x => x.Created).ToList();
 
+                var item = string.Empty;
+
+
+
                 if (movie != null)
                 {
-                    favourites.Add(movie);
+                    item += $"{movie.Type} ----- {movie.Name.UrlDecode()} ----- {movie.Url}/////";
                 }
 
                 if (show != null)
                 {
-                    favourites.Add(show);
+                    item += $"{show.Type} ----- {show.Name.UrlDecode()} ----- {show.Url}/////";
                 }
 
                 var count = favourites.Count();
 
                 if (count == 1)
                 {
-                    var item = favourites.FirstOrDefault();
-                    return $"{item.Type.ToString()} ----- {favourites.FirstOrDefault().Name} ----- {favourites.FirstOrDefault().Url}";
+                    var favourite = favourites.FirstOrDefault();
+                    item += $"{favourite.Type} ----- {favourite.Name.UrlDecode()} ----- {favourite.Url}/////";
                 }
                 else if (count > 1)
                 {
-                    var groupOfFavourites = new Dictionary<string, CounterWithShowType>();
                     foreach (var favourite in favourites)
                     {
-                        if (favourite.Type == ShowType.Favourite.ToString())
-                        {
-                            if (favourite.Name.Contains("Season"))
-                            {
-                                var name = favourite.Name;
-                                var firstPart = name.Split("Season")[0];
-                                AddOrUpdateItem(groupOfFavourites, firstPart.UrlDecode());
-                            }
-                            else if (favourite.Name.Contains("Episode"))
-                            {
-                                var name = favourite.Name;
-                                var firstPart = name.Split("Episode")[0];
-                                AddOrUpdateItem(groupOfFavourites, firstPart.UrlDecode());
-                            }
-                            else if (favourite.Name.Contains("English"))
-                            {
-                                var name = favourite.Name;
-                                var firstPart = name.Split("English")[0];
-                                AddOrUpdateItem(groupOfFavourites, firstPart.UrlDecode());
-                            }
-                            else
-                            {
-                                AddOrUpdateItem(groupOfFavourites, favourite.Name.UrlDecode());
-                            }
-                        }
-                        else if (favourite.Type == ShowType.TVShowRecentlyAired.ToString())
-                        {
-                            var name = favourite.Name;
-                            var firstPart = name.Split("-")[0];
-                            AddItem(groupOfFavourites, firstPart.UrlDecode(), ShowType.TVShowRecentlyAired);
-                        }
-                        else if (favourite.Type == ShowType.MoviePopular.ToString())
-                        {
-                            var name = favourite.Name;
-                            var firstPart = name.Split("20")[0];
-                            AddItem(groupOfFavourites, firstPart.UrlDecode(), ShowType.MoviePopular);
-                        }
-
-                  
+                        item += $"{favourite.Type} ----- {favourite.Name.UrlDecode()} ----- {favourite.Url}/////";
                     }
+                }
 
-                    return FormatDictionaryAsHtmlTable(groupOfFavourites);
-                }
-                    return null;
-                }
+                item = item.Substring(0, item.Length - 5);
+                return item;
+               } 
             } 
         
 
@@ -306,33 +271,6 @@ namespace RecentlyAddedShows.Service.Models
                 dictionary.Add(item, counter);
 
             }
-        }
-
-        static void AddItem(Dictionary<string, CounterWithShowType> dictionary, string item, ShowType showType)
-        {
-            var counter = new CounterWithShowType();
-            counter.ShowType = showType;
-            counter.Count = 0;
-            dictionary.Add(item, counter);
-        }
-
-        static string FormatDictionaryAsHtmlTable(Dictionary<string, CounterWithShowType> dictionary)
-        {
-            StringBuilder html = new StringBuilder();
-            html.Append(Consts.Html);
-            html.Append("<table border='1'>");
-            html.Append("<tr><th>New Favourites</th><th>Type</th><th>Count</th></tr>");
-            foreach (var kvp in dictionary)
-            {
-                html.Append("<tr>");
-                html.Append($"<td>{kvp.Key}</td>");
-                html.Append($"<td>{kvp.Value.ShowType.ToString()}</td>");
-                html.Append($"<td>{kvp.Value.Count}</td>");
-                html.Append("</tr>");
-            }
-            html.Append("</table>");
-            html.Append(Consts.HtmlEnd);
-            return html.ToString();
         }
 
         public IEnumerable<Show> ReleaseDates

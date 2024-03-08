@@ -393,6 +393,7 @@ namespace RecentlyAddedShows.Service.Classes
                     {
                         deletedFavouriteInstance.DeletedDate = null;
                         deletedFavouriteInstance.ShowInHtml = true;
+                        deletedFavouriteInstance.IsChecked = true;
                     }
                 }
             }
@@ -422,6 +423,7 @@ namespace RecentlyAddedShows.Service.Classes
             foreach (var favourite in sortedFavourites)
             {
                 favourite.ShowInHtml = true;
+                favourite.IsChecked = true;
             }
             
             dbContext.Shows.AddRange(sortedFavourites);
