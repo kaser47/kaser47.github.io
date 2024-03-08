@@ -68,10 +68,10 @@ namespace RecentlyAddedShows.Web.Controllers
                 ContentType = "text/plain"
             };
 
-            var viewModel = _recentlyAddedShows.GetModel();
+            var viewModel = _recentlyAddedShows.LoadModel();
 
 
-            if (viewModel.ShowInHtml != null)
+            if (viewModel.ShowInHtml != String.Empty)
             {
                 result.Content = viewModel.ShowInHtml.ToString();
             }
