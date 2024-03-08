@@ -247,7 +247,11 @@ namespace RecentlyAddedShows.Service.Models
                     }
                 }
 
-                item = item.Substring(0, item.Length - 5);
+                if (item != string.Empty)
+                {
+                    item = item.Substring(0, item.Length - 5);
+                }
+     
                 return item;
                } 
             } 
