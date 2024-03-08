@@ -68,7 +68,7 @@ namespace RecentlyAddedShows.Web.Controllers
                 ContentType = "text/plain"
             };
 
-            var viewModel = _recentlyAddedShows.LoadModel();
+            var viewModel = _recentlyAddedShows.GetModel();
 
 
             if (viewModel.ShowInHtml != String.Empty)
