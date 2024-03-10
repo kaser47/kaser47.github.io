@@ -16,6 +16,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public DateTime? DeletedDate { get; set; }
         public bool IsChecked { get; set; }
         public bool ShowInHtml { get; set; }
+        public DateTime? ShowInHtmlDate { get; set; }
 
         public virtual DateTime PublishiedDate { get {
                 var utc = Created;

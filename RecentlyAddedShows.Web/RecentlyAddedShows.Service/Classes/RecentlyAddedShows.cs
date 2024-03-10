@@ -334,6 +334,7 @@ namespace RecentlyAddedShows.Service.Classes
                 {
                     topMovie.IsChecked = true;
                     topMovie.ShowInHtml = true;
+                    topMovie.ShowInHtmlDate = DateTime.UtcNow;
                 }
             }
                 dbContext.SaveChanges();
@@ -357,6 +358,7 @@ namespace RecentlyAddedShows.Service.Classes
                     if (deletedItem.Created > DateTime.UtcNow.AddDays(-14))
                     {
                         deletedItem.ShowInHtml = true;
+                        deletedItem.ShowInHtmlDate = DateTime.UtcNow;
                     }
                 }
             }
@@ -389,6 +391,7 @@ namespace RecentlyAddedShows.Service.Classes
 
                 if (!checkTitle(recentlyAiredTvShow.Name, upNextTvShow.Name)) {
                     recentlyAiredTvShow.ShowInHtml = true;
+                    recentlyAiredTvShow.ShowInHtmlDate = DateTime.UtcNow;
                 }
 
                 dbContext.SaveChanges();
@@ -432,6 +435,7 @@ namespace RecentlyAddedShows.Service.Classes
                     {
                         deletedFavouriteInstance.DeletedDate = null;
                         deletedFavouriteInstance.ShowInHtml = true;
+                        deletedFavouriteInstance.ShowInHtmlDate = DateTime.UtcNow;
                         deletedFavouriteInstance.IsChecked = true;
                     }
                 }
@@ -462,6 +466,7 @@ namespace RecentlyAddedShows.Service.Classes
             foreach (var favourite in sortedFavourites)
             {
                 favourite.ShowInHtml = true;
+                favourite.ShowInHtmlDate = DateTime.UtcNow;
                 favourite.IsChecked = true;
             }
             

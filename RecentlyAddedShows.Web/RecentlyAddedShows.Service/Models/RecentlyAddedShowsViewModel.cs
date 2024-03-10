@@ -132,6 +132,14 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public IEnumerable<Show> HtmlDateItems
+        {
+            get
+            {
+                return Shows.Where(x => x.ShowInHtmlDate.HasValue).OrderByDescending(x => x.ShowInHtmlDate);
+            }
+        }
+
         public string RandomSingleHtmlItem
         {
             get

@@ -125,6 +125,9 @@ namespace RecentlyAddedShows.Service.Migrations
                     b.Property<bool>("ShowInHtml")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("ShowInHtmlDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
