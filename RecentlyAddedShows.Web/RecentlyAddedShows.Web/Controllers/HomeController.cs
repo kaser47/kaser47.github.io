@@ -79,7 +79,7 @@ namespace RecentlyAddedShows.Web.Controllers
             return result;
         }
 
-        public IActionResult TestRandomSingle()
+        public IActionResult TestRandomSingle(string showType = null)
         {
 
             ContentResult result = new ContentResult
@@ -90,9 +90,9 @@ namespace RecentlyAddedShows.Web.Controllers
 
             var viewModel = _recentlyAddedShows.LoadModel();
 
-            var item = viewModel.RandomSingleHtmlItem;
+            var item = viewModel.GetRandomSingleHtmlItem(showType);
 
-            if (item != null)
+            if (item != "")
             {
                 result.Content = item;
             }
@@ -100,7 +100,7 @@ namespace RecentlyAddedShows.Web.Controllers
             return result;
         }
 
-        public IActionResult TestRandomMultiple()
+        public IActionResult TestRandomMultiple(string showType = null)
         {
             ContentResult result = new ContentResult
             {
@@ -110,9 +110,9 @@ namespace RecentlyAddedShows.Web.Controllers
 
             var viewModel = _recentlyAddedShows.LoadModel();
 
-            var item = viewModel.RandomMultipleHtmlItems;
+            var item = viewModel.GetRandomSingleHtmlItem(showType);
 
-            if (item != null)
+            if (item != "")
             {
                 result.Content = item;
             }
