@@ -50,6 +50,9 @@
                             <a target="_blank" class="nav-link" href="#anime" role="tab" aria-controls="anime" aria-selected="false">Anime</a>
                         </li>
                         <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#animatedMovies" role="tab" aria-controls="animatedMovies" aria-selected="false">Animated Movies</a>
+                        </li>
+                        <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#nextup" role="tab" aria-controls="nextup" aria-selected="false">TV - Next Up</a>
                         </li>
                         <li class="nav-item">
@@ -144,7 +147,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.Cartoons)
                                 {
@@ -161,15 +163,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -186,7 +179,7 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
+           
                                 </tr>
                                 @foreach (var item in Model.Anime)
                                 {
@@ -203,16 +196,38 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
+                                }
+                            </table>
+
+                        </div>
+
+                        <div class="tab-pane" id="animatedMovies" role="tabpanel" aria-labelledby="history-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-10">Name</th>
+                                </tr>
+                                @foreach (var item in Model.AnimatedMovies)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            @if (item.IsUpdated)
+                                            {
+                                                <strong>
+                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                                </strong>
+                                            }
+                                            else
+                                            {
+                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                            }
+                                        </td>
+                                    </tr>
                                 }
                             </table>
 
@@ -227,7 +242,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.NextUp)
                                 {
@@ -244,15 +258,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -268,7 +273,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.TVPopular)
                                 {
@@ -285,15 +289,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -309,7 +304,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.TVCollection)
                                 {
@@ -326,15 +320,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -350,7 +335,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.MoviePopular)
                                 {
@@ -367,15 +351,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -392,7 +367,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.MovieWatchlist)
                                 {
@@ -409,15 +383,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -434,7 +399,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.RecentlyUpdated)
                                 {
@@ -451,15 +415,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -476,7 +431,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.Switch)
                                 {
@@ -493,15 +447,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -518,7 +463,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.PC)
                                 {
@@ -535,15 +479,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -560,7 +495,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.PS4)
                                 {
@@ -577,15 +511,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -599,7 +524,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.Favourites)
                                 {
@@ -607,15 +531,6 @@
                                         <td class="align-middle">
                                                 <h target="_blank" id="link">@item.Title</h>
                                         </td>
-                                        @*<td>
-                                    <div class="container">
-                                    <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                    </div>
-                                    </div>
-                                    </td>*@
                                     </tr>
                                 }
                             </table>
@@ -629,7 +544,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.FavouritesToWatch)
                                 {
@@ -646,15 +560,6 @@
                                                 <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                         </td>
-                                        @*<td>
-                                    <div class="container">
-                                    <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                    </div>
-                                    </div>
-                                    </td>*@
                                     </tr>
                                 }
                             </table>
@@ -668,7 +573,6 @@
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.ReleaseDates)
                                 {
@@ -685,15 +589,6 @@
                                                 <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                         </td>
-                                        @*<td>
-                                    <div class="container">
-                                    <div class="px-0 center">
-                                    <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                    </a>
-                                    </div>
-                                    </div>
-                                    </td>*@
                                     </tr>
                                 }
                             </table>

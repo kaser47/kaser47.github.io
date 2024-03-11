@@ -36,6 +36,14 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public IEnumerable<Show> AnimatedMovies
+        {
+            get
+            {
+                return Shows.Where(x => x.Type == ShowType.AnimatedMovie.ToString()).OrderBy(x => x.Name);
+            }
+        }
+
         public IEnumerable<Show> NextUp
         {
             get
@@ -150,6 +158,7 @@ namespace RecentlyAddedShows.Service.Models
                 || x.Type.Contains(ShowType.TVShowRecentlyAired.ToString())
                 || x.Type.Contains(ShowType.Anime.ToString())
                 || x.Type.Contains(ShowType.Cartoon.ToString())
+                || x.Type.Contains(ShowType.AnimatedMovie.ToString())
                 ).ToList();
                 var item = string.Empty;
                 
@@ -179,6 +188,7 @@ namespace RecentlyAddedShows.Service.Models
                 || x.Type.Contains(ShowType.TVShowRecentlyAired.ToString())
                 || x.Type.Contains(ShowType.Anime.ToString())
                 || x.Type.Contains(ShowType.Cartoon.ToString())
+                || x.Type.Contains(ShowType.AnimatedMovie.ToString())
                 ).ToList();
                 var item = string.Empty;
                 int randomNumber = random.Next(3, 12);

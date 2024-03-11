@@ -25,6 +25,7 @@ namespace RecentlyAddedShows.Service.Classes
             {
                new CartoonsStrategy(),
                new WatchCartoonsOnlineStrategy("https://www.wco.tv/#dubbed", ShowType.Anime),
+               new AnimatedMovieStrategy(),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=1", true),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=2", true),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=3", true),
@@ -124,7 +125,14 @@ namespace RecentlyAddedShows.Service.Classes
             || (x.Type == ShowType.TVShowUpNext.ToString() && y.Created != x.Created) 
             ))
                 //DO NOT DELETE FAVOURITES, RELEASEDATES, CARTOONS, ANIME, LASTUPDATED
-                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.TVShowRecentlyAired.ToString() && x.Type != ShowType.MoviePopular.ToString() && x.Type != ShowType.ReleaseDate.ToString() && x.Type != ShowType.Cartoon.ToString() && x.Type != ShowType.Anime.ToString() && x.Type != ShowType.LastUpdated.ToString()).ToList();
+                .Where(x => x.Type != ShowType.Favourite.ToString() 
+                && x.Type != ShowType.TVShowRecentlyAired.ToString() 
+                && x.Type != ShowType.MoviePopular.ToString() 
+                && x.Type != ShowType.ReleaseDate.ToString() 
+                && x.Type != ShowType.Cartoon.ToString() 
+                && x.Type != ShowType.Anime.ToString() 
+                && x.Type != ShowType.AnimatedMovie.ToString() 
+                && x.Type != ShowType.LastUpdated.ToString()).ToList();
             var addtionalItemsToRemove = savedResults.Where(x => (x.Type == ShowType.ReleaseDate.ToString() || x.Type == ShowType.MoviePopular.ToString()) && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
 
             var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
@@ -281,6 +289,8 @@ namespace RecentlyAddedShows.Service.Classes
             var dbContext = new Context();
             var cartoons = dbContext.Shows.Where(x => x.Type == ShowType.Cartoon.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
             var animes = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
+            var animatedMovies = dbContext.Shows.Where(x => x.Type == ShowType.AnimatedMovie.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
+
             if (cartoons.Count() > 16)
             {
                 var i = 0;
@@ -303,6 +313,19 @@ namespace RecentlyAddedShows.Service.Classes
                     if (i > 16)
                     {
                         anime.DeletedDate = DateTime.UtcNow;
+                    }
+                }
+            }
+
+            if (animatedMovies.Count() > 16)
+            {
+                var i = 0;
+                foreach (Show animatedMovie in animatedMovies)
+                {
+                    i++;
+                    if (i > 16)
+                    {
+                        animatedMovie.DeletedDate = DateTime.UtcNow;
                     }
                 }
             }
@@ -405,7 +428,7 @@ namespace RecentlyAddedShows.Service.Classes
             var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
             var deletedFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.DeletedDate != null).ToList();
             var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
-            var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString()).ToList();
+            var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString() || x.Type == ShowType.AnimatedMovie.ToString()).ToList();
 
             foreach (var cartoon in cartoonsAndAnime)
             {

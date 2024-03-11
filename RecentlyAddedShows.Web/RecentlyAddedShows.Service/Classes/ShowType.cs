@@ -16,6 +16,7 @@
         Favourite,
         ReleaseDate,
         InTheatre,
-        LastUpdated
+        LastUpdated,
+        AnimatedMovie
     }
 }

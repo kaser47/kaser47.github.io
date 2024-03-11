@@ -28,6 +28,7 @@ namespace RecentlyAddedShows.Service.Classes
                 {
                     case ShowType.Cartoon:
                     case ShowType.Anime:
+                    case ShowType.AnimatedMovie:
                         description = $"{show.Type} - {show.TranslatedCreated}";
                         break;
                     case ShowType.TVShowUpNext:
