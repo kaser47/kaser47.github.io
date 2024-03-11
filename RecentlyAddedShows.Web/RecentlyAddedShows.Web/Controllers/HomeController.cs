@@ -110,7 +110,7 @@ namespace RecentlyAddedShows.Web.Controllers
 
             var viewModel = _recentlyAddedShows.LoadModel();
 
-            var item = viewModel.GetRandomSingleHtmlItem(showType);
+            var item = viewModel.GetRandomMultipleHtmlItems(showType);
 
             if (item != "")
             {
