@@ -307,13 +307,13 @@ namespace RecentlyAddedShows.Service.Models
                 if (count == 1)
                 {
                     var favourite = favourites.FirstOrDefault();
-                    item += $"{favourite.Type} ----- {favourite.Name.UrlDecode()} ----- {favourite.Url}/////";
+                    item += $"{favourite.SubType} ----- {favourite.Name.UrlDecode()} ----- {favourite.Url}/////";
                 }
                 else if (count > 1)
                 {
                     foreach (var favourite in favourites)
                     {
-                        item += $"{favourite.Type} ----- {favourite.Name.UrlDecode()} ----- {favourite.Url}/////";
+                        item += $"{favourite.SubType} ----- {favourite.Name.UrlDecode()} ----- {favourite.Url}/////";
                     }
                 }
 

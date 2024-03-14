@@ -5,8 +5,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RecentlyAddedShows.Service.Classes;
 using Serilog;
+using Serilog.Sinks.MSSqlServer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
@@ -20,9 +22,14 @@ namespace RecentlyAddedShows.Web
         [Obsolete]
         public static void Main(string[] args)
         {
+            var columnOptionsValue = new ColumnOptions();
+            columnOptionsValue.TimeStamp.DataType = SqlDbType.DateTimeOffset;
+            columnOptionsValue.TimeStamp.ConvertToUtc = true;
+
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
                 .WriteTo.MSSqlServer(
+                columnOptions: columnOptionsValue,
                 connectionString: "Server=sql.bsite.net\\MSSQL2016;Database=recentlyaddedshows_ras;User Id=recentlyaddedshows_ras; Password=123qweasd;TrustServerCertificate=True;",
                 tableName: "Logs",
                 autoCreateSqlTable: true)

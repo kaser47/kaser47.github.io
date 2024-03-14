@@ -10,6 +10,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public string SubType { get; set; }
         public string Url { get; set; }
         public string Image { get; set; }
         public DateTime Created { get; set; }
@@ -142,6 +143,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
             if (showType == ShowType.Favourite.ToString())
             {
                 Created = DateTime.UtcNow;
+                SubType = show.Type;
             }
             else if (showType == ShowType.ReleaseDate.ToString())
             {

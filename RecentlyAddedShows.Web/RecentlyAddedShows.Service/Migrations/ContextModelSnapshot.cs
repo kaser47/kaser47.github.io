@@ -128,6 +128,9 @@ namespace RecentlyAddedShows.Service.Migrations
                     b.Property<DateTime?>("ShowInHtmlDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SubType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 

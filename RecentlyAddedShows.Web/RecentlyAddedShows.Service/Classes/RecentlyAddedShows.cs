@@ -246,11 +246,12 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.SaveChanges();
             ClearDownLogs();
             ClearHTMLFlags();
-            AddDeletedDateToRecentlyAired(results);
-            ShowMovieInHTML();
-            ShowTVShowInHTML();
+            RemoveDeletedDateFromRecentlyAired(results);
             RefreshFavourites();
             ReorderCartoonsAndAnime();
+            ShowMovieInHTML();
+            ShowTVShowInHTML();
+            ShowFavouritesInHTML();
             savedResults = dbContext.Shows.ToList();
             var favourites = dbContext.Favourites.ToList();
 
@@ -385,7 +386,7 @@ namespace RecentlyAddedShows.Service.Classes
                 dbContext.SaveChanges();
         }
 
-        public void AddDeletedDateToRecentlyAired(IList<Show> results)
+        public void RemoveDeletedDateFromRecentlyAired(IList<Show> results)
         {
             var dbContext = new Context();
             var savedResults = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate == null).ToList();
@@ -402,6 +403,7 @@ namespace RecentlyAddedShows.Service.Classes
                     deletedItem.DeletedDate = null;
                     if (deletedItem.Created > DateTime.UtcNow.AddDays(-14))
                     {
+                        deletedItem.IsChecked = true;
                         deletedItem.ShowInHtml = true;
                         deletedItem.ShowInHtmlDate = DateTime.UtcNow;
                     }
@@ -458,6 +460,7 @@ namespace RecentlyAddedShows.Service.Classes
             var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
             var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString() || x.Type == ShowType.AnimatedMovie.ToString()).ToList();
 
+            //Add new favourite or undelete it if it exists
             foreach (var cartoon in cartoonsAndAnime)
             {
                 foreach (var favourite in favouriteNames)
@@ -485,9 +488,6 @@ namespace RecentlyAddedShows.Service.Classes
                     if (checkTitle(favourite, deletedFavouriteInstance.Name))
                     {
                         deletedFavouriteInstance.DeletedDate = null;
-                        deletedFavouriteInstance.ShowInHtml = true;
-                        deletedFavouriteInstance.ShowInHtmlDate = DateTime.UtcNow;
-                        deletedFavouriteInstance.IsChecked = true;
                     }
                 }
             }
@@ -510,15 +510,7 @@ namespace RecentlyAddedShows.Service.Classes
                 if (remove && !favouriteShow.hasDeletedDate)
                 { 
                     favouriteShow.DeletedDate = DateTime.UtcNow;
-                    favouriteShow.ShowInHtml = false;
                 }
-            }
-            
-            foreach (var favourite in sortedFavourites)
-            {
-                favourite.ShowInHtml = true;
-                favourite.ShowInHtmlDate = DateTime.UtcNow;
-                favourite.IsChecked = true;
             }
             
             dbContext.Shows.AddRange(sortedFavourites);
@@ -551,6 +543,21 @@ namespace RecentlyAddedShows.Service.Classes
             }
 
             dbContext.SaveChanges();
+        }
+
+        private void ShowFavouritesInHTML()
+        {
+            var dbContext = new Context();
+            var favourites = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtmlDate == null).ToList();
+
+            foreach (var favourite in favourites)
+            {
+                favourite.ShowInHtml = true;
+                favourite.ShowInHtmlDate = DateTime.UtcNow;
+                favourite.IsChecked = true;
+            }
+
+            dbContext.SaveChanges(true);
         }
 
         private bool checkTitle(string title, string cartoonTitle)

@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using RecentlyAddedShows.Service.Classes;
 using RecentlyAddedShows.Service.Data;
 using Serilog;
+using Serilog.Sinks.MSSqlServer;
+using System.Data;
 
 namespace RecentlyAddedShows.Web
 {
@@ -22,10 +24,15 @@ namespace RecentlyAddedShows.Web
         [System.Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
+            var columnOptionsValue = new ColumnOptions();
+            columnOptionsValue.TimeStamp.DataType = SqlDbType.DateTimeOffset;
+            columnOptionsValue.TimeStamp.ConvertToUtc = true;
+
             // Add Serilog logging
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
                 .WriteTo.MSSqlServer(
+                columnOptions: columnOptionsValue,
                 connectionString: "Server=sql.bsite.net\\MSSQL2016;Database=recentlyaddedshows_ras;User Id=recentlyaddedshows_ras; Password=123qweasd;TrustServerCertificate=True;",
                 tableName: "Logs",
                 autoCreateSqlTable: true)
