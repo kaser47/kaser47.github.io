@@ -409,16 +409,16 @@ namespace RecentlyAddedShows.Service.Classes
             }
 
 
-            var itemsToDelete = savedResults.Where(x => results.All(y => y.Name != x.Name
-             || y.NumberViewing != x.NumberViewing
-             || x.hasReleaseDate != y.hasReleaseDate
-             || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
-             ));
+            //var itemsToDelete = savedResults.Where(x => results.All(y => y.Name != x.Name
+            // || y.NumberViewing != x.NumberViewing
+            // || x.hasReleaseDate != y.hasReleaseDate
+            // || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
+            // ));
 
-            foreach ( var item in itemsToDelete )
-            {
-                item.DeletedDate = DateTime.UtcNow;
-            }
+            //foreach ( var item in itemsToDelete )
+            //{
+            //    item.DeletedDate = DateTime.UtcNow;
+            //}
 
 
             dbContext.SaveChanges();
