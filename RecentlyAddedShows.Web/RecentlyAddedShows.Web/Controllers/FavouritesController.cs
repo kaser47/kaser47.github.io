@@ -71,9 +71,10 @@ namespace RecentlyAddedShows.Web.Controllers
             {
                 _context.Add(favourite);
                 await _context.SaveChangesAsync();
+                _logger.LogWarning($"{this.GetType().Name}/Create Result: {favourite.Title}");
                 return RedirectToAction(nameof(Index));
             }
-            _logger.LogWarning($"{this.GetType().Name}/Create Result: {favourite.Title}");
+
             return View(favourite);
         }
 
@@ -113,6 +114,7 @@ namespace RecentlyAddedShows.Web.Controllers
                 try
                 {
                     _context.Update(favourite);
+                    _logger.LogWarning($"{this.GetType().Name}/Edit Result: {favourite.Title}");
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -134,7 +136,7 @@ namespace RecentlyAddedShows.Web.Controllers
         // GET: Favourites/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            _logger.LogWarning($"Favourite/Delete was called");
+            _logger.LogWarning($"Favourite/Delete Confirmation was called");
             if (id == null)
             {
                 return NotFound();
@@ -154,8 +156,10 @@ namespace RecentlyAddedShows.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            _logger.LogWarning($"Favourite/Delete was called");
             var favourite = await _context.Favourites.FindAsync(id);
             _context.Favourites.Remove(favourite);
+            _logger.LogWarning($"{this.GetType().Name}/Delete Result: {favourite.Title}");
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

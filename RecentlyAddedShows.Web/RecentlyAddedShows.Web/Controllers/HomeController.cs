@@ -85,6 +85,7 @@ namespace RecentlyAddedShows.Web.Controllers
             }
 
             _logger.LogWarning($"{this.GetType().Name}/{MethodBase.GetCurrentMethod().Name} Result: {result.Content}");
+            _logger.LogError($"{this.GetType().Name}/{MethodBase.GetCurrentMethod().Name} Result: {result.Content}");
             return result;
         }
 
