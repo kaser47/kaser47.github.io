@@ -5,18 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RecentlyAddedShows.Service.Data;
 using RecentlyAddedShows.Service.Data.Entities;
+using Serilog.Core;
 
 namespace RecentlyAddedShows.Web.Controllers
 {
     public class FavouritesController : Controller
     {
+        private readonly ILogger<FavouritesController> _logger;
         private readonly Context _context;
         private readonly Service.Classes.RecentlyAddedShows _recentlyAddedShows;
 
-        public FavouritesController(Context context)
+        public FavouritesController(Context context, ILogger<FavouritesController> logger)
         {
+            _logger = logger;
             _context = context;
             _recentlyAddedShows = new Service.Classes.RecentlyAddedShows();
         }

@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RecentlyAddedShows.Service.Classes;
 using RecentlyAddedShows.Service.Data;
+using Serilog;
 
 namespace RecentlyAddedShows.Web
 {
@@ -17,8 +19,21 @@ namespace RecentlyAddedShows.Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [System.Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Serilog logging
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.MSSqlServer(
+                connectionString: "Server=sql.bsite.net\\MSSQL2016;Database=recentlyaddedshows_ras;User Id=recentlyaddedshows_ras; Password=123qweasd;TrustServerCertificate=True;",
+                tableName: "Logs",
+                autoCreateSqlTable: true)
+                .CreateLogger();
+
+            services.AddLogging(loggingBuilder =>
+                loggingBuilder.AddSerilog(dispose: true));
+
             services.AddControllersWithViews();
             services.AddDbContext<Context>();
         }

@@ -20,6 +20,8 @@ namespace RecentlyAddedShows.Service.Models
 
         public IEnumerable<ErrorDetails> ErrorDetails { get; set; }
 
+        public IEnumerable<ErrorDetails> Logs { get; set; }
+
         public IEnumerable<Show> Cartoons
         {
             get
@@ -380,6 +382,7 @@ namespace RecentlyAddedShows.Service.Models
             Errors = errors.OrderByDescending(x => x.Created);
             Favourites = favourites.OrderBy(x => x.Title);
             ErrorDetails = errorDetails.OrderByDescending(x => x.Created);
+            //Logs = logs.OrderByDescending(x => x.Created);
         }
     }
 
