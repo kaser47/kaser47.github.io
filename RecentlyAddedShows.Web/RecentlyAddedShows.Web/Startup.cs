@@ -57,6 +57,8 @@ namespace RecentlyAddedShows.Web
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseMiddleware<LoggingMiddleware>();
+
 
             app.UseEndpoints(endpoints =>
             {

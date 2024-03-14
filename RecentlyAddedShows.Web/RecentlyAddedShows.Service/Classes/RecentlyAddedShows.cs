@@ -5,13 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Service.Data;
 using RecentlyAddedShows.Service.Data.Entities;
 using RecentlyAddedShows.Service.Extensions;
 using RecentlyAddedShows.Service.Models;
 using RecentlyAddedShows.Service.Strategies;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RecentlyAddedShows.Service.Classes
 {
@@ -241,6 +244,7 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.Shows.AddRange(finishedItemsToAdd);
 
             dbContext.SaveChanges();
+            ClearDownLogs();
             ClearHTMLFlags();
             AddDeletedDateToRecentlyAired(results);
             ShowMovieInHTML();
@@ -282,6 +286,24 @@ namespace RecentlyAddedShows.Service.Classes
             }
             var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites, errorDetails);
             return model;
+        }
+
+        public void ClearDownLogs()
+        {
+            using (var connection = new SqlConnection(Consts.Connection))
+            {
+                connection.Open();
+
+                var sql = "DELETE FROM [Logs] WHERE TimeStamp < @Date";
+
+                using (var command = new SqlCommand(sql, connection))
+                {
+
+                    command.Parameters.AddWithValue("@Date", DateTime.UtcNow.AddDays(-14));
+
+                    var reader = command.ExecuteNonQuery();
+                }
+            }
         }
 
         public void ReorderCartoonsAndAnime()
@@ -406,20 +428,26 @@ namespace RecentlyAddedShows.Service.Classes
         {
             var dbContext = new Context();
             var upNextTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowUpNext.ToString()).OrderByDescending(x => x.Created).FirstOrDefault();
-            var recentlyAiredTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).FirstOrDefault();
+            var recentlyAiredTvShows = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate == null && !x.IsChecked).OrderByDescending(x => x.Created).ToList();
 
-            if (!recentlyAiredTvShow.IsChecked)
+            foreach (var recentlyAiredTvShow in recentlyAiredTvShows)
             {
-                recentlyAiredTvShow.IsChecked = true;
+                if (!recentlyAiredTvShow.IsChecked)
+                {
+                    recentlyAiredTvShow.IsChecked = true;
 
-                if (!checkTitle(recentlyAiredTvShow.Name, upNextTvShow.Name)) {
-                    recentlyAiredTvShow.ShowInHtml = true;
-                    recentlyAiredTvShow.ShowInHtmlDate = DateTime.UtcNow;
+                    if (!checkTitle(recentlyAiredTvShow.Name, upNextTvShow.Name))
+                    {
+                        recentlyAiredTvShow.ShowInHtml = true;
+                        recentlyAiredTvShow.ShowInHtmlDate = DateTime.UtcNow;
+                    }
                 }
+                }
+           
 
                 dbContext.SaveChanges();
-            }
         }
+       
 
         public void RefreshFavourites()
         {

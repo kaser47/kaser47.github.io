@@ -8,7 +8,7 @@
     <script>
         $(document).ready(function () {
 
-            setInterval(fetchDataFromViewModel, 1000);
+            //setInterval(fetchDataFromViewModel, 1000);
 
             function fetchDataFromViewModel() {
                 $.ajax({
@@ -23,8 +23,10 @@
                     error: function (xhr, status, error) {
                         console.error("Error fetching data: ", error);
                     }
-                });
+                })
             }
+
+            fetchDataFromViewModel()
         });
     </script>
 </head>

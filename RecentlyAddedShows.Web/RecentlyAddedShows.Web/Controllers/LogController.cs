@@ -1,14 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Logging;
+using RecentlyAddedShows.Web.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class LogController : Controller
 {
     private readonly string _connectionString;
+    private readonly ILogger<FavouritesController> _logger;
 
-    public LogController()
+    public LogController(ILogger<FavouritesController> logger)
     {
+        _logger = logger;
         // Set your SQL Server connection string here
         _connectionString = "Server=sql.bsite.net\\MSSQL2016;Database=recentlyaddedshows_ras;User Id=recentlyaddedshows_ras; Password=123qweasd;TrustServerCertificate=True;";
     }
@@ -28,14 +33,16 @@ public class LogController : Controller
 
     private IEnumerable<string> AllLogs()
     {
+        _logger.LogWarning($"Log/{MethodBase.GetCurrentMethod().Name} was called");
         var logs = new List<string>();
 
         using (var connection = new SqlConnection(_connectionString))
         {
             connection.Open();
 
-            var sql = "SELECT [Timestamp], [Level], [MessageTemplate], [Properties] " +
-                      "FROM [Logs] ";
+            var sql = "SELECT [Timestamp], [Level], [Message], [Properties] " +
+                      "FROM [Logs] " +
+                      "ORDER BY 1 DESC";
 
             using (var command = new SqlCommand(sql, connection))
             {
@@ -45,7 +52,7 @@ public class LogController : Controller
                     {
                         // Read log data from the database
                         // Adjust this based on your table structure
-                        var logEntry = $"{reader["Timestamp"]} ---- {reader["Level"]} ---- {reader["MessageTemplate"]}";
+                        var logEntry = $"{reader["Timestamp"]} ---- {reader["Level"]} ---- {reader["Message"]}";
                         logs.Add(logEntry);
                     }
                 }
@@ -57,13 +64,14 @@ public class LogController : Controller
 
     private IEnumerable<string> SearchLogs(DateTime? startDate, DateTime? endDate, string logLevel, string keyword)
     {
+        _logger.LogWarning($"Log/{MethodBase.GetCurrentMethod().Name} was called");
         var logs = new List<string>();
 
         using (var connection = new SqlConnection(_connectionString))
         {
             connection.Open();
 
-            var sql = "SELECT [Timestamp], [Level], [MessageTemplate], [Properties] " +
+            var sql = "SELECT [Timestamp], [Level], [Message], [Properties] " +
                       "FROM [Logs] " +
                       "WHERE 1=1 ";
 
@@ -86,6 +94,8 @@ public class LogController : Controller
             {
                 sql += "AND [MessageTemplate] LIKE '%' + @Keyword + '%' ";
             }
+
+            sql += "ORDER BY 1 DESC";
 
             using (var command = new SqlCommand(sql, connection))
             {
@@ -115,12 +125,14 @@ public class LogController : Controller
                     {
                         // Read log data from the database
                         // Adjust this based on your table structure
-                        var logEntry = $"{reader["Timestamp"]} ---- {reader["Level"]} ---- {reader["MessageTemplate"]}";
+                        var logEntry = $"{reader["Timestamp"]} ---- {reader["Level"]} ---- {reader["Message"]}";
                         logs.Add(logEntry);
                     }
                 }
             }
         }
+
+
 
         return logs;
     }

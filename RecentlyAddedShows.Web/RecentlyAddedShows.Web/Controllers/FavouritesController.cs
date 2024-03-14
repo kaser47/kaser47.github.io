@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -28,6 +29,7 @@ namespace RecentlyAddedShows.Web.Controllers
         // GET: Favourites
         public async Task<IActionResult> Index()
         {
+            _logger.LogWarning($"Favourite/Index was called");
             _recentlyAddedShows.RefreshFavourites();
             return View(await _context.Favourites.ToListAsync());
         }
@@ -35,6 +37,7 @@ namespace RecentlyAddedShows.Web.Controllers
         // GET: Favourites/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            _logger.LogWarning($"Favourite/Details was called");
             if (id == null)
             {
                 return NotFound();
@@ -46,7 +49,6 @@ namespace RecentlyAddedShows.Web.Controllers
             {
                 return NotFound();
             }
-
             return View(favourite);
         }
 
@@ -63,6 +65,7 @@ namespace RecentlyAddedShows.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,Title")] Favourite favourite)
         {
+            _logger.LogWarning($"Favourite/Create was called");
             favourite.Created = DateTime.UtcNow;
             if (ModelState.IsValid)
             {
@@ -70,12 +73,14 @@ namespace RecentlyAddedShows.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            _logger.LogWarning($"{this.GetType().Name}/Create Result: {favourite.Title}");
             return View(favourite);
         }
 
         // GET: Favourites/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            _logger.LogWarning($"Favourite/Edit was called");
             if (id == null)
             {
                 return NotFound();
@@ -86,6 +91,7 @@ namespace RecentlyAddedShows.Web.Controllers
             {
                 return NotFound();
             }
+            _logger.LogWarning($"{this.GetType().Name}/{MethodBase.GetCurrentMethod().Name} Result: {favourite.Title}");
             return View(favourite);
         }
 
@@ -96,6 +102,7 @@ namespace RecentlyAddedShows.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,Title,Created")] Favourite favourite)
         {
+            _logger.LogWarning($"Favourite/Edit was called");
             if (id != favourite.id)
             {
                 return NotFound();
@@ -127,6 +134,7 @@ namespace RecentlyAddedShows.Web.Controllers
         // GET: Favourites/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            _logger.LogWarning($"Favourite/Delete was called");
             if (id == null)
             {
                 return NotFound();
@@ -138,7 +146,6 @@ namespace RecentlyAddedShows.Web.Controllers
             {
                 return NotFound();
             }
-
             return View(favourite);
         }
 
