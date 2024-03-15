@@ -25,7 +25,7 @@ namespace RecentlyAddedShows.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var columnOptionsValue = new ColumnOptions();
-            columnOptionsValue.TimeStamp.DataType = SqlDbType.DateTimeOffset;
+            columnOptionsValue.TimeStamp.DataType = SqlDbType.DateTime2;
             columnOptionsValue.TimeStamp.ConvertToUtc = true;
 
             // Add Serilog logging

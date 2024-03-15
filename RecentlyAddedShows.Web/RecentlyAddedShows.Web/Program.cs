@@ -23,7 +23,7 @@ namespace RecentlyAddedShows.Web
         public static void Main(string[] args)
         {
             var columnOptionsValue = new ColumnOptions();
-            columnOptionsValue.TimeStamp.DataType = SqlDbType.DateTimeOffset;
+            columnOptionsValue.TimeStamp.DataType = SqlDbType.DateTime2;
             columnOptionsValue.TimeStamp.ConvertToUtc = true;
 
             Log.Logger = new LoggerConfiguration()

@@ -252,6 +252,9 @@ namespace RecentlyAddedShows.Service.Classes
             ShowMovieInHTML();
             ShowTVShowInHTML();
             ShowFavouritesInHTML();
+            dbContext.SaveChanges();
+
+            dbContext = new Context();
             savedResults = dbContext.Shows.ToList();
             var favourites = dbContext.Favourites.ToList();
 
@@ -557,7 +560,7 @@ namespace RecentlyAddedShows.Service.Classes
                 favourite.IsChecked = true;
             }
 
-            dbContext.SaveChanges(true);
+            dbContext.SaveChanges();
         }
 
         private bool checkTitle(string title, string cartoonTitle)
