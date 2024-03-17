@@ -146,11 +146,15 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 foreach (var releaseDate in releaseDateMovies)
                 {
-                    if (popularMovie.Name == releaseDate.Name && popularMovie.hasReleaseDate && popularMovie.ReleaseDate.Value != releaseDate.Created)
+                    if (popularMovie.Name == releaseDate.Name && (!popularMovie.hasReleaseDate || (popularMovie.hasReleaseDate && popularMovie.ReleaseDate.Value != releaseDate.Created)))
                     {
-                        releaseDate.Created = popularMovie.ReleaseDate.Value;
+                        popularMovie.ReleaseDate = releaseDate.Created;
                     }
                 }
+
+                //Fix release dates
+
+
 
                 //Update Number viewing of popular movies
                 foreach (var show in results.Where(x => x.Type == ShowType.MoviePopular.ToString()))
