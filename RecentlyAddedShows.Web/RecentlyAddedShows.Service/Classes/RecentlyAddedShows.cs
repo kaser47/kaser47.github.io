@@ -149,12 +149,9 @@ namespace RecentlyAddedShows.Service.Classes
                     if (popularMovie.Name == releaseDate.Name && (!popularMovie.hasReleaseDate || (popularMovie.hasReleaseDate && popularMovie.ReleaseDate.Value != releaseDate.Created)))
                     {
                         popularMovie.ReleaseDate = releaseDate.Created;
+                        popularMovie.IsUpdated = true;
                     }
                 }
-
-                //Fix release dates
-
-
 
                 //Update Number viewing of popular movies
                 foreach (var show in results.Where(x => x.Type == ShowType.MoviePopular.ToString()))
@@ -418,16 +415,12 @@ namespace RecentlyAddedShows.Service.Classes
             }
 
 
-            //var itemsToDelete = savedResults.Where(x => results.All(y => y.Name != x.Name
-            // || y.NumberViewing != x.NumberViewing
-            // || x.hasReleaseDate != y.hasReleaseDate
-            // || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
-            // ));
+            var itemsToDelete = savedResults.Where(x => recentlyAddedShows.All(y => y.Name != x.Name));
 
-            //foreach ( var item in itemsToDelete )
-            //{
-            //    item.DeletedDate = DateTime.UtcNow;
-            //}
+            foreach (var item in itemsToDelete)
+            {
+                item.DeletedDate = DateTime.UtcNow;
+            }
 
 
             dbContext.SaveChanges();
