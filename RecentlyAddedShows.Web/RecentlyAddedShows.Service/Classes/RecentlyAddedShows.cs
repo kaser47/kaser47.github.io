@@ -92,6 +92,11 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.SaveChanges();
         }
 
+        public string GetSql()
+        {
+            return SqlGenerator.GenerateSql();
+        }
+
         public RecentlyAddedShowsViewModel GetModel()
         {
             var dbContext = new Context();

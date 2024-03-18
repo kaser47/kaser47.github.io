@@ -12,6 +12,7 @@ namespace RecentlyAddedShows.Service.Classes
         public const string TMDBCDN = "https://media.themoviedb.org/t/p/w260_and_h390_bestv2";
         public const string TMDBUrlLink = "https://www.themoviedb.org/movie/{0}?language=en-GB";
         public const string Connection = "Server=sql.bsite.net\\MSSQL2016;Database=recentlyaddedshows_ras;User Id=recentlyaddedshows_ras; Password=123qweasd;TrustServerCertificate=True;";
+        public const string DatabaseName = "recentlyaddedshows_ras";
 
         public static string Html {  get
             {

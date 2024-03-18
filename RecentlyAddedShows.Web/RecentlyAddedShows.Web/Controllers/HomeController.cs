@@ -89,6 +89,28 @@ namespace RecentlyAddedShows.Web.Controllers
             return result;
         }
 
+        public IActionResult GetSql()
+        {
+            _logger.LogWarning($"Home/{MethodBase.GetCurrentMethod().Name} was called");
+            ContentResult result = new ContentResult
+            {
+                Content = "Success",
+                ContentType = "text/plain"
+            };
+
+            var sql = _recentlyAddedShows.GetSql();
+
+
+            if (sql != String.Empty)
+            {
+                result.Content = sql;
+            }
+
+            _logger.LogWarning($"{this.GetType().Name}/{MethodBase.GetCurrentMethod().Name} Result: {result.Content}");
+            _logger.LogError($"{this.GetType().Name}/{MethodBase.GetCurrentMethod().Name} Result: {result.Content}");
+            return result;
+        }
+
         public IActionResult TestLogClear()
         {
             _logger.LogWarning($"Home/{MethodBase.GetCurrentMethod().Name} was called");

@@ -264,6 +264,15 @@ namespace RecentlyAddedShows.Service.Models
             }
         }
 
+        public string Sql
+        {
+            get
+            {
+
+                return string.Empty;
+            }
+        }
+
         public string ShowInHtml
         {
             get
