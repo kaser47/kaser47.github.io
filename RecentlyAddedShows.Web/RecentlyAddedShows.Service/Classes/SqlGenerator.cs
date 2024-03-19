@@ -157,10 +157,6 @@ namespace RecentlyAddedShows.Service.Classes
             var baseSql = @"
 --SQL TEMPLATE ---
 
---EXEC dbo.ClearAllLogs;
-
---EXEC dbo.GetTotalItems;
-
 {0}
 
 -----

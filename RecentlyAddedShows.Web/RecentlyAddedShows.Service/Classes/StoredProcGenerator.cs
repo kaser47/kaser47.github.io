@@ -15,18 +15,18 @@ public static class StoredProcGenerator
             USE {databaseName};
 
             -- Get stored procedures along with their parameters
-            SELECT 
-                p.name AS 'ProcedureName',
-                prm.name AS 'ParameterName',
-                TYPE_NAME(prm.system_type_id) AS 'ParameterType'
-            FROM 
-                sys.procedures p
-            JOIN 
-                sys.parameters prm ON p.object_id = prm.object_id
-            WHERE 
-                p.type_desc = 'SQL_STORED_PROCEDURE'
-            ORDER BY 
-                p.name, prm.parameter_id;
+SELECT 
+    p.name AS 'ProcedureName',
+    prm.name AS 'ParameterName',
+    TYPE_NAME(prm.system_type_id) AS 'ParameterType'
+FROM 
+    sys.procedures p
+LEFT JOIN 
+    sys.parameters prm ON p.object_id = prm.object_id
+WHERE 
+    p.type_desc = 'SQL_STORED_PROCEDURE' OR prm.object_id IS NULL
+ORDER BY 
+    p.name, prm.parameter_id;
         ";
 
         Dictionary<string, List<string>> procedureParameters = new Dictionary<string, List<string>>();
@@ -75,11 +75,22 @@ public static class StoredProcGenerator
             List<string> parameterValues = new List<string>();
             foreach (string parameter in parameters)
             {
-                parameterValues.Add($"{parameter} = <{parameter}>"); // Replace <{parameter}> with actual parameter value
+                if (parameter != "")
+                {
+                    parameterValues.Add($"{parameter} = <{parameter}>"); // Replace <{parameter}> with actual parameter value
+                }
+                }
+
+            if (parameterValues.Count > 0)
+            {
+                executeStatement += string.Join(", ", parameterValues);
+            }
+            else
+            {
+                executeStatement = executeStatement.Substring(0, executeStatement.Length - 1);
             }
 
-            executeStatement += string.Join(", ", parameterValues);
-            executeStatements.Add(executeStatement + ";" + Environment.NewLine);
+                executeStatements.Add(executeStatement + ";" + Environment.NewLine);
         }
 
         // Print the constructed EXEC statements
