@@ -46,10 +46,10 @@ namespace RecentlyAddedShows.Service.Classes
                new MetacriticStrategy(ShowType.GamePC),
                new MetacriticStrategy(ShowType.GamePS4),
                new InTheatresStrategy()
-            }; 
-            
+            };
+
             var date = DateTime.UtcNow;
-            
+
             Parallel.ForEach(strategies, strategy =>
             {
                 StrategyWrapper strategyWrapper = new StrategyWrapper(strategy);
@@ -62,6 +62,7 @@ namespace RecentlyAddedShows.Service.Classes
 
             return shows.ToList();
         }
+    
 
         public void ClearErrors()
         {
@@ -119,9 +120,9 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 errorDetails = dbContext.ErrorDetails.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                ex.SaveErrorDetails();
             }
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();

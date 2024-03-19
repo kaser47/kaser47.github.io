@@ -41,7 +41,11 @@ namespace RecentlyAddedShows.Web
             services.AddLogging(loggingBuilder =>
                 loggingBuilder.AddSerilog(dispose: true));
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(typeof(TryCatchActionFilter));
+            });
+            //services.AddScoped<TryCatchActionFilter>();
             services.AddDbContext<Context>();
         }
 

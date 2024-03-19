@@ -4,6 +4,7 @@ using RecentlyAddedShows.Service.Data.Entities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Text;
 
 namespace RecentlyAddedShows.Service.Strategies
@@ -24,11 +25,7 @@ namespace RecentlyAddedShows.Service.Strategies
             }
             catch (Exception ex)
             {
-                var dbContext = new Context();
-                ErrorDetails error = new ErrorDetails(ex); 
-
-                dbContext.ErrorDetails.Add(error);
-                dbContext.SaveChanges();
+                ex.SaveErrorDetails();
 
                 return new ConcurrentBag<Show>();
             }
@@ -46,6 +43,15 @@ namespace RecentlyAddedShows.Service.Strategies
             }
 
             return new ErrorMessage(ex.Message, ex.StackTrace);
+        }
+
+        public static void SaveErrorDetails(this Exception ex)
+        {
+            var dbContext = new Context();
+            ErrorDetails error = new ErrorDetails(ex);
+
+            dbContext.ErrorDetails.Add(error);
+            dbContext.SaveChanges();
         }
 
         public static string GetAllErrors(Exception ex)

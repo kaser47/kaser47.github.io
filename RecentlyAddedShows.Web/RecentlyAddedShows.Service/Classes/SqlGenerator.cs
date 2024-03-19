@@ -155,31 +155,15 @@ namespace RecentlyAddedShows.Service.Classes
         public static string baseSql()
         {
             var baseSql = @"
+--SQL TEMPLATE ---
+
 --EXEC dbo.ClearAllLogs;
 
 --EXEC dbo.GetTotalItems;
 
 {0}
 
---SHOW IN HTML DATE IS NOT NULL
-/*
-SELECT TOP (100000) [Id]
-        ,[Name]
-        ,[Type]
-        ,[Url]
-        ,[Image]
-        ,[Created]
-        ,[NumberViewing]
-        ,[IsUpdated]
-        ,[ReleaseDate]
-        ,[DeletedDate]
-        ,[IsChecked]
-        ,[ShowInHtml]
-        ,[ShowInHtmlDate]
-        ,[SubType]
-    FROM [recentlyaddedshows_ras].[dbo].[ShowInHtmlDateISNOTNULL]
-    ORDER BY [ShowInHtmlDate] DESC
-*/
+-----
 
 --SHOW IN HTML DATE IS NOT NULL
 /*
@@ -201,6 +185,7 @@ SELECT TOP (100000) [Id]
     ORDER BY [ShowInHtmlDate] DESC
 */
 
+-----
 
 /*
 SHOW TYPES
