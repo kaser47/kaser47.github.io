@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RecentlyAddedShows.Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82ee4a0a800ced5eaa216eb90293cdae43c032f2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0503b3c4b9a34664a5d31193ed33190c8cc1462a")]
 [assembly: System.Reflection.AssemblyProductAttribute("RecentlyAddedShows.Test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RecentlyAddedShows.Test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
