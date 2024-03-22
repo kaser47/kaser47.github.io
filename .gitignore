@@ -396,3 +396,17 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/RecentlyAddedShows.Test/obj/Debug/net7.0/RecentlyAddedShows.Test.AssemblyInfo.cs
+/RecentlyAddedShows.Test/obj/Debug/net7.0/RecentlyAddedShows.Test.AssemblyInfoInputs.cache
+/RecentlyAddedShows.Test/obj/Debug/net7.0/RecentlyAddedShows.Test.csproj.AssemblyReference.cache
+/RecentlyAddedShows.Web/.vs/RecentlyAddedShows.Web/v17/DocumentLayout.json
+/RecentlyAddedShows.Web/.vs/RecentlyAddedShows.Web/v17/.suo
+/RecentlyAddedShows.Web/Discord/bin/Debug/netcoreapp3.1/Discord.dll
+/RecentlyAddedShows.Web/Discord/bin/Debug/netcoreapp3.1/Discord.pdb
+/RecentlyAddedShows.Web/Discord/obj/Debug/netcoreapp3.1/Discord.AssemblyInfo.cs
+/RecentlyAddedShows.Web/Discord/obj/Debug/netcoreapp3.1/Discord.AssemblyInfoInputs.cache
+/RecentlyAddedShows.Web/Discord/obj/Debug/netcoreapp3.1/Discord.dll
+/RecentlyAddedShows.Web/Discord/obj/Debug/netcoreapp3.1/Discord.pdb
+/RecentlyAddedShows.Web/Discord/obj/Debug/netcoreapp3.1/Discord.sourcelink.json
+/RecentlyAddedShows.Web/Discord/obj/Release/netcoreapp3.1/Discord.AssemblyInfo.cs
+/RecentlyAddedShows.Web/Discord/obj/Release/netcoreapp3.1/Discord.AssemblyInfoInputs.cache
