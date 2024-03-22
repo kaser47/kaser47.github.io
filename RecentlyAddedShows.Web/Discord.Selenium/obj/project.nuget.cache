@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "So77nKPE6m0DiaN9t5fYJHbrBmIW9YavBM7SDHuVwTpxSX9lxCmIUL8BDi1yKSyyDoVpSwKUra0YDM4bFgE4dQ==",
+  "dgSpecHash": "IfVkvFaGEGkf2PyIXLjhpq4RLoE8hUE/WBsQQDmJHO9F9g2umg4fjeqIgKrDEBFTPIWyPs/FbLCa4FsR+bLHPg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\RAS\\RecentlyAddedShows.Web\\Discord.Selenium\\Discord.Selenium.csproj",
   "expectedPackageFiles": [
@@ -89,10 +89,7 @@
     "C:\\Users\\kaser\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\kaser\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\kaser\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\kaser\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\kaser\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+    "C:\\Users\\kaser\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

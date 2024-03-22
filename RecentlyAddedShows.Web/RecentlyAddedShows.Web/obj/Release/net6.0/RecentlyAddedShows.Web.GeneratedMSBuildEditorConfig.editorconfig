@@ -10,11 +10,33 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RecentlyAddedShows.Web
 build_property.RootNamespace = RecentlyAddedShows.Web
 build_property.ProjectDir = D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Web
 build_property._RazorSourceGeneratorDebug = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/ExcludedFavourites/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhjbHVkZWRGYXZvdXJpdGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/ExcludedFavourites/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhjbHVkZWRGYXZvdXJpdGVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/ExcludedFavourites/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhjbHVkZWRGYXZvdXJpdGVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/ExcludedFavourites/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhjbHVkZWRGYXZvdXJpdGVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/ExcludedFavourites/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhjbHVkZWRGYXZvdXJpdGVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projects/RAS/RecentlyAddedShows.Web/RecentlyAddedShows.Web/Views/Favourites/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlc1xDcmVhdGUuY3NodG1s

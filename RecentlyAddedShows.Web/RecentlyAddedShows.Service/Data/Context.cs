@@ -17,5 +17,6 @@ namespace RecentlyAddedShows.Service.Data
         public DbSet<ErrorMessage> ErrorMessages { get; set; }
         public DbSet<ErrorDetails> ErrorDetails { get; set; }
         public DbSet<Favourite> Favourites { get; set; }
+        public DbSet<ExcludedFavourite> ExcludedFavourites { get; set; }
     }
 }

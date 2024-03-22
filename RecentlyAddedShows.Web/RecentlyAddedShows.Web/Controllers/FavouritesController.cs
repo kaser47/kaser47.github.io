@@ -81,7 +81,7 @@ namespace RecentlyAddedShows.Web.Controllers
         // GET: Favourites/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            _logger.LogWarning($"Favourite/Edit was called");
+            _logger.LogWarning($"Favourite/EditGet was called");
             if (id == null)
             {
                 return NotFound();

@@ -128,7 +128,6 @@ D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord.Selenium.Web.MvcApplicationPartsAssemblyInfo.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\staticwebassets\Discord.Selenium.Web.StaticWebAssets.Manifest.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord.Selenium.Web.RazorTargetAssemblyInfo.cache
-D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord.Selenium.Web.csproj.CopyComplete
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord.Selenium.Web.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord.Selenium.Web.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord.Selenium.Web.genruntimeconfig.cache
@@ -137,3 +136,5 @@ D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.build.Discord.Selenium.Web.props
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.Discord.Selenium.Web.props
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.Discord.Selenium.Web.props
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord.Selenium.Web.sourcelink.json
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Web\obj\Debug\netcoreapp3.1\Discord..09DBEDA8.Up2Date

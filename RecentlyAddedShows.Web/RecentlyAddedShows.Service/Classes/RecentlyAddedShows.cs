@@ -464,6 +464,7 @@ namespace RecentlyAddedShows.Service.Classes
             var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
             var deletedFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.DeletedDate != null).ToList();
             var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
+            var excludedFavourites = dbContext.ExcludedFavourites.Select(x =>x.Title).ToList();
             var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString() || x.Type == ShowType.AnimatedMovie.ToString()).ToList();
 
             //Add new favourite or undelete it if it exists
@@ -475,13 +476,27 @@ namespace RecentlyAddedShows.Service.Classes
                     {
                         var newFavourite = new Show(cartoon);
                         var existingItem = existingFavouriteInstances.Where(x => x.Name == newFavourite.Name).FirstOrDefault();
-                        if (existingItem == null)
+
+                        var excluded = false;
+                        foreach (var excludedItem in excludedFavourites)
                         {
-                            favouritesToAdd.Add(newFavourite);
+                            if (checkTitle(excludedItem, cartoon.Name))
+                            {
+                                excluded = true;
+                            }
                         }
-                        else if (existingItem.hasDeletedDate)
+
+                        if (!excluded)
                         {
-                            existingItem.DeletedDate = null;
+                            if (existingItem == null)
+                            {
+                                favouritesToAdd.Add(newFavourite);
+                            }
+                            else if (existingItem.hasDeletedDate)
+                            {
+
+                                existingItem.DeletedDate = null;
+                            }
                         }
                     }
                 }
@@ -493,8 +508,20 @@ namespace RecentlyAddedShows.Service.Classes
                 {
                     if (checkTitle(favourite, deletedFavouriteInstance.Name))
                     {
-                        deletedFavouriteInstance.DeletedDate = null;
-                    }
+                        var excluded = false;
+                        foreach (var excludedItem in excludedFavourites)
+                        {
+                            if (checkTitle(excludedItem, deletedFavouriteInstance.Name))
+                            {
+                                excluded = true;
+                            }
+                        }
+
+                        if (!excluded)
+                        {
+                            deletedFavouriteInstance.DeletedDate = null;
+                        }
+                        }
                 }
             }
 
@@ -523,6 +550,7 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.SaveChanges();
 
             DeleteFavourites();
+            ExcludeFavourites();
         }
 
         private void DeleteFavourites()
@@ -551,10 +579,36 @@ namespace RecentlyAddedShows.Service.Classes
             dbContext.SaveChanges();
         }
 
+        private void ExcludeFavourites()
+        {
+            var dbContext = new Context();
+            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var excludedFavourites = dbContext.ExcludedFavourites.Select(x => x.Title).ToList();
+
+            foreach (var favourite in existingFavouriteInstances)
+            {
+                bool found = false;
+                foreach (var excludedfavouriteName in excludedFavourites)
+                {
+                    if (checkTitle(excludedfavouriteName, favourite.Name))
+                    {
+                        found = true; break;
+                    }
+                }
+
+                if (found)
+                {
+                    favourite.DeletedDate = DateTime.UtcNow;
+                }
+            }
+
+            dbContext.SaveChanges();
+        }
+
         private void ShowFavouritesInHTML()
         {
             var dbContext = new Context();
-            var favourites = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtmlDate == null).ToList();
+            var favourites = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtmlDate == null && x.DeletedDate == null).ToList();
 
             foreach (var favourite in favourites)
             {

@@ -200,7 +200,8 @@ D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcorea
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.AssemblyInfoInputs.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.AssemblyInfo.cs
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.csproj.CoreCompileInputs.cache
-D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.csproj.CopyComplete
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.genruntimeconfig.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord.Selenium.Tests.sourcelink.json
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium.Tests\obj\Debug\netcoreapp3.1\Discord..410CB24A.Up2Date

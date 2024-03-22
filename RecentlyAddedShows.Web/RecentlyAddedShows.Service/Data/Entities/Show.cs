@@ -261,6 +261,24 @@ namespace RecentlyAddedShows.Service.Data.Entities
         }
     }
 
+    public class ExcludedFavourite
+    {
+        public int id { get; set; }
+        public string Title { get; set; }
+        public DateTime Created { get; set; }
+
+        public ExcludedFavourite(string title)
+        {
+            this.Title = title;
+            Created = DateTime.UtcNow;
+        }
+
+        public ExcludedFavourite()
+        {
+
+        }
+    }
+
     public class TimeDifference
     {
         public int Years { get; set; }
