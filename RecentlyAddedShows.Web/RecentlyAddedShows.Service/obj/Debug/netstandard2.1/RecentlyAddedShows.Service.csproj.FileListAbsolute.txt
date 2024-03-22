@@ -12,10 +12,11 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Recently
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.deps.json
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\bin\Debug\netstandard2.1\RecentlyAddedShows.Service.pdb
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.csproj.AssemblyReference.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfoInputs.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.AssemblyInfo.cs
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.csproj.CoreCompileInputs.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.sourcelink.json
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.pdb
-D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Debug\netstandard2.1\RecentlyAddedShows.Service.csproj.AssemblyReference.cache

@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RecentlyAddedShows.Service.Data;
 using RecentlyAddedShows.Service.Data.Entities;
+using RecentlyAddedShows.Service.Extensions;
 using RecentlyAddedShows.Service.Models;
 using RecentlyAddedShows.Service.Strategies;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RecentlyAddedShows.Service.Classes
 {
@@ -22,6 +28,7 @@ namespace RecentlyAddedShows.Service.Classes
             {
                new CartoonsStrategy(),
                new WatchCartoonsOnlineStrategy("https://www.wco.tv/#dubbed", ShowType.Anime),
+               new AnimatedMovieStrategy(),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=1", true),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=2", true),
                new TraktUpNextStrategy("https://trakt.tv/users/kaser47/progress/watched/recently-aired?hide_completed=true&page=3", true),
@@ -37,11 +44,12 @@ namespace RecentlyAddedShows.Service.Classes
                new TraktGridStrategy("https://trakt.tv/users/kaser47/watchlist?display=movie&sort=added,asc", ShowType.MovieFavourites),
                new MetacriticStrategy(ShowType.GameSwitch),
                new MetacriticStrategy(ShowType.GamePC),
-               new MetacriticStrategy(ShowType.GamePS4)
-            }; 
-            
+               new MetacriticStrategy(ShowType.GamePS4),
+               new InTheatresStrategy()
+            };
+
             var date = DateTime.UtcNow;
-            
+
             Parallel.ForEach(strategies, strategy =>
             {
                 StrategyWrapper strategyWrapper = new StrategyWrapper(strategy);
@@ -54,6 +62,7 @@ namespace RecentlyAddedShows.Service.Classes
 
             return shows.ToList();
         }
+    
 
         public void ClearErrors()
         {
@@ -64,7 +73,29 @@ namespace RecentlyAddedShows.Service.Classes
                 dbContext.ErrorMessages.Remove(item);
             }
 
+            foreach (var item in dbContext.ErrorDetails)
+            {
+                dbContext.ErrorDetails.Remove(item);
+            }
+
             dbContext.SaveChanges();
+        }
+
+        public void ClearChecked()
+        {
+            var dbContext = new Context();
+
+            foreach (var item in dbContext.Shows)
+            {
+                item.IsChecked = false;
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        public string GetSql()
+        {
+            return SqlGenerator.GenerateSql();
         }
 
         public RecentlyAddedShowsViewModel GetModel()
@@ -82,6 +113,17 @@ namespace RecentlyAddedShows.Service.Classes
             {
 
             }
+
+            var errorDetails = new List<ErrorDetails>();
+
+            try
+            {
+                errorDetails = dbContext.ErrorDetails.ToList();
+            }
+            catch (Exception ex)
+            {
+                ex.SaveErrorDetails();
+            }
             int resultsCount = results.Count();
             int savedReultsCount = savedResults.Count();
             var t = dbContext.Shows.ToList();
@@ -91,10 +133,18 @@ namespace RecentlyAddedShows.Service.Classes
             || (x.ReleaseDate.HasValue && y.ReleaseDate.HasValue && x.ReleaseDate != y.ReleaseDate)
             || (x.Type == ShowType.TVShowUpNext.ToString() && y.Created != x.Created) 
             ))
-                .Where(x => x.Type != ShowType.Favourite.ToString() && x.Type != ShowType.ReleaseDate.ToString()).ToList();
-            var addtionalItemsToRemove = savedResults.Where(x => x.Type == ShowType.ReleaseDate.ToString() && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
+                //DO NOT DELETE FAVOURITES, RELEASEDATES, CARTOONS, ANIME, LASTUPDATED
+                .Where(x => x.Type != ShowType.Favourite.ToString() 
+                && x.Type != ShowType.TVShowRecentlyAired.ToString() 
+                && x.Type != ShowType.MoviePopular.ToString() 
+                && x.Type != ShowType.ReleaseDate.ToString() 
+                && x.Type != ShowType.Cartoon.ToString() 
+                && x.Type != ShowType.Anime.ToString() 
+                && x.Type != ShowType.AnimatedMovie.ToString() 
+                && x.Type != ShowType.LastUpdated.ToString()).ToList();
+            var addtionalItemsToRemove = savedResults.Where(x => (x.Type == ShowType.ReleaseDate.ToString() || x.Type == ShowType.MoviePopular.ToString()) && x.Created <= DateTime.UtcNow.AddMonths(-6)).ToList();
 
-            var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString());
+            var listPopularMovies = savedResults.Where((x) => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
             var releaseDateMovies = savedResults.Where(x => x.Type.ToString() == ShowType.ReleaseDate.ToString());
 
             //Fix incorrect release dates when they get updated.
@@ -102,9 +152,19 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 foreach (var releaseDate in releaseDateMovies)
                 {
-                    if (popularMovie.Name == releaseDate.Name && popularMovie.hasReleaseDate && popularMovie.ReleaseDate.Value != releaseDate.Created)
+                    if (popularMovie.Name == releaseDate.Name && (!popularMovie.hasReleaseDate || (popularMovie.hasReleaseDate && popularMovie.ReleaseDate.Value != releaseDate.Created)))
                     {
-                        releaseDate.Created = popularMovie.ReleaseDate.Value;
+                        popularMovie.ReleaseDate = releaseDate.Created;
+                        popularMovie.IsUpdated = true;
+                    }
+                }
+
+                //Update Number viewing of popular movies
+                foreach (var show in results.Where(x => x.Type == ShowType.MoviePopular.ToString()))
+                {
+                    if (popularMovie.Type == ShowType.MoviePopular.ToString() && popularMovie.Name == show.Name && popularMovie.NumberViewing != show.NumberViewing) {
+                        popularMovie.NumberViewing = show.NumberViewing;
+                        popularMovie.IsUpdated = true;
                     }
                 }
             }
@@ -132,32 +192,7 @@ namespace RecentlyAddedShows.Service.Classes
             int extraItemsCount = extraItemsToAdd.Count();
             var itemsToAdd = results.Where(x => savedResults.All(y => (y.Name != x.Name && y.Type != x.Type) | y.NumberViewing != x.NumberViewing));
             var ultimateItemsToAdd = itemsToAdd.Concat(extraItemsToAdd).Distinct();
-
-            var favouritesToAdd = new List<Show>();
-            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
-            var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
-            var sortedItemsToAdd = ultimateItemsToAdd.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString());
-
-            foreach (var item in sortedItemsToAdd)
-            {
-                foreach (var favourite in favouriteNames)
-                {
-                    if (item.Name.ToLower().Trim().Contains(favourite.ToLower().Trim()))
-                    {
-                        var existingItem = existingFavouriteInstances.Where(x => x.Name == item.Name).FirstOrDefault();
-                        if(existingItem == null)
-                        {
-                            favouritesToAdd.Add(new Show(item));
-                        }
-                    }
-                }
-            }
-
-            var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
-                                                    .Select(g => g.First())
-                                                    .ToList();
-
-            var finishedItemsToAdd = ultimateItemsToAdd.Concat(sortedFavourites).Distinct();
+            var finishedItemsToAdd = ultimateItemsToAdd.Distinct();
 
             int ultimateItemsToAddCount = finishedItemsToAdd.Count();
 
@@ -166,7 +201,7 @@ namespace RecentlyAddedShows.Service.Classes
             {
                 savedResults.ForEach(SetIsUpdatedFalse);
                 finishedItemsToAdd.ToList().ForEach(SetIsUpdatedTrue);
-                var popularMovies = finishedItemsToAdd.Where(x => x.Type == ShowType.MoviePopular.ToString());
+                var popularMovies = finishedItemsToAdd.Where(x => x.Type == ShowType.MoviePopular.ToString() || x.Type == ShowType.InTheatre.ToString());
                 foreach (var item in popularMovies)
                 {
                     var savedItem = savedResults.Where(x => x.Name == item.Name && x.Type == item.Type).FirstOrDefault();
@@ -196,15 +231,41 @@ namespace RecentlyAddedShows.Service.Classes
             {
                     finishedItemsToAdd = finishedItemsToAdd.Append(item);
             }
-            
+
+
+            var lastUpdated = dbContext.Shows.Where(x => x.Type == ShowType.LastUpdated.ToString()).FirstOrDefault();
+            if (lastUpdated != null)
+            {
+                lastUpdated.Created = DateTime.UtcNow;
+            }
+            else
+            {
+                lastUpdated = new Show("LastUpdated", "", "", ShowType.LastUpdated, DateTime.UtcNow);
+                finishedItemsToAdd = finishedItemsToAdd.Append(lastUpdated);
+            }
+
+
+
 
             dbContext.Shows.RemoveRange(itemsToRemove);
             dbContext.Shows.AddRange(finishedItemsToAdd);
 
             dbContext.SaveChanges();
-            savedResults = dbContext.Shows.ToList();
+            ClearDownLogs();
+            ClearHTMLFlags();
+            RemoveDeletedDateFromRecentlyAired(results);
+            RefreshFavourites();
+            ReorderCartoonsAndAnime();
+            ShowMovieInHTML();
+            ShowTVShowInHTML();
+            ShowFavouritesInHTML();
+            dbContext.SaveChanges();
 
-            var model = new RecentlyAddedShowsViewModel(savedResults, errors);
+            dbContext = new Context();
+            savedResults = dbContext.Shows.ToList();
+            var favourites = dbContext.Favourites.ToList();
+
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites, errorDetails);
             return model;
         }
 
@@ -212,6 +273,7 @@ namespace RecentlyAddedShows.Service.Classes
         {
             var dbContext = new Context();
             var savedResults = dbContext.Shows.ToList();
+            var favourites = dbContext.Favourites.ToList();
             var errors = new List<ErrorMessage>();
 
             try
@@ -222,8 +284,353 @@ namespace RecentlyAddedShows.Service.Classes
             {
 
             }
-            var model = new RecentlyAddedShowsViewModel(savedResults, errors);
+
+            var errorDetails = new List<ErrorDetails>();
+
+            try
+            {
+                errorDetails = dbContext.ErrorDetails.ToList();
+            }
+            catch (Exception)
+            {
+
+            }
+            var model = new RecentlyAddedShowsViewModel(savedResults, errors, favourites, errorDetails);
             return model;
+        }
+
+        public void ClearDownLogs()
+        {
+            using (var connection = new SqlConnection(Consts.Connection))
+            {
+                connection.Open();
+
+                var sql = "DELETE FROM [Logs] WHERE TimeStamp < @Date";
+
+                using (var command = new SqlCommand(sql, connection))
+                {
+
+                    command.Parameters.AddWithValue("@Date", DateTime.UtcNow.AddDays(-14));
+
+                    var reader = command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void ReorderCartoonsAndAnime()
+        {
+            var dbContext = new Context();
+            var cartoons = dbContext.Shows.Where(x => x.Type == ShowType.Cartoon.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
+            var animes = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
+            var animatedMovies = dbContext.Shows.Where(x => x.Type == ShowType.AnimatedMovie.ToString() && x.DeletedDate == null).OrderByDescending(x => x.Created).ToList();
+
+            if (cartoons.Count() > 16)
+            {
+                var i = 0;
+                foreach (Show cartoon in cartoons)
+                {
+                    i++;
+                    if (i > 16)
+                    {
+                        cartoon.DeletedDate = DateTime.UtcNow;
+                    }
+                }
+            }
+
+            if (animes.Count() > 16)
+            {
+                var i = 0;
+                foreach (Show anime in animes)
+                {
+                    i++;
+                    if (i > 16)
+                    {
+                        anime.DeletedDate = DateTime.UtcNow;
+                    }
+                }
+            }
+
+            if (animatedMovies.Count() > 16)
+            {
+                var i = 0;
+                foreach (Show animatedMovie in animatedMovies)
+                {
+                    i++;
+                    if (i > 16)
+                    {
+                        animatedMovie.DeletedDate = DateTime.UtcNow;
+                    }
+                }
+            }
+
+
+            dbContext.SaveChanges();
+        }
+
+        public void ClearHTMLFlags()
+        {
+            var dbContext = new Context();
+            var htmlShows = dbContext.Shows.Where(x => x.ShowInHtml).ToList();
+
+            foreach (Show item in htmlShows)
+            {
+                item.ShowInHtml = false;
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        public void ShowMovieInHTML()
+        {
+            var dbContext = new Context();
+            var topMovie = dbContext.Shows.Where(x => x.Type == ShowType.MoviePopular.ToString()).OrderByDescending(x => x.NumberViewing).FirstOrDefault();
+
+            if (topMovie.hasReleaseDate && topMovie.ReleaseDate < DateTime.UtcNow.AddDays(15) && topMovie.ReleaseDate > DateTime.UtcNow.AddMonths(-2)) {
+                if (!topMovie.IsChecked)
+                {
+                    topMovie.IsChecked = true;
+                    topMovie.ShowInHtml = true;
+                    topMovie.ShowInHtmlDate = DateTime.UtcNow;
+                }
+            }
+                dbContext.SaveChanges();
+        }
+
+        public void RemoveDeletedDateFromRecentlyAired(IList<Show> results)
+        {
+            var dbContext = new Context();
+            var savedResults = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate == null).ToList();
+
+            var deletedItems = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate != null).ToList();
+
+            var recentlyAddedShows = results.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString()).ToList();
+
+            foreach (var deletedItem in deletedItems)
+            {
+                bool itemFound = recentlyAddedShows.Any(show => show.Name == deletedItem.Name && show.DeletedDate == null);
+                if (itemFound)
+                {
+                    deletedItem.DeletedDate = null;
+                    if (deletedItem.Created > DateTime.UtcNow.AddDays(-14))
+                    {
+                        deletedItem.IsChecked = true;
+                        deletedItem.ShowInHtml = true;
+                        deletedItem.ShowInHtmlDate = DateTime.UtcNow;
+                    }
+                }
+            }
+
+
+            var itemsToDelete = savedResults.Where(x => recentlyAddedShows.All(y => y.Name != x.Name));
+
+            foreach (var item in itemsToDelete)
+            {
+                item.DeletedDate = DateTime.UtcNow;
+            }
+
+
+            dbContext.SaveChanges();
+        }
+
+        public void ShowTVShowInHTML()
+        {
+            var dbContext = new Context();
+            var upNextTvShow = dbContext.Shows.Where(x => x.Type == ShowType.TVShowUpNext.ToString()).OrderByDescending(x => x.Created).FirstOrDefault();
+            var recentlyAiredTvShows = dbContext.Shows.Where(x => x.Type == ShowType.TVShowRecentlyAired.ToString() && x.DeletedDate == null && !x.IsChecked).OrderByDescending(x => x.Created).ToList();
+
+            foreach (var recentlyAiredTvShow in recentlyAiredTvShows)
+            {
+                if (!recentlyAiredTvShow.IsChecked)
+                {
+                    recentlyAiredTvShow.IsChecked = true;
+
+                    if (!checkTitle(recentlyAiredTvShow.Name, upNextTvShow.Name))
+                    {
+                        recentlyAiredTvShow.ShowInHtml = true;
+                        recentlyAiredTvShow.ShowInHtmlDate = DateTime.UtcNow;
+                    }
+                }
+                }
+           
+
+                dbContext.SaveChanges();
+        }
+       
+
+        public void RefreshFavourites()
+        {
+            var dbContext = new Context();
+            var favouritesToAdd = new List<Show>();
+            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var deletedFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.DeletedDate != null).ToList();
+            var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
+            var excludedFavourites = dbContext.ExcludedFavourites.Select(x =>x.Title).ToList();
+            var cartoonsAndAnime = dbContext.Shows.Where(x => x.Type == ShowType.Anime.ToString() || x.Type == ShowType.Cartoon.ToString() || x.Type == ShowType.AnimatedMovie.ToString()).ToList();
+
+            //Add new favourite or undelete it if it exists
+            foreach (var cartoon in cartoonsAndAnime)
+            {
+                foreach (var favourite in favouriteNames)
+                {
+                    if (checkTitle(favourite, cartoon.Name))
+                    {
+                        var newFavourite = new Show(cartoon);
+                        var existingItem = existingFavouriteInstances.Where(x => x.Name == newFavourite.Name).FirstOrDefault();
+
+                        var excluded = false;
+                        foreach (var excludedItem in excludedFavourites)
+                        {
+                            if (checkTitle(excludedItem, cartoon.Name))
+                            {
+                                excluded = true;
+                            }
+                        }
+
+                        if (!excluded)
+                        {
+                            if (existingItem == null)
+                            {
+                                favouritesToAdd.Add(newFavourite);
+                            }
+                            else if (existingItem.hasDeletedDate)
+                            {
+
+                                existingItem.DeletedDate = null;
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (var deletedFavouriteInstance in deletedFavouriteInstances)
+            {
+                foreach (var favourite in favouriteNames)
+                {
+                    if (checkTitle(favourite, deletedFavouriteInstance.Name))
+                    {
+                        var excluded = false;
+                        foreach (var excludedItem in excludedFavourites)
+                        {
+                            if (checkTitle(excludedItem, deletedFavouriteInstance.Name))
+                            {
+                                excluded = true;
+                            }
+                        }
+
+                        if (!excluded)
+                        {
+                            deletedFavouriteInstance.DeletedDate = null;
+                        }
+                        }
+                }
+            }
+
+            var sortedFavourites =   favouritesToAdd.GroupBy(x => x.Name)
+                                                    .Select(g => g.First())
+                                                    .ToList();
+
+            foreach (var favouriteShow in existingFavouriteInstances)
+            {
+                bool remove = true;
+                foreach (var name in favouriteNames)
+                {
+                    if (checkTitle(name, favouriteShow.Name))
+                    {
+                        remove = false;
+                    }
+                }
+
+                if (remove && !favouriteShow.hasDeletedDate)
+                { 
+                    favouriteShow.DeletedDate = DateTime.UtcNow;
+                }
+            }
+            
+            dbContext.Shows.AddRange(sortedFavourites);
+            dbContext.SaveChanges();
+
+            DeleteFavourites();
+            ExcludeFavourites();
+        }
+
+        private void DeleteFavourites()
+        {
+            var dbContext = new Context();
+            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var favouriteNames = dbContext.Favourites.Select(x => x.Title).ToList();
+
+            foreach (var favourite in existingFavouriteInstances)
+            {
+                bool found = false;
+                foreach (var favouriteName in favouriteNames)
+                {
+                    if (checkTitle(favouriteName, favourite.Name))
+                    {
+                        found = true; break;    
+                    }
+                }
+
+                if (!found)
+                {
+                    favourite.DeletedDate = DateTime.UtcNow;
+                }
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        private void ExcludeFavourites()
+        {
+            var dbContext = new Context();
+            var existingFavouriteInstances = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString()).ToList();
+            var excludedFavourites = dbContext.ExcludedFavourites.Select(x => x.Title).ToList();
+
+            foreach (var favourite in existingFavouriteInstances)
+            {
+                bool found = false;
+                foreach (var excludedfavouriteName in excludedFavourites)
+                {
+                    if (checkTitle(excludedfavouriteName, favourite.Name))
+                    {
+                        found = true; break;
+                    }
+                }
+
+                if (found)
+                {
+                    favourite.DeletedDate = DateTime.UtcNow;
+                }
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        private void ShowFavouritesInHTML()
+        {
+            var dbContext = new Context();
+            var favourites = dbContext.Shows.Where(x => x.Type == ShowType.Favourite.ToString() && x.ShowInHtmlDate == null && x.DeletedDate == null).ToList();
+
+            foreach (var favourite in favourites)
+            {
+                favourite.ShowInHtml = true;
+                favourite.ShowInHtmlDate = DateTime.UtcNow;
+                favourite.IsChecked = true;
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        private bool checkTitle(string title, string cartoonTitle)
+        {
+            title = title.FormatTitle();
+            cartoonTitle = cartoonTitle.FormatTitle();
+
+            if (cartoonTitle.Contains(title))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private static void SetIsUpdatedTrue(Show show)

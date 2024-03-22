@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using RecentlyAddedShows.Service.Classes;
 
 namespace RecentlyAddedShows.Service.Data.Entities
@@ -8,9 +10,15 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public string SubType { get; set; }
         public string Url { get; set; }
         public string Image { get; set; }
         public DateTime Created { get; set; }
+        public DateTime? DeletedDate { get; set; }
+        public bool IsChecked { get; set; }
+        public bool ShowInHtml { get; set; }
+        public DateTime? ShowInHtmlDate { get; set; }
+
         public virtual DateTime PublishiedDate { get {
                 var utc = Created;
                 var localTime = TimeZoneInfo.ConvertTimeFromUtc(utc, TimeZoneInfo.Local);
@@ -29,6 +37,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
         public DateTime? ReleaseDate { get; set; }
 
         public virtual bool hasReleaseDate { get { return ReleaseDate.HasValue; } }
+        public virtual bool hasDeletedDate { get { return DeletedDate.HasValue; } }
 
         public string TranslatedReleaseDate
         {
@@ -116,7 +125,7 @@ namespace RecentlyAddedShows.Service.Data.Entities
             var utcTime  = TimeZoneInfo.ConvertTimeToUtc(created);
             Created = utcTime;
 
-            if (Type == ShowType.MoviePopular.ToString() && Name != null)
+            if ((Type == ShowType.MoviePopular.ToString() || Type == ShowType.InTheatre.ToString()) && Name != null)
             {
                 var searchableName = Name.Substring(0, Name.Length - 5);
                 var date = Name.Substring(Name.Length - 4, 4);
@@ -130,7 +139,13 @@ namespace RecentlyAddedShows.Service.Data.Entities
             Url = show.Url;
             Image = show.Image;
             Type = showType;
-            if (showType == ShowType.ReleaseDate.ToString())
+
+            if (showType == ShowType.Favourite.ToString())
+            {
+                Created = DateTime.UtcNow;
+                SubType = show.Type;
+            }
+            else if (showType == ShowType.ReleaseDate.ToString())
             {
                 Created = show.ReleaseDate.Value;
             }
@@ -167,6 +182,67 @@ namespace RecentlyAddedShows.Service.Data.Entities
         }
     }
 
+    public class ErrorDetails
+    {
+        public int id { get; set; }
+        public string ErrorMessage { get; set; }
+        public string StackTrace { get; set; }
+        public List<ErrorDetails> InnerErrors { get; set; }
+
+        public DateTime Created { get; set; }
+
+        public ErrorDetails(Exception ex)
+        {
+            ErrorMessage = ex.Message;
+            StackTrace = ex.StackTrace;
+            InnerErrors = new List<ErrorDetails>();
+            Created = DateTime.UtcNow;
+            // Recursively collect inner errors
+            if (ex.InnerException != null)
+            {
+                foreach (var innerEx in GetAllInnerExceptions(ex.InnerException))
+                {
+                    InnerErrors.Add(new ErrorDetails(innerEx));
+                }
+            }
+        }
+
+        public ErrorDetails()
+        {
+           
+        }
+
+        private IEnumerable<Exception> GetAllInnerExceptions(Exception ex)
+        {
+            yield return ex;
+
+            if (ex.InnerException != null)
+            {
+                foreach (var innerEx in GetAllInnerExceptions(ex.InnerException))
+                {
+                    yield return innerEx;
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Error Message: " + ErrorMessage);
+            sb.AppendLine("Stack Trace: " + StackTrace);
+            sb.AppendLine();
+
+            foreach (var innerError in InnerErrors)
+            {
+                sb.AppendLine("Inner Error:");
+                sb.AppendLine(innerError.ToString());
+            }
+
+            return sb.ToString();
+        }
+    }
+
     public class Favourite
     {
         public int id { get; set; }
@@ -180,6 +256,24 @@ namespace RecentlyAddedShows.Service.Data.Entities
         }
 
         public Favourite()
+        {
+
+        }
+    }
+
+    public class ExcludedFavourite
+    {
+        public int id { get; set; }
+        public string Title { get; set; }
+        public DateTime Created { get; set; }
+
+        public ExcludedFavourite(string title)
+        {
+            this.Title = title;
+            Created = DateTime.UtcNow;
+        }
+
+        public ExcludedFavourite()
         {
 
         }

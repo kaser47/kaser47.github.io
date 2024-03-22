@@ -38,8 +38,9 @@ D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\D
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.AssemblyInfoInputs.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.AssemblyInfo.cs
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.csproj.CoreCompileInputs.cache
-D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.csproj.CopyComplete
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.genruntimeconfig.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.csproj.AssemblyReference.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord.Console.sourcelink.json
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Console\obj\Debug\netcoreapp3.1\Discord..3CA78C16.Up2Date

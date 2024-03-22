@@ -17,3 +17,4 @@ D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.pdb
 D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.csproj.AssemblyReference.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord.Selenium\obj\Debug\netcoreapp3.1\Discord.Selenium.sourcelink.json

@@ -3,8 +3,37 @@
     ViewData["Title"] = "Home Page";
 }
 
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //setInterval(fetchDataFromViewModel, 1000);
+
+            function fetchDataFromViewModel() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Home/GetLastUpdated', // Replace ControllerName with your actual controller name
+                    success: function (response) {
+                        document.getElementById('translatedlastupdated').innerHTML = response.translatedLastUpdated;
+                        document.getElementById('lastupdated').innerHTML = response.lastUpdated;
+                        document.getElementById('translatedlastupdated2').innerHTML = response.translatedLastUpdated;
+                        document.getElementById('lastupdated2').innerHTML = response.lastUpdated;
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error fetching data: ", error);
+                    }
+                })
+            }
+
+            fetchDataFromViewModel()
+        });
+    </script>
+</head>
+
 <div class="text-center">
     <h1 id="headline" class="display-4">Entertainment Tracker</h1>
+    <h5>Last Updated - <span id="lastupdated" style="color: red"></span> - <span id="translatedlastupdated"></span></h5>
 </div>
 
 <div class="container">
@@ -21,6 +50,9 @@
                         </li>
                         <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#anime" role="tab" aria-controls="anime" aria-selected="false">Anime</a>
+                        </li>
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#animatedMovies" role="tab" aria-controls="animatedMovies" aria-selected="false">Animated Movies</a>
                         </li>
                         <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#nextup" role="tab" aria-controls="nextup" aria-selected="false">TV - Next Up</a>
@@ -49,6 +81,28 @@
                         <li class="nav-item">
                             <a target="_blank" class="nav-link" href="#ps4" role="tab" aria-controls="ps4" aria-selected="false">Game - PS4</a>
                         </li>
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#favourites" role="tab" aria-controls="favourites" aria-selected="false">Favourites</a>
+                        </li>
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#favourites-to-watch" role="tab" aria-controls="favourites-to-watch" aria-selected="false">Favourites-To-Watch</a>
+                        </li>
+                         <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#release-dates" role="tab" aria-controls="release-dates" aria-selected="false">Movie - Release Dates </a>
+                        </li>
+                                             <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#checkedItems" role="tab" aria-controls="checkedItems" aria-selected="false">Checked Items </a>
+                        </li>
+                                             <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#htmlItems" role="tab" aria-controls="htmlItems" aria-selected="false">Html Items </a>
+                        </li>
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#htmlDateItems" role="tab" aria-controls="htmlDateItems" aria-selected="false">Html Date Items </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="#maintenance" role="tab" aria-controls="maintenance" aria-selected="false">Maintenance</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -58,7 +112,8 @@
                         <div class="tab-pane active" id="errors" role="tabpanel" aria-labelledby="deals-tab">
                             <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Clear", "Home")'">Clear All</button>
                             <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
-                            <p />
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Index", "ExcludedFavourites")'">Excluded Favourites</button>
                             <p />
                             <p />
                             <table class="table table-striped table-bordered center">
@@ -86,11 +141,14 @@
 
 
                         <div class="tab-pane" id="cartoons" role="tabpanel">
-
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.Cartoons)
                                 {
@@ -107,15 +165,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -124,11 +173,15 @@
                         </div>
 
                         <div class="tab-pane" id="anime" role="tabpanel" aria-labelledby="history-tab">
-
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
+           
                                 </tr>
                                 @foreach (var item in Model.Anime)
                                 {
@@ -145,26 +198,52 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
 
                         </div>
 
-                        <div class="tab-pane" id="nextup" role="tabpanel" aria-labelledby="deals-tab">
+                        <div class="tab-pane" id="animatedMovies" role="tabpanel" aria-labelledby="history-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
+                                </tr>
+                                @foreach (var item in Model.AnimatedMovies)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            @if (item.IsUpdated)
+                                            {
+                                                <strong>
+                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                                </strong>
+                                            }
+                                            else
+                                            {
+                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+
+                        </div>
+
+                        <div class="tab-pane" id="nextup" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-10">Name</th>
                                 </tr>
                                 @foreach (var item in Model.NextUp)
                                 {
@@ -181,15 +260,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -197,10 +267,14 @@
                         </div>
 
                         <div class="tab-pane" id="tvpopular" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.TVPopular)
                                 {
@@ -217,15 +291,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -233,10 +298,14 @@
                         </div>
 
                         <div class="tab-pane" id="tvcollection" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.TVCollection)
                                 {
@@ -253,15 +322,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -269,10 +329,14 @@
                         </div>
 
                         <div class="tab-pane" id="moviepopular" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.MoviePopular)
                                 {
@@ -289,15 +353,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -306,10 +361,14 @@
                         </div>
 
                         <div class="tab-pane" id="moviefavourites" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.MovieWatchlist)
                                 {
@@ -326,15 +385,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -343,10 +393,14 @@
                         </div>
 
                         <div class="tab-pane" id="recentlyupdated" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.RecentlyUpdated)
                                 {
@@ -363,15 +417,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -380,10 +425,14 @@
                         </div>
 
                         <div class="tab-pane" id="switch" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.Switch)
                                 {
@@ -400,15 +449,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -417,10 +457,14 @@
                         </div>
 
                         <div class="tab-pane" id="pc" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.PC)
                                 {
@@ -437,15 +481,6 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
                                 }
                             </table>
@@ -454,10 +489,14 @@
                         </div>
 
                         <div class="tab-pane" id="ps4" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
                             <table class="table table-striped table-bordered center">
                                 <tr>
                                     <th class="thead-dark col-10">Name</th>
-                                    @*<th class="thead-dark text-center col-2">Image</th>*@
                                 </tr>
                                 @foreach (var item in Model.PS4)
                                 {
@@ -474,16 +513,206 @@
                                         <a target="_blank" id="link" href="@item.Url">@item.Name</a>
                                             }
                                     </td>
-                                    @*<td>
-                        <div class="container">
-                            <div class="px-0 center">
-                                <a target="_blank" href="@item.Image" >
-                                    <img src="@item.Image" class="img-thumbnail img-fluid">
-                                </a>
-                            </div>
-                        </div>
-                    </td>*@
                                 </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="favourites" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-10">Name</th>
+                                </tr>
+                                @foreach (var item in Model.Favourites)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                                <h target="_blank" id="link">@item.Title</h>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="favourites-to-watch" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-10">Name</th>
+                                </tr>
+                                @foreach (var item in Model.FavouritesToWatch)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            @if (item.IsUpdated)
+                                            {
+                                                <strong>
+                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                                </strong>
+                                            }
+                                            else
+                                            {
+                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="release-dates" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-10">Name</th>
+                                </tr>
+                                @foreach (var item in Model.ReleaseDates)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            @if (item.IsUpdated)
+                                            {
+                                                <strong>
+                                                    <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                                </strong>
+                                            }
+                                            else
+                                            {
+                                                <a target="_blank" id="link" href="@item.Url">@item.Name</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                                                <div class="tab-pane" id="checkedItems" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("ClearChecked", "Home")'">Clear Checked</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Name</th>
+                                    <th class="thead-dark col-3">Type</th>
+                                    <th class="thead-dark col-4">Created</th>
+                                </tr>
+                                @foreach (var item in Model.CheckedItems)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            <p>@item.Name</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Type</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Created</p>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="htmlItems" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Name</th>
+                                    <th class="thead-dark col-3">Type</th>
+                                    <th class="thead-dark col-4">Created</th>
+                                </tr>
+                                @foreach (var item in Model.ShowInHtmlItems)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            <p>@item.Name</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Type</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Created</p>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="htmlDateItems" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Name</th>
+                                    <th class="thead-dark col-3">Type</th>
+                                    <th class="thead-dark col-4">HTML Date</th>
+                                    <th class="thead-dark col-4">Created</th>
+                                </tr>
+                                @foreach (var item in Model.HtmlDateItems)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            <p>@item.Name</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Type</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.ShowInHtmlDate</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.Created</p>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="maintenance" role="tabpanel" aria-labelledby="deals-tab">
+                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Clear", "Home")'">Clear Errors</button>
+                            <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("ClearChecked", "Home")'">Clear Checked</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                            <button type="button" class="btn btn-dark" onclick="location.href='@Url.Action("Index", "Log")'">Logs</button>
+                            <button type="button" class="btn btn btn-warning" onclick="location.href='@Url.Action("Index", "ExcludedFavourites")'">Excluded Favourites</button>
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Created</th>
+                                    <th class="thead-dark col-3">Message</th>
+                                    <th class="thead-dark col-4">StrackTrace</th>
+                                </tr>
+                                @foreach (var item in Model.ErrorDetails)
+                                {
+                                    <tr id="item">
+                                        <td class="align-middle">
+                                            <p>@item.Created</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.ErrorMessage</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p>@item.StackTrace</p>
+                                        </td>
+                                    </tr>
                                 }
                             </table>
                         </div>
@@ -495,7 +724,7 @@
 </div>
 
 <div class="text-center">
-    <p id="date">Last Updated - <span style="color: red">@Model.LastUpdated().ToString("dd/MM/yyyy")</span> @Model.TranslatedLastUpdated()</p>
+    <p>Last Updated - <span id="lastupdated2" style="color: red"></span> - <span id="translatedlastupdated2"></span></p>
 </div>
 
 <script>

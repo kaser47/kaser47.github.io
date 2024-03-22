@@ -8,3 +8,13 @@ C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.dll
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.pdb
 C:\projects\RecentlyAddedShows\kaser47.github.io\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\bin\Release\netcoreapp3.1\Discord.deps.json
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\bin\Release\netcoreapp3.1\Discord.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\bin\Release\netcoreapp3.1\Discord.pdb
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.csproj.AssemblyReference.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.AssemblyInfoInputs.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.AssemblyInfo.cs
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.csproj.CoreCompileInputs.cache
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.dll
+D:\Projects\RAS\RecentlyAddedShows.Web\Discord\obj\Release\netcoreapp3.1\Discord.pdb

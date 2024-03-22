@@ -1,0 +1,104 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Logs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 id="headline" class="display-4">Entertainment Tracker - Logs</h1>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link active" href="#logs" role="tab" aria-controls="logs" aria-selected="true">Logs</a>
+                        </li>
+                    </ul>
+                        <div class="card-body">
+
+                            <div class="tab-content mt-3">
+
+                                <div class="tab-pane active" id="logs" role="tabpanel" aria-labelledby="deals-tab">
+
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Home")'">Home</button>
+                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+
+                    <p />
+                    <p />
+                    <p />
+<form class="form-control" asp-action="Search" method="get">
+    <label>Date Range:</label>
+    <input type="date" name="startDate" />
+    <input type="date" name="endDate" />
+
+    <label>Log Level:</label>
+    <select name="logLevel">
+        <option value="">All</option>
+        <option value="Information">Information</option>
+        <option value="Warning">Warning</option>
+        <option value="Error">Error</option>
+        <!-- Add more log levels as needed -->
+    </select>
+
+    <label>Keyword:</label>
+    <input type="text" name="keyword" />
+
+    <button type="submit">Search</button>
+</form>
+
+
+                            <div class="card-body">
+
+                                <div class="tab-content mt-3">
+
+
+    <!-- Display filtered logs here -->
+    @if (Model != null && Model.Any())
+    {
+            <table table table-striped table-bordered center>
+            <tr>
+                <th class="thead-dark col-2" >Timestamp</th>
+                <th class="thead-dark col-2">Level</th>
+                <th class="thead-dark col-6">Message</th>
+            </tr>
+            @foreach (var log in Model)
+            {
+                var logParts = log.Split(new[] { " ---- " }, StringSplitOptions.None);
+                                    <tr id="item">
+                                        <td class="align-middle">@logParts[0]</td>
+                                        <td class="align-middle">@logParts[1]</td>
+                                        <td class="align-middle">@logParts[2]</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No logs found.</p>
+    }
+
+
+                </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                                                        </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+                

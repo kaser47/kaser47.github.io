@@ -18,7 +18,7 @@ namespace RecentlyAddedShows.Service.Classes
             var items = new List<SyndicationItem>();
 
             var i = 0;
-            foreach (var show in shows)
+            foreach (var show in shows.Where(x => !x.hasDeletedDate))
             {
                 var description = string.Empty;
 
@@ -28,6 +28,7 @@ namespace RecentlyAddedShows.Service.Classes
                 {
                     case ShowType.Cartoon:
                     case ShowType.Anime:
+                    case ShowType.AnimatedMovie:
                         description = $"{show.Type} - {show.TranslatedCreated}";
                         break;
                     case ShowType.TVShowUpNext:
@@ -70,12 +71,6 @@ namespace RecentlyAddedShows.Service.Classes
 
                 var publishedDate = show.PublishiedDate;
 
-                // ReSharper disable once StringLiteralTypo
-                //if (show.Type == "Anime" || show.Type == "Cartoon")
-                //{
-                //    publishedDate = publishedDate.AddHours(-7);
-                //}
-
                 var item = new SyndicationItem
                 {
                     Id = i.ToString(),
@@ -95,9 +90,8 @@ namespace RecentlyAddedShows.Service.Classes
         public byte[] CreateCartoonRssFeed()
         {
             var recentlyAddedShows = new RecentlyAddedShows();
-            var recentlyAddedShowsViewModel = recentlyAddedShows.GetModel();
-            var shows = recentlyAddedShowsViewModel.Shows;
-            var items = shows.Where(x => x.Type == "Anime" || x.Type == "Cartoon")
+            var shows = recentlyAddedShows.LoadModel().Shows;
+            var items = shows.Where(x => x.Type == "Anime" || x.Type == "Cartoon" || x.Type == "AnimatedMovie")
                 .OrderByDescending(x => x.Created).ThenByDescending(x => x.Type).ThenBy(x => x.Name);
 
             return CreateRssFeed(items);

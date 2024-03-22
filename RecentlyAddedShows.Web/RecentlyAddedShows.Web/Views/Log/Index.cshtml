@@ -1,0 +1,87 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Logs";
+}
+
+<head>
+</head>
+
+<div class="text-center">
+    <h1 id="headline" class="display-4">Entertainment Tracker - Logs</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Home")'">Home</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Favourites")'">Favourites</button>
+                </div>
+                <div class="card-body">
+
+                    <div class="tab-content mt-3">
+
+
+                        <div class="tab-pane active" id="maintenance" role="tabpanel" aria-labelledby="deals-tab">
+
+                            <form class="form-control" asp-action="Search" method="get">
+                                <label>Date Range:</label>
+                                <input type="date" name="startDate" />
+                                <input type="date" name="endDate" />
+
+                                <label>Log Level:</label>
+                                <select name="logLevel">
+                                    <option value="">All</option>
+                                    <option value="Information">Information</option>
+                                    <option value="Warning">Warning</option>
+                                    <option value="Error">Error</option>
+                                    <!-- Add more log levels as needed -->
+                                </select>
+
+                                <label>Keyword:</label>
+                                <input type="text" name="keyword" />
+
+                                <button type="submit">Search</button>
+                            </form>
+
+                            <p />
+                            <p />
+                            <p />
+                            <table class="table table-striped table-bordered center">
+                                <tr>
+                                    <th class="thead-dark col-2">Timestamp</th>
+                                    <th class="thead-dark col-3">Level</th>
+                                    <th class="thead-dark col-4">Message</th>
+                                </tr>
+
+                                @foreach (var log in Model)
+                                {
+                                    var logParts = log.Split(new[] { " ---- " }, StringSplitOptions.None);
+                                    <tr id="item">
+                                        <td class="align-middle">@logParts[0]</td>
+                                        <td class="align-middle">@logParts[1]</td>
+                                        <td class="align-middle">@logParts[2]</td>
+                                    </tr>
+                                }
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#bologna-list a').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    });
+
+</script>

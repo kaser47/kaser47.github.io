@@ -3,7 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RecentlyAddedShows.Service.Classes;
 using RecentlyAddedShows.Service.Data;
+using Serilog;
+using Serilog.Sinks.MSSqlServer;
+using System.Data;
 
 namespace RecentlyAddedShows.Web
 {
@@ -17,13 +21,35 @@ namespace RecentlyAddedShows.Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [System.Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            var columnOptionsValue = new ColumnOptions();
+            columnOptionsValue.TimeStamp.DataType = SqlDbType.DateTime2;
+            columnOptionsValue.TimeStamp.ConvertToUtc = true;
+
+            // Add Serilog logging
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.MSSqlServer(
+                columnOptions: columnOptionsValue,
+                connectionString: "Server=sql.bsite.net\\MSSQL2016;Database=recentlyaddedshows_ras;User Id=recentlyaddedshows_ras; Password=123qweasd;TrustServerCertificate=True;",
+                tableName: "Logs",
+                autoCreateSqlTable: true)
+                .CreateLogger();
+
+            services.AddLogging(loggingBuilder =>
+                loggingBuilder.AddSerilog(dispose: true));
+
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(typeof(TryCatchActionFilter));
+            });
+            //services.AddScoped<TryCatchActionFilter>();
             services.AddDbContext<Context>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use thisl; method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -42,6 +68,8 @@ namespace RecentlyAddedShows.Web
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseMiddleware<LoggingMiddleware>();
+
 
             app.UseEndpoints(endpoints =>
             {

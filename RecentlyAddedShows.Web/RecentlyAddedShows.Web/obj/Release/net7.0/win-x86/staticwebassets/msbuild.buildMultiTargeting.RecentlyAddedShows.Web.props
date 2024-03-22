@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\RecentlyAddedShows.Web.props" />
+</Project>

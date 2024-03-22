@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<RecentlyAddedShows.Service.Data.Entities.Favourite>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Favourites";
 }
 
-<h1>Index</h1>
-
+<h1>Favourites</h1>
+<button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Home")'">Home</button>
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Refresh", "Home")'">Refresh</button>
+<button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Index", "ExcludedFavourites")'">Excluded Favourites</button>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
