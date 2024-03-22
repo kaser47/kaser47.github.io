@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RecentlyAddedShows.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0d0004af237181d31294939f66e0955fd4beebe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51dd41f0f0fc5f8810afb00385d083a0f0b99f18")]
 [assembly: System.Reflection.AssemblyProductAttribute("RecentlyAddedShows.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RecentlyAddedShows.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
