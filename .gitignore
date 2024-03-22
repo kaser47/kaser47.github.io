@@ -4,8 +4,11 @@
 *.exe
 
 # Ignore build directories
-build/
-bin/
+*build/
+*bin/
+*obj/
+*.vs/
+
 
 # Ignore dependencies installed by package managers
 node_modules/
