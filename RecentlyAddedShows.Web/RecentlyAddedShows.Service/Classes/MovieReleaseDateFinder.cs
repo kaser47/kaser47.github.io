@@ -11,7 +11,6 @@ namespace RecentlyAddedShows.Service.Classes
 {
     public static class MovieReleaseDateFinder
     {
-        const string ApiKey = "10b8b8b339f213d5a7c04a44ad8208de";
         public static async Task<DateTime?> GetDetailsAsync(string title, string year)
         {
             int nowYear = DateTime.UtcNow.Year;
@@ -20,7 +19,7 @@ namespace RecentlyAddedShows.Service.Classes
             try
             {
             var encodedTitle = HttpUtility.UrlEncode(title);
-            string searchUrl = $"https://api.themoviedb.org/3/search/movie?api_key={ApiKey}&language=en-US&query={encodedTitle}&page=1";
+            string searchUrl = $"https://api.themoviedb.org/3/search/movie?api_key={Consts.ApiKey}&language=en-US&query={encodedTitle}&page=1";
 
             //Search
             HttpClient client = new HttpClient();
@@ -37,7 +36,7 @@ namespace RecentlyAddedShows.Service.Classes
 
             var movieId = firstSearchResult.SelectToken("id").ToString();
 
-            string releaseDatesUrl = $"https://api.themoviedb.org/3/movie/{movieId}/release_dates?api_key={ApiKey}";
+            string releaseDatesUrl = $"https://api.themoviedb.org/3/movie/{movieId}/release_dates?api_key={Consts.ApiKey}";
 
             //Release Dates
             HttpResponseMessage releaseDatesResponse = await client.GetAsync(releaseDatesUrl);
@@ -57,7 +56,7 @@ namespace RecentlyAddedShows.Service.Classes
                     var earliestReleaseDate = validReleaseDates.OrderBy(x => DateTime.Parse(x.SelectToken("release_date").ToString())).Select(x => DateTime.Parse(x.SelectToken("release_date").ToString())).First();
                     releaseDatesPerRegion.Add(earliestReleaseDate);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     continue;
                 }

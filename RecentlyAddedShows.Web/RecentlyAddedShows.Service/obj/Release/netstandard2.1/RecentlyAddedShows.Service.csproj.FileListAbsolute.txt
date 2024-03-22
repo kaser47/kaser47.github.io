@@ -20,3 +20,4 @@ D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\ne
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.csproj.CoreCompileInputs.cache
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.dll
 D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.pdb
+D:\Projects\RAS\RecentlyAddedShows.Web\RecentlyAddedShows.Service\obj\Release\netstandard2.1\RecentlyAddedShows.Service.sourcelink.json

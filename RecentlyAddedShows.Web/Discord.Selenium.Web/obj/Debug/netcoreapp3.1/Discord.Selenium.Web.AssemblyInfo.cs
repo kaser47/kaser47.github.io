@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Discord.Selenium.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0503b3c4b9a34664a5d31193ed33190c8cc1462a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0d0004af237181d31294939f66e0955fd4beebe")]
 [assembly: System.Reflection.AssemblyProductAttribute("Discord.Selenium.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Discord.Selenium.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
