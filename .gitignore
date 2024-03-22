@@ -8,6 +8,9 @@
 *bin/
 *obj/
 *.vs/
+debug/
+release/
+**/obj/
 
 
 # Ignore dependencies installed by package managers
